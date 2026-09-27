@@ -1,0 +1,12 @@
+G2 VALIDATION - v2_demand_baseline
+
+[PASS]  1. 100 rows, one per FG, no materials/Unknown            rows=100, unique=True, matches_FG=True
+[PASS]  2. All ProductKeys exist in DimProduct                   orphans=0
+[PASS]  3. No nulls; required numerics positive                  blanks=none, non_positive=none
+[PASS]  4. Mean demand A>B>C; A-class share dominant             means A=53.5 B=15.1 C=4.1; A volume share=61.9%
+[PASS]  5. SeasonalityPattern by family, non-degenerate          family_consistent=True, patterns=4, max_share=36%
+[PASS]  6. Amplitude 0.0-0.4, TrendPerYear -0.05..+0.15          amp 0.032..0.349; trend -0.039..0.145
+[PASS]  7. Generator reads no customer/location/inventory input  forbidden_loads=none
+[PASS]  8. Realism: no constant metrics, profiles varied         distinct={'BaseDailyDemand': 100, 'DemandVolatility': 100, 'SeasonalAmplitude': 99, 'TrendPerYear': 97}, weekday_profiles=3 max_share=48%
+
+8/8 criteria passed - ALL PASS

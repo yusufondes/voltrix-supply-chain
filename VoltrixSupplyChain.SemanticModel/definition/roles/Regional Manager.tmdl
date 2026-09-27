@@ -1,0 +1,7 @@
+role 'Regional Manager'
+	modelPermission: read
+
+	tablePermission DimLocation = [LocationName] IN CALCULATETABLE ( VALUES ( SecurityUserLocation[LocationName] ), SecurityUserLocation[UserPrincipalName] = USERPRINCIPALNAME () )
+
+	annotation PBI_Id = 92b42a74b194565094d19f35e4c7d73e
+

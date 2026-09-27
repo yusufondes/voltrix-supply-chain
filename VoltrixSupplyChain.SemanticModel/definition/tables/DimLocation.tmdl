@@ -1,0 +1,125 @@
+table DimLocation
+	lineageTag: cf25c8cd-3ceb-4d48-afa8-d1aa11591943
+
+	column LocationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d92e47b-7564-454c-94c2-b743b899a0e2
+		summarizeBy: none
+		sourceColumn: LocationKey
+
+		annotation SummarizationSetBy = User
+
+	column LocationCode
+		dataType: string
+		lineageTag: d64ec0c6-a684-453d-8b32-eced380a4f3e
+		summarizeBy: none
+		sourceColumn: LocationCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationName
+		dataType: string
+		lineageTag: f234bd61-7e50-4453-bf39-1771ff64c43d
+		summarizeBy: none
+		sourceColumn: LocationName
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationType
+		dataType: string
+		lineageTag: 3280bccb-e9f7-4929-96bf-5c0d14680823
+		summarizeBy: none
+		sourceColumn: LocationType
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: f782eb3e-0ab4-42ba-be76-4d6766050633
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: f18e7dd2-d805-4970-9476-20e072b8cec9
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryCode
+		dataType: string
+		lineageTag: f14fd5be-8b9c-4a3c-8697-3fff9ce358b8
+		summarizeBy: none
+		sourceColumn: CountryCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: a938d830-728e-4d34-bdb3-a99d447d7f42
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsManufacturingSite
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0c3c4d6a-a46a-4733-8760-f29bcdc9f3c9
+		summarizeBy: none
+		sourceColumn: IsManufacturingSite
+
+		annotation SummarizationSetBy = Automatic
+
+	column StocksMaterials
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 41c6d5ce-aab4-491e-b064-b0fdc1305cfa
+		summarizeBy: none
+		sourceColumn: StocksMaterials
+
+		annotation SummarizationSetBy = Automatic
+
+	column StocksFinishedGoods
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c8dbd2b9-9b6c-4ffd-b912-484e06a7cad8
+		summarizeBy: none
+		sourceColumn: StocksFinishedGoods
+
+		annotation SummarizationSetBy = Automatic
+
+	column CapacityPallets
+		dataType: int64
+		formatString: 0
+		lineageTag: 7264e244-ffcd-4c90-90f7-22a187e363fb
+		summarizeBy: sum
+		sourceColumn: CapacityPallets
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsPrimaryHub
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5138cb2c-d0f8-4dba-9477-6b433da8096f
+		summarizeBy: none
+		sourceColumn: IsPrimaryHub
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimLocation = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "DimLocation.csv"),[Delimiter=",", Columns=13, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"LocationKey", Int64.Type}, {"LocationCode", type text}, {"LocationName", type text}, {"LocationType", type text}, {"City", type text}, {"Country", type text}, {"CountryCode", type text}, {"Region", type text}, {"IsManufacturingSite", type logical}, {"StocksMaterials", type logical}, {"StocksFinishedGoods", type logical}, {"CapacityPallets", Int64.Type}, {"IsPrimaryHub", type logical}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

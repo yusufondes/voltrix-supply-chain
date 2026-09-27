@@ -1,0 +1,208 @@
+/// Voltrix Electric SE - model relationships
+/// 25 relationships. All many-to-one, single cross-filter direction.
+/// Column names taken verbatim from the CSV headers in data/generated.
+///
+/// Active date relationship per fact:
+///   FactSalesOrderLine    -> OrderDateKey
+///   FactShipmentLine      -> ShipDateKey
+///   FactPurchaseOrderLine -> OrderDateKey
+///   FactGoodsReceiptLine  -> ReceiptDateKey
+///   FactInventorySnapshot -> DateKey
+/// Every other *DateKey column is an inactive role-playing relationship,
+/// reachable from DAX with USERELATIONSHIP.
+
+/// ---------------------------------------------------------------- DimDate
+
+relationship FactSalesOrderLine_DimDate_OrderDate
+	fromColumn: FactSalesOrderLine.OrderDateKey
+	toColumn: DimDate.DateKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactSalesOrderLine_DimDate_RequestedDate
+	isActive: false
+	fromColumn: FactSalesOrderLine.RequestedDateKey
+	toColumn: DimDate.DateKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactShipmentLine_DimDate_ShipDate
+	fromColumn: FactShipmentLine.ShipDateKey
+	toColumn: DimDate.DateKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactShipmentLine_DimDate_DeliveryDate
+	isActive: false
+	fromColumn: FactShipmentLine.DeliveryDateKey
+	toColumn: DimDate.DateKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactPurchaseOrderLine_DimDate_OrderDate
+	fromColumn: FactPurchaseOrderLine.OrderDateKey
+	toColumn: DimDate.DateKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactPurchaseOrderLine_DimDate_ExpectedDeliveryDate
+	isActive: false
+	fromColumn: FactPurchaseOrderLine.ExpectedDeliveryDateKey
+	toColumn: DimDate.DateKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactGoodsReceiptLine_DimDate_ReceiptDate
+	fromColumn: FactGoodsReceiptLine.ReceiptDateKey
+	toColumn: DimDate.DateKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactGoodsReceiptLine_DimDate_ExpectedDeliveryDate
+	isActive: false
+	fromColumn: FactGoodsReceiptLine.ExpectedDeliveryDateKey
+	toColumn: DimDate.DateKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactInventorySnapshot_DimDate_Date
+	fromColumn: FactInventorySnapshot.DateKey
+	toColumn: DimDate.DateKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+/// ------------------------------------------------------------- DimProduct
+
+relationship FactSalesOrderLine_DimProduct
+	fromColumn: FactSalesOrderLine.ProductKey
+	toColumn: DimProduct.ProductKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactShipmentLine_DimProduct
+	fromColumn: FactShipmentLine.ProductKey
+	toColumn: DimProduct.ProductKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactPurchaseOrderLine_DimProduct
+	fromColumn: FactPurchaseOrderLine.ProductKey
+	toColumn: DimProduct.ProductKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactGoodsReceiptLine_DimProduct
+	fromColumn: FactGoodsReceiptLine.ProductKey
+	toColumn: DimProduct.ProductKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactInventorySnapshot_DimProduct
+	fromColumn: FactInventorySnapshot.ProductKey
+	toColumn: DimProduct.ProductKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+/// ------------------------------------------------------------ DimLocation
+
+relationship FactSalesOrderLine_DimLocation
+	fromColumn: FactSalesOrderLine.LocationKey
+	toColumn: DimLocation.LocationKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactShipmentLine_DimLocation
+	fromColumn: FactShipmentLine.LocationKey
+	toColumn: DimLocation.LocationKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactPurchaseOrderLine_DimLocation
+	fromColumn: FactPurchaseOrderLine.LocationKey
+	toColumn: DimLocation.LocationKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactGoodsReceiptLine_DimLocation
+	fromColumn: FactGoodsReceiptLine.LocationKey
+	toColumn: DimLocation.LocationKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactInventorySnapshot_DimLocation
+	fromColumn: FactInventorySnapshot.LocationKey
+	toColumn: DimLocation.LocationKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+/// ------------------------------------------------------------ DimCustomer
+
+relationship FactSalesOrderLine_DimCustomer
+	fromColumn: FactSalesOrderLine.CustomerKey
+	toColumn: DimCustomer.CustomerKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactShipmentLine_DimCustomer
+	fromColumn: FactShipmentLine.CustomerKey
+	toColumn: DimCustomer.CustomerKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+/// ------------------------------------------------------------ DimSupplier
+
+relationship FactPurchaseOrderLine_DimSupplier
+	fromColumn: FactPurchaseOrderLine.SupplierKey
+	toColumn: DimSupplier.SupplierKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactGoodsReceiptLine_DimSupplier
+	fromColumn: FactGoodsReceiptLine.SupplierKey
+	toColumn: DimSupplier.SupplierKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+/// ------------------------------------------------- fact-to-fact (inactive)
+/// Kept inactive on purpose: activating either would create a second filter
+/// path to DimProduct / DimLocation / DimCustomer and make the model
+/// ambiguous. Use them only inside CALCULATE with USERELATIONSHIP.
+
+relationship FactShipmentLine_FactSalesOrderLine
+	isActive: false
+	fromColumn: FactShipmentLine.SalesOrderLineKey
+	toColumn: FactSalesOrderLine.SalesOrderLineKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+
+relationship FactGoodsReceiptLine_FactPurchaseOrderLine
+	isActive: false
+	fromColumn: FactGoodsReceiptLine.PurchaseOrderLineKey
+	toColumn: FactPurchaseOrderLine.PurchaseOrderLineKey
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection

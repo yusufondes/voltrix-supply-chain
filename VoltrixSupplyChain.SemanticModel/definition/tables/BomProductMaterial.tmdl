@@ -1,0 +1,44 @@
+table BomProductMaterial
+	lineageTag: 83956c41-d618-5b1d-a3aa-c794983df760
+
+	column ProductKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d96378de-9807-5480-b0f7-f231f33e829e
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = User
+
+	column MaterialKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c8e20351-7d1d-53c0-8861-22f43a3c6e2f
+		summarizeBy: none
+		sourceColumn: MaterialKey
+
+		annotation SummarizationSetBy = User
+
+	column QtyPerUnit
+		dataType: double
+		formatString: 0.000
+		lineageTag: 1e97390d-d462-5b52-bcca-61e1fae780bd
+		summarizeBy: none
+		sourceColumn: QtyPerUnit
+
+		annotation SummarizationSetBy = User
+
+	partition BomProductMaterial = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "BomProductMaterial.csv"),[Delimiter=",", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ProductKey", Int64.Type}, {"MaterialKey", Int64.Type}, {"QtyPerUnit", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,165 @@
+table FactGoodsReceiptLine
+	lineageTag: d06f283e-da9e-405f-8e82-a37ae6ddc138
+
+	column PurchaseOrderLineKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c7badbd-a885-4863-9fdc-7d337d26e245
+		summarizeBy: none
+		sourceColumn: PurchaseOrderLineKey
+
+		annotation SummarizationSetBy = User
+
+	column PurchaseOrderNo
+		dataType: string
+		lineageTag: f072b29a-c0d4-4e3b-8210-ad043749ec6a
+		summarizeBy: none
+		sourceColumn: PurchaseOrderNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column PoLineNo
+		dataType: int64
+		formatString: 0
+		lineageTag: 483f21e3-87ef-4ada-8586-c6e8b5de7f8e
+		summarizeBy: none
+		sourceColumn: PoLineNo
+
+		annotation SummarizationSetBy = User
+
+	column ReceiptDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 145cef60-01fa-4441-b862-2012ff070f41
+		summarizeBy: none
+		sourceColumn: ReceiptDateKey
+
+		annotation SummarizationSetBy = User
+
+	column ExpectedDeliveryDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 6a6123f2-5300-4296-b966-b00c468951c3
+		summarizeBy: none
+		sourceColumn: ExpectedDeliveryDateKey
+
+		annotation SummarizationSetBy = User
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 92c6409e-b6ef-423c-a64a-297de29095d5
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = User
+
+	column SupplierKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 6b9c8d42-2550-48ca-8b16-e920a4527df5
+		summarizeBy: none
+		sourceColumn: SupplierKey
+
+		annotation SummarizationSetBy = User
+
+	column LocationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e90d1c03-08b6-4580-b2d0-81ba3fc5304c
+		summarizeBy: none
+		sourceColumn: LocationKey
+
+		annotation SummarizationSetBy = User
+
+	column ReceiptDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 442910e4-8e56-49d8-a792-cc2f92afac33
+		summarizeBy: none
+		sourceColumn: ReceiptDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ExpectedDeliveryDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 28ac121e-5738-4d8e-ac0b-c535a25b385a
+		summarizeBy: none
+		sourceColumn: ExpectedDeliveryDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ReceivedQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 4c86bd33-3629-4539-8485-b0d532dd498d
+		summarizeBy: sum
+		sourceColumn: ReceivedQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column AcceptedQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: dc10ca4c-bac0-4bb4-80cf-738d45eea1c3
+		summarizeBy: sum
+		sourceColumn: AcceptedQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column RejectedQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: b3bc46de-8618-4f46-9e2e-c1112478de49
+		summarizeBy: sum
+		sourceColumn: RejectedQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitCostEUR
+		dataType: double
+		lineageTag: 7e9c3550-d80b-48a2-b22b-c6f553352ea7
+		summarizeBy: sum
+		sourceColumn: UnitCostEUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ReceivedCostEUR
+		dataType: double
+		lineageTag: 6fa87742-3c74-4a76-b3bf-bcfdfd221f7e
+		summarizeBy: sum
+		sourceColumn: ReceivedCostEUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LateDays
+		dataType: int64
+		formatString: 0
+		lineageTag: 0aa0d7a5-c87e-4ac3-b9bf-3275760a4163
+		summarizeBy: sum
+		sourceColumn: LateDays
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactGoodsReceiptLine = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "FactGoodsReceiptLine.csv"),[Delimiter=",", Columns=17, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"GoodsReceiptLineKey", Int64.Type}, {"PurchaseOrderLineKey", Int64.Type}, {"PurchaseOrderNo", type text}, {"PoLineNo", Int64.Type}, {"ReceiptDateKey", Int64.Type}, {"ExpectedDeliveryDateKey", Int64.Type}, {"ProductKey", Int64.Type}, {"SupplierKey", Int64.Type}, {"LocationKey", Int64.Type}, {"ReceiptDate", type date}, {"ExpectedDeliveryDate", type date}, {"ReceivedQuantity", Int64.Type}, {"AcceptedQuantity", Int64.Type}, {"RejectedQuantity", Int64.Type}, {"UnitCostEUR", type number}, {"ReceivedCostEUR", type number}, {"LateDays", Int64.Type}}),
+				    #"Removed Unused Columns" = Table.RemoveColumns(#"Changed Type",{"GoodsReceiptLineKey"})
+				in
+				    #"Removed Unused Columns"
+
+	annotation PBI_ResultType = Table
+

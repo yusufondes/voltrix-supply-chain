@@ -1,0 +1,8 @@
+LocationKey,LocationCode,LocationName,LocationType,City,Country,CountryCode,Region,IsManufacturingSite,StocksMaterials,StocksFinishedGoods,CapacityPallets,IsPrimaryHub
+1,DE-PLT,Rhein-Neckar Plant,Plant,Rhein-Neckar,Germany,DE,Western,TRUE,TRUE,TRUE,12000,TRUE
+2,FR-PLT,Lyon Plant,Plant,Lyon,France,FR,Western,TRUE,TRUE,TRUE,7500,FALSE
+3,PL-DC,Poznan Distribution Center,DistributionCenter,Poznan,Poland,PL,Central Europe,FALSE,FALSE,TRUE,16000,FALSE
+4,ES-WHS,Zaragoza Warehouse,Warehouse,Zaragoza,Spain,ES,Southern,FALSE,FALSE,TRUE,4200,FALSE
+5,IT-WHS,Bologna Warehouse,Warehouse,Bologna,Italy,IT,Southern,FALSE,FALSE,TRUE,3800,FALSE
+6,CZ-WHS,Brno Warehouse,Warehouse,Brno,Czechia,CZ,Central Europe,FALSE,FALSE,TRUE,3200,FALSE
+-1,UNK,Unknown,N/A,N/A,N/A,N/A,N/A,FALSE,FALSE,FALSE,0,FALSE

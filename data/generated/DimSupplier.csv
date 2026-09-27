@@ -1,0 +1,37 @@
+SupplierKey,SupplierCode,SupplierName,Country,CountryCode,SourcingType,MaterialCategory,PromisedLeadTimeDays,LeadTimeStdDevDays,ReliabilityTier,OnTimeTargetPct,PaymentTermsDays,MinOrderValueEUR
+1,S-001,Aldwin GmbH,Germany,DE,Domestic EU,Plastics,20,2.53,A,96.89,30,2475.42
+2,S-002,Brenmark GmbH,Germany,DE,Domestic EU,Packaging,13,2.29,A,98.47,60,4037.55
+3,S-003,Cordant GmbH,Germany,DE,Domestic EU,Metals,19,1.48,C,77.73,45,4706.15
+4,S-004,Delvano GmbH,Germany,DE,Domestic EU,Packaging,19,4.45,C,83.30,30,530.21
+5,S-005,Ekbert GmbH,Germany,DE,Domestic EU,Electronic Components,20,2.15,C,75.25,30,1118.93
+6,S-006,Falkner GmbH,Germany,DE,Domestic EU,Mechanical Parts,15,2.25,A,96.39,45,1940.08
+7,S-007,Gravent GmbH,Germany,DE,Domestic EU,Electronic Components,9,5.39,C,70.25,45,3680.71
+8,S-008,Helvion GmbH,Germany,DE,Domestic EU,Electromechanical Components,15,2.23,B,92.35,60,2413.05
+9,S-009,Iberko SAS,France,FR,Domestic EU,Packaging,5,3.94,B,91.22,45,994.80
+10,S-010,Jastrow SAS,France,FR,Domestic EU,Mechanical Parts,19,2.91,B,85.04,60,3392.78
+11,S-011,Kellmar SAS,France,FR,Domestic EU,Electronic Components,15,2.76,B,91.47,45,3537.27
+12,S-012,Lindqvist SAS,France,FR,Domestic EU,Metals,19,1.24,A,96.49,30,3709.46
+13,S-013,Moravec SAS,France,FR,Domestic EU,Mechanical Parts,11,2.61,B,87.10,30,395.41
+14,S-014,Norvent Sp. z o.o.,Poland,PL,Domestic EU,Metals,19,3.61,C,71.49,45,4353.63
+15,S-015,Ostberg Sp. z o.o.,Poland,PL,Domestic EU,Mechanical Parts,12,2.45,B,85.22,30,3123.84
+16,S-016,Palvira Sp. z o.o.,Poland,PL,Domestic EU,Electromechanical Components,9,1.51,B,87.83,45,3574.39
+17,S-017,Quendal Sp. z o.o.,Poland,PL,Domestic EU,Plastics,10,0.80,A,97.51,90,1553.28
+18,S-018,Rothmann Sp. z o.o.,Poland,PL,Domestic EU,Electronic Components,6,1.08,A,98.36,60,1808.06
+19,S-019,Sarbek S.p.A.,Italy,IT,Domestic EU,Plastics,18,2.05,A,98.22,45,3844.24
+20,S-020,Talvern S.p.A.,Italy,IT,Domestic EU,Metals,17,1.27,B,89.54,30,4025.54
+21,S-021,Ulmgren S.p.A.,Italy,IT,Domestic EU,Mechanical Parts,13,1.87,A,96.15,30,2752.11
+22,S-022,Vasdrek S.p.A.,Italy,IT,Domestic EU,Electromechanical Components,7,0.89,B,92.23,30,1424.00
+23,S-023,Weronte S.p.A.,Italy,IT,Domestic EU,Metals,18,1.60,A,97.30,90,3479.36
+24,S-024,Xantel S.L.,Spain,ES,Domestic EU,Electronic Components,19,1.74,A,97.97,30,534.67
+25,S-025,Ybarrek S.L.,Spain,ES,Domestic EU,Electronic Components,16,2.00,A,95.14,60,856.22
+26,S-026,Zelmark S.L.,Spain,ES,Domestic EU,Electronic Components,9,3.05,B,87.87,90,1946.05
+27,S-027,Arvento s.r.o.,Czechia,CZ,Domestic EU,Electromechanical Components,5,3.46,B,90.54,45,2831.71
+28,S-028,Brumak s.r.o.,Czechia,CZ,Domestic EU,Plastics,20,2.69,A,95.47,60,4633.08
+29,S-029,Calverin A.S.,Turkey,TR,Import,Metals,43,5.82,B,91.87,45,898.42
+30,S-030,Dorneck A.S.,Turkey,TR,Import,Electromechanical Components,38,10.40,C,78.27,90,2602.21
+31,S-031,Estrada Ltd.,China,CN,Import,Electronic Components,35,7.38,B,89.45,60,1328.16
+32,S-032,Fenmarq Ltd.,China,CN,Import,Electromechanical Components,61,4.43,A,97.01,30,4701.62
+33,S-033,Golvanis Ltd.,China,CN,Import,Plastics,54,7.84,C,76.68,45,1427.04
+34,S-034,Hartvel Pvt Ltd,India,IN,Import,Plastics,30,6.93,B,85.03,45,4506.02
+35,S-035,Invento Pvt Ltd,India,IN,Import,Packaging,32,3.21,A,95.51,45,4051.50
+-1,UNK,Unknown,N/A,N/A,N/A,N/A,0,0.00,N/A,0.00,0,0.00

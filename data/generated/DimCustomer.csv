@@ -1,0 +1,142 @@
+CustomerKey,CustomerCode,CustomerName,Segment,City,Country,CountryCode,Region,Channel,ServingLocationKey,CreditTermsDays,PriceTier,DiscountPct,CustomerSinceDate,TotalOrderedRevenueEUR,CustomerSizeBand
+1,C-0001,Alpen Technik GmbH,Wholesaler,Bremen,Germany,DE,Western,Direct,1,60,2,4.00,2015-08-02,4839612.85,Large
+2,C-0002,Baltic Industries GmbH,PanelBuilder,Dortmund,Germany,DE,Western,Online,1,30,1,0.00,2011-02-22,1363053.64,Mid-Market
+3,C-0003,Cerdan Elettrica GmbH,OEM,Hamburg,Germany,DE,Western,Direct,1,60,3,8.00,2017-03-12,1409286.97,Mid-Market
+4,C-0004,Danube Power Systems GmbH,OEM,Dortmund,Germany,DE,Western,Direct,1,60,3,8.00,2016-08-22,478793.70,Small
+5,C-0005,Elbe Controls GmbH,PanelBuilder,Cologne,Germany,DE,Western,Direct,1,30,3,8.00,2020-02-03,724378.14,Small
+6,C-0006,Fjord Automation GmbH,Wholesaler,Dortmund,Germany,DE,Western,Distributor,1,60,2,4.00,2015-09-18,2642581.34,Mid-Market
+7,C-0007,Garonne Energy GmbH,PanelBuilder,Dortmund,Germany,DE,Western,Direct,1,45,2,4.00,2018-07-27,534963.32,Small
+8,C-0008,Haven Installations GmbH,PanelBuilder,Hamburg,Germany,DE,Western,Distributor,1,14,1,0.00,2019-04-02,605181.45,Small
+9,C-0009,Iberia Supply GmbH,Wholesaler,Leipzig,Germany,DE,Western,Distributor,1,14,2,4.00,2023-09-08,2982032.07,Large
+10,C-0010,Jura Elektro GmbH,PanelBuilder,Hamburg,Germany,DE,Western,Distributor,1,60,2,4.00,2014-08-20,1437100.14,Mid-Market
+11,C-0011,Karst Technik GmbH,OEM,Stuttgart,Germany,DE,Western,Distributor,1,45,1,0.00,2021-02-24,1607258.08,Mid-Market
+12,C-0012,Loire Industries GmbH,OEM,Bremen,Germany,DE,Western,Distributor,1,60,1,0.00,2014-04-08,1232109.79,Small
+13,C-0013,Mosel Elettrica GmbH,PanelBuilder,Leipzig,Germany,DE,Western,Direct,1,60,2,4.00,2023-03-11,1502877.49,Mid-Market
+14,C-0014,Nordic Power Systems GmbH,PanelBuilder,Leipzig,Germany,DE,Western,Direct,1,45,2,4.00,2013-08-07,981979.58,Small
+15,C-0015,Oder Controls GmbH,Utility,Bremen,Germany,DE,Western,Online,1,45,1,0.00,2016-07-25,1757006.63,Mid-Market
+16,C-0016,Pyren Automation GmbH,Wholesaler,Nuremberg,Germany,DE,Western,Distributor,1,14,2,4.00,2018-07-12,5836405.36,Key Account
+17,C-0017,Quercus Energy GmbH,Wholesaler,Hamburg,Germany,DE,Western,Online,1,60,1,0.00,2012-08-01,2357167.79,Mid-Market
+18,C-0018,Rhone Installations GmbH,Wholesaler,Leipzig,Germany,DE,Western,Distributor,1,14,2,4.00,2013-02-05,2191104.89,Mid-Market
+19,C-0019,Saxon Supply GmbH,Utility,Stuttgart,Germany,DE,Western,Distributor,1,60,3,8.00,2015-12-25,1360615.71,Mid-Market
+20,C-0020,Tatra Elektro GmbH,PanelBuilder,Cologne,Germany,DE,Western,Online,1,60,2,4.00,2012-04-17,668065.95,Small
+21,C-0021,Umbria Technik GmbH,Wholesaler,Leipzig,Germany,DE,Western,Distributor,1,45,1,0.00,2010-02-14,2786784.63,Large
+22,C-0022,Vltava Industries GmbH,Wholesaler,Nuremberg,Germany,DE,Western,Direct,1,45,3,8.00,2016-11-15,7180209.44,Key Account
+23,C-0023,Weser Elettrica GmbH,Utility,Stuttgart,Germany,DE,Western,Distributor,1,60,3,8.00,2011-09-02,1443751.00,Mid-Market
+24,C-0024,Xenia Power Systems GmbH,PanelBuilder,Nuremberg,Germany,DE,Western,Online,1,30,3,8.00,2018-03-04,383939.68,Small
+25,C-0025,Ypres Controls GmbH,PanelBuilder,Dortmund,Germany,DE,Western,Distributor,1,30,1,0.00,2012-01-02,846108.10,Small
+26,C-0026,Zeta Automation GmbH,PanelBuilder,Hamburg,Germany,DE,Western,Online,1,30,1,0.00,2021-09-06,1082147.89,Small
+27,C-0027,Arden Energy GmbH,Contractor,Munich,Germany,DE,Western,Distributor,1,45,3,8.00,2013-04-02,1409286.74,Mid-Market
+28,C-0028,Brenta Installations GmbH,PanelBuilder,Hamburg,Germany,DE,Western,Distributor,1,30,1,0.00,2021-02-15,2540980.95,Mid-Market
+29,C-0029,Coral Supply GmbH,PanelBuilder,Cologne,Germany,DE,Western,Online,1,45,3,8.00,2014-06-06,2546425.22,Mid-Market
+30,C-0030,Dolomit Elektro GmbH,OEM,Bremen,Germany,DE,Western,Distributor,1,45,2,4.00,2020-04-28,1843410.18,Mid-Market
+31,C-0031,Eifel Technik GmbH,PanelBuilder,Dortmund,Germany,DE,Western,Direct,1,30,3,8.00,2015-11-09,2438169.01,Mid-Market
+32,C-0032,Frisia Industries GmbH,Wholesaler,Stuttgart,Germany,DE,Western,Direct,1,30,2,4.00,2020-01-09,6376235.34,Key Account
+33,C-0033,Gotha Elettrica GmbH,Contractor,Munich,Germany,DE,Western,Online,1,14,3,8.00,2018-05-25,435471.75,Small
+34,C-0034,Hansa Power Systems GmbH,Wholesaler,Dortmund,Germany,DE,Western,Distributor,1,30,1,0.00,2012-07-01,2710267.91,Mid-Market
+35,C-0035,Alpen1 Controls SAS,Wholesaler,Nantes,France,FR,Western,Direct,2,14,3,8.00,2017-05-04,3304236.95,Large
+36,C-0036,Baltic1 Automation SAS,Contractor,Marseille,France,FR,Western,Direct,2,60,3,8.00,2015-10-19,976137.84,Small
+37,C-0037,Cerdan1 Energy SAS,Utility,Lyon,France,FR,Western,Online,2,60,2,4.00,2011-04-06,615266.34,Small
+38,C-0038,Danube1 Installations SAS,PanelBuilder,Strasbourg,France,FR,Western,Direct,2,60,1,0.00,2012-11-10,1034322.81,Small
+39,C-0039,Elbe1 Supply SAS,Contractor,Lyon,France,FR,Western,Distributor,2,14,1,0.00,2015-09-02,1298279.58,Small
+40,C-0040,Fjord1 Elektro SAS,Contractor,Marseille,France,FR,Western,Direct,2,30,2,4.00,2013-10-11,661509.79,Small
+41,C-0041,Garonne1 Technik SAS,Wholesaler,Toulouse,France,FR,Western,Direct,2,14,2,4.00,2019-12-17,2661747.42,Mid-Market
+42,C-0042,Haven1 Industries SAS,OEM,Toulouse,France,FR,Western,Distributor,2,14,1,0.00,2011-03-25,2825659.84,Large
+43,C-0043,Iberia1 Elettrica SAS,Wholesaler,Lille,France,FR,Western,Distributor,2,30,1,0.00,2010-11-08,1522307.32,Mid-Market
+44,C-0044,Jura1 Power Systems SAS,Wholesaler,Lyon,France,FR,Western,Distributor,2,60,2,4.00,2018-08-02,2851776.52,Large
+45,C-0045,Karst1 Controls SAS,OEM,Strasbourg,France,FR,Western,Online,2,30,3,8.00,2015-06-09,796429.84,Small
+46,C-0046,Loire1 Automation SAS,Wholesaler,Lille,France,FR,Western,Distributor,2,30,2,4.00,2017-09-01,2237275.62,Mid-Market
+47,C-0047,Mosel1 Energy SAS,Wholesaler,Lille,France,FR,Western,Online,2,60,2,4.00,2018-10-06,3389419.25,Large
+48,C-0048,Nordic1 Installations SAS,PanelBuilder,Toulouse,France,FR,Western,Direct,2,60,1,0.00,2020-04-12,539223.63,Small
+49,C-0049,Oder1 Supply SAS,Utility,Nantes,France,FR,Western,Distributor,2,60,2,4.00,2020-06-15,854991.08,Small
+50,C-0050,Pyren1 Elektro SAS,PanelBuilder,Lyon,France,FR,Western,Distributor,2,30,3,8.00,2018-03-24,98070.54,Small
+51,C-0051,Quercus1 Technik SAS,Wholesaler,Marseille,France,FR,Western,Distributor,2,14,1,0.00,2021-05-29,4496537.13,Large
+52,C-0052,Rhone1 Industries SAS,OEM,Toulouse,France,FR,Western,Direct,2,30,2,4.00,2022-06-01,2065735.03,Mid-Market
+53,C-0053,Saxon1 Elettrica SAS,PanelBuilder,Lille,France,FR,Western,Distributor,2,14,1,0.00,2014-01-09,1816901.94,Mid-Market
+54,C-0054,Tatra1 Power Systems SAS,PanelBuilder,Toulouse,France,FR,Western,Distributor,2,30,2,4.00,2010-01-30,1327396.79,Small
+55,C-0055,Umbria1 Controls SAS,PanelBuilder,Marseille,France,FR,Western,Distributor,2,14,2,4.00,2021-10-30,1432095.00,Mid-Market
+56,C-0056,Vltava1 Automation SAS,Contractor,Bordeaux,France,FR,Western,Direct,2,60,1,0.00,2015-11-28,1263800.81,Small
+57,C-0057,Weser1 Energy SAS,Wholesaler,Bordeaux,France,FR,Western,Direct,2,60,3,8.00,2021-12-12,4847931.35,Large
+58,C-0058,Xenia1 Installations SAS,Wholesaler,Lille,France,FR,Western,Distributor,2,45,2,4.00,2016-04-10,2067045.82,Mid-Market
+59,C-0059,Ypres1 Supply SAS,Wholesaler,Marseille,France,FR,Western,Direct,2,14,2,4.00,2010-04-22,5159689.23,Large
+60,C-0060,Zeta1 Elektro SAS,Contractor,Nantes,France,FR,Western,Direct,2,30,1,0.00,2013-11-04,1277305.62,Small
+61,C-0061,Arden1 Technik Sp. z o.o.,Wholesaler,Warsaw,Poland,PL,Central Europe,Direct,3,45,2,4.00,2015-06-29,3827644.79,Large
+62,C-0062,Brenta1 Industries Sp. z o.o.,Contractor,Krakow,Poland,PL,Central Europe,Direct,3,60,3,8.00,2013-12-16,802246.37,Small
+63,C-0063,Coral1 Elettrica Sp. z o.o.,Wholesaler,Poznan,Poland,PL,Central Europe,Distributor,3,60,1,0.00,2015-10-10,5684058.02,Key Account
+64,C-0064,Dolomit1 Power Systems Sp. z o.o.,OEM,Warsaw,Poland,PL,Central Europe,Distributor,3,45,2,4.00,2011-12-12,317575.81,Small
+65,C-0065,Eifel1 Controls Sp. z o.o.,PanelBuilder,Gdansk,Poland,PL,Central Europe,Online,3,45,2,4.00,2017-08-08,1255059.89,Small
+66,C-0066,Frisia1 Automation Sp. z o.o.,PanelBuilder,Gdansk,Poland,PL,Central Europe,Distributor,3,60,3,8.00,2019-05-14,1837254.80,Mid-Market
+67,C-0067,Gotha1 Energy Sp. z o.o.,Contractor,Katowice,Poland,PL,Central Europe,Distributor,3,14,3,8.00,2020-07-21,1231419.22,Small
+68,C-0068,Hansa1 Installations Sp. z o.o.,Wholesaler,Warsaw,Poland,PL,Central Europe,Distributor,3,30,3,8.00,2016-07-20,2993675.92,Large
+69,C-0069,Alpen2 Supply Sp. z o.o.,PanelBuilder,Warsaw,Poland,PL,Central Europe,Direct,3,30,1,0.00,2022-02-10,658962.74,Small
+70,C-0070,Baltic2 Elektro Sp. z o.o.,Wholesaler,Wroclaw,Poland,PL,Central Europe,Direct,3,30,1,0.00,2010-09-30,2844613.38,Large
+71,C-0071,Cerdan2 Technik Sp. z o.o.,Utility,Katowice,Poland,PL,Central Europe,Direct,3,45,2,4.00,2016-03-24,4257405.59,Large
+72,C-0072,Danube2 Industries Sp. z o.o.,PanelBuilder,Poznan,Poland,PL,Central Europe,Distributor,3,45,1,0.00,2018-05-15,1256213.39,Small
+73,C-0073,Elbe2 Elettrica Sp. z o.o.,OEM,Katowice,Poland,PL,Central Europe,Online,3,45,2,4.00,2015-06-10,801826.68,Small
+74,C-0074,Fjord2 Power Systems Sp. z o.o.,Contractor,Gdansk,Poland,PL,Central Europe,Direct,3,14,3,8.00,2012-02-23,918838.20,Small
+75,C-0075,Garonne2 Controls Sp. z o.o.,OEM,Gdansk,Poland,PL,Central Europe,Direct,3,30,1,0.00,2010-07-08,5425004.04,Key Account
+76,C-0076,Haven2 Automation Sp. z o.o.,Wholesaler,Katowice,Poland,PL,Central Europe,Distributor,3,45,2,4.00,2012-08-23,2892140.42,Large
+77,C-0077,Iberia2 Energy Sp. z o.o.,Wholesaler,Wroclaw,Poland,PL,Central Europe,Direct,3,14,3,8.00,2010-10-16,943627.51,Small
+78,C-0078,Jura2 Installations Sp. z o.o.,Utility,Warsaw,Poland,PL,Central Europe,Distributor,3,45,3,8.00,2023-04-13,1305854.09,Small
+79,C-0079,Karst2 Supply Sp. z o.o.,Contractor,Krakow,Poland,PL,Central Europe,Direct,3,14,2,4.00,2023-04-02,1912058.13,Mid-Market
+80,C-0080,Loire2 Elektro Sp. z o.o.,Wholesaler,Katowice,Poland,PL,Central Europe,Online,3,30,3,8.00,2015-10-02,4339712.78,Large
+81,C-0081,Mosel2 Technik Sp. z o.o.,OEM,Poznan,Poland,PL,Central Europe,Direct,3,14,1,0.00,2021-08-04,5373732.54,Key Account
+82,C-0082,Nordic2 Industries Sp. z o.o.,PanelBuilder,Gdansk,Poland,PL,Central Europe,Online,3,60,3,8.00,2014-03-07,662780.10,Small
+83,C-0083,Oder2 Elettrica S.r.l.,Contractor,Milan,Italy,IT,Southern,Direct,5,30,1,0.00,2021-10-22,870090.65,Small
+84,C-0084,Pyren2 Power Systems S.r.l.,Wholesaler,Verona,Italy,IT,Southern,Distributor,5,45,2,4.00,2020-04-02,1015086.08,Small
+85,C-0085,Quercus2 Controls S.r.l.,Wholesaler,Verona,Italy,IT,Southern,Direct,5,45,1,0.00,2012-09-17,1850127.68,Mid-Market
+86,C-0086,Rhone2 Automation S.r.l.,Wholesaler,Milan,Italy,IT,Southern,Online,5,45,3,8.00,2012-06-20,1434230.40,Mid-Market
+87,C-0087,Saxon2 Energy S.r.l.,PanelBuilder,Milan,Italy,IT,Southern,Distributor,5,60,1,0.00,2015-06-08,1522297.50,Mid-Market
+88,C-0088,Tatra2 Installations S.r.l.,PanelBuilder,Naples,Italy,IT,Southern,Distributor,5,30,2,4.00,2023-11-11,739398.81,Small
+89,C-0089,Umbria2 Supply S.r.l.,PanelBuilder,Florence,Italy,IT,Southern,Direct,5,60,1,0.00,2023-02-16,3046306.76,Large
+90,C-0090,Vltava2 Elektro S.r.l.,PanelBuilder,Verona,Italy,IT,Southern,Direct,5,14,1,0.00,2020-03-03,3111081.07,Large
+91,C-0091,Weser2 Technik S.r.l.,Contractor,Naples,Italy,IT,Southern,Direct,5,14,3,8.00,2013-10-29,774628.06,Small
+92,C-0092,Xenia2 Industries S.r.l.,Wholesaler,Naples,Italy,IT,Southern,Direct,5,60,2,4.00,2019-09-14,1989020.50,Mid-Market
+93,C-0093,Ypres2 Elettrica S.r.l.,Contractor,Bologna,Italy,IT,Southern,Distributor,5,30,1,0.00,2014-10-06,845177.57,Small
+94,C-0094,Zeta2 Power Systems S.r.l.,Contractor,Milan,Italy,IT,Southern,Online,5,60,1,0.00,2022-11-07,430254.00,Small
+95,C-0095,Arden2 Controls S.r.l.,OEM,Naples,Italy,IT,Southern,Direct,5,60,2,4.00,2015-05-05,1605179.32,Mid-Market
+96,C-0096,Brenta2 Automation S.r.l.,OEM,Milan,Italy,IT,Southern,Online,5,14,2,4.00,2010-08-15,1469020.87,Mid-Market
+97,C-0097,Coral2 Energy S.r.l.,Wholesaler,Naples,Italy,IT,Southern,Distributor,5,45,1,0.00,2016-08-29,872402.21,Small
+98,C-0098,Dolomit2 Installations S.r.l.,OEM,Bologna,Italy,IT,Southern,Online,5,30,1,0.00,2015-10-10,2520980.66,Mid-Market
+99,C-0099,Eifel2 Supply S.r.l.,OEM,Milan,Italy,IT,Southern,Direct,5,30,1,0.00,2019-11-05,1137322.59,Small
+100,C-0100,Frisia2 Elektro S.r.l.,OEM,Verona,Italy,IT,Southern,Direct,5,45,1,0.00,2023-11-05,848208.86,Small
+101,C-0101,Gotha2 Technik S.r.l.,Contractor,Turin,Italy,IT,Southern,Direct,5,14,2,4.00,2011-11-17,667933.91,Small
+102,C-0102,Hansa2 Industries S.r.l.,Wholesaler,Florence,Italy,IT,Southern,Direct,5,14,2,4.00,2022-08-17,5741701.29,Key Account
+103,C-0103,Alpen3 Elettrica S.r.l.,PanelBuilder,Florence,Italy,IT,Southern,Direct,5,30,1,0.00,2012-12-28,1096152.75,Small
+104,C-0104,Baltic3 Power Systems S.r.l.,Contractor,Milan,Italy,IT,Southern,Direct,5,45,1,0.00,2014-09-24,421632.33,Small
+105,C-0105,Cerdan3 Controls S.L.,Wholesaler,Madrid,Spain,ES,Southern,Distributor,4,45,2,4.00,2020-05-09,5176279.77,Large
+106,C-0106,Danube3 Automation S.L.,Contractor,Seville,Spain,ES,Southern,Online,4,14,1,0.00,2018-06-27,1086066.58,Small
+107,C-0107,Elbe3 Energy S.L.,PanelBuilder,Zaragoza,Spain,ES,Southern,Direct,4,45,2,4.00,2012-02-06,608176.32,Small
+108,C-0108,Fjord3 Installations S.L.,Contractor,Zaragoza,Spain,ES,Southern,Direct,4,45,3,8.00,2014-06-05,1375800.21,Mid-Market
+109,C-0109,Garonne3 Supply S.L.,Wholesaler,Zaragoza,Spain,ES,Southern,Direct,4,14,2,4.00,2017-08-22,3910716.94,Large
+110,C-0110,Haven3 Elektro S.L.,OEM,Valencia,Spain,ES,Southern,Distributor,4,30,3,8.00,2021-11-25,1324546.17,Small
+111,C-0111,Iberia3 Technik S.L.,Wholesaler,Zaragoza,Spain,ES,Southern,Direct,4,14,2,4.00,2014-08-30,1910980.09,Mid-Market
+112,C-0112,Jura3 Industries S.L.,Contractor,Barcelona,Spain,ES,Southern,Direct,4,60,3,8.00,2015-12-14,368859.38,Small
+113,C-0113,Karst3 Elettrica S.L.,OEM,Seville,Spain,ES,Southern,Distributor,4,30,3,8.00,2015-09-10,531357.37,Small
+114,C-0114,Loire3 Power Systems S.L.,Wholesaler,Seville,Spain,ES,Southern,Distributor,4,60,1,0.00,2022-09-01,1697435.79,Mid-Market
+115,C-0115,Mosel3 Controls S.L.,PanelBuilder,Bilbao,Spain,ES,Southern,Distributor,4,45,3,8.00,2014-10-23,761919.67,Small
+116,C-0116,Nordic3 Automation S.L.,Wholesaler,Zaragoza,Spain,ES,Southern,Direct,4,60,2,4.00,2023-07-06,6466902.99,Key Account
+117,C-0117,Oder3 Energy S.L.,PanelBuilder,Seville,Spain,ES,Southern,Distributor,4,14,2,4.00,2018-05-03,1212488.66,Small
+118,C-0118,Pyren3 Installations S.L.,PanelBuilder,Bilbao,Spain,ES,Southern,Distributor,4,60,3,8.00,2021-07-15,1041503.45,Small
+119,C-0119,Quercus3 Supply S.L.,Wholesaler,Seville,Spain,ES,Southern,Direct,4,30,2,4.00,2010-10-13,1986891.11,Mid-Market
+120,C-0120,Rhone3 Elektro S.L.,Utility,Barcelona,Spain,ES,Southern,Distributor,4,60,2,4.00,2016-07-06,1234020.27,Small
+121,C-0121,Saxon3 Technik S.L.,PanelBuilder,Zaragoza,Spain,ES,Southern,Distributor,4,60,2,4.00,2014-07-04,1663540.22,Mid-Market
+122,C-0122,Tatra3 Industries S.L.,Wholesaler,Seville,Spain,ES,Southern,Distributor,4,14,2,4.00,2016-05-07,1559601.71,Mid-Market
+123,C-0123,Umbria3 Elettrica S.L.,Utility,Madrid,Spain,ES,Southern,Distributor,4,60,3,8.00,2012-07-22,1097765.75,Small
+124,C-0124,Vltava3 Power Systems S.L.,PanelBuilder,Valencia,Spain,ES,Southern,Direct,4,45,3,8.00,2018-11-06,915148.70,Small
+125,C-0125,Weser3 Controls s.r.o.,OEM,Plzen,Czechia,CZ,Central Europe,Distributor,6,60,3,8.00,2023-12-26,991850.12,Small
+126,C-0126,Xenia3 Automation s.r.o.,Contractor,Plzen,Czechia,CZ,Central Europe,Online,6,30,2,4.00,2012-05-18,687680.24,Small
+127,C-0127,Ypres3 Energy s.r.o.,Wholesaler,Prague,Czechia,CZ,Central Europe,Direct,6,14,1,0.00,2020-06-03,1750084.90,Mid-Market
+128,C-0128,Zeta3 Installations s.r.o.,PanelBuilder,Prague,Czechia,CZ,Central Europe,Distributor,6,60,2,4.00,2011-05-12,711247.98,Small
+129,C-0129,Arden3 Supply s.r.o.,Wholesaler,Ostrava,Czechia,CZ,Central Europe,Distributor,6,45,1,0.00,2016-10-20,2088042.93,Mid-Market
+130,C-0130,Brenta3 Elektro s.r.o.,Contractor,Brno,Czechia,CZ,Central Europe,Direct,6,60,2,4.00,2021-02-25,999739.39,Small
+131,C-0131,Coral3 Technik s.r.o.,Contractor,Ostrava,Czechia,CZ,Central Europe,Distributor,6,60,1,0.00,2015-06-02,593550.69,Small
+132,C-0132,Dolomit3 Industries s.r.o.,Wholesaler,Plzen,Czechia,CZ,Central Europe,Online,6,45,1,0.00,2019-11-19,2745886.19,Mid-Market
+133,C-0133,Eifel3 Elettrica s.r.o.,Wholesaler,Brno,Czechia,CZ,Central Europe,Distributor,6,30,2,4.00,2019-01-30,6285673.42,Key Account
+134,C-0134,Frisia3 Power Systems s.r.o.,Contractor,Plzen,Czechia,CZ,Central Europe,Direct,6,60,2,4.00,2016-01-18,1761033.85,Mid-Market
+135,C-0135,Gotha3 Controls s.r.o.,PanelBuilder,Plzen,Czechia,CZ,Central Europe,Distributor,6,30,2,4.00,2019-09-22,576169.38,Small
+136,C-0136,Hansa3 Automation s.r.o.,PanelBuilder,Plzen,Czechia,CZ,Central Europe,Direct,6,60,1,0.00,2012-02-03,1210296.65,Small
+137,C-0137,Alpen4 Energy s.r.o.,Wholesaler,Plzen,Czechia,CZ,Central Europe,Direct,6,45,1,0.00,2022-11-01,3918611.06,Large
+138,C-0138,Baltic4 Installations s.r.o.,Contractor,Prague,Czechia,CZ,Central Europe,Online,6,30,2,4.00,2019-09-18,653191.94,Small
+139,C-0139,Cerdan4 Supply s.r.o.,OEM,Ostrava,Czechia,CZ,Central Europe,Online,6,30,1,0.00,2012-05-25,1377969.56,Mid-Market
+140,C-0140,Danube4 Elektro s.r.o.,Utility,Ostrava,Czechia,CZ,Central Europe,Direct,6,45,2,4.00,2020-01-11,2901170.55,Large
+-1,UNK,Unknown,N/A,N/A,N/A,N/A,N/A,N/A,-1,0,0,0.00,,0.00,N/A

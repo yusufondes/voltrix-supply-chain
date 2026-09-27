@@ -1,0 +1,40 @@
+table SecurityUserLocation
+	isHidden
+	lineageTag: 88813acf-d9f7-5f16-b00e-7cba5ab80087
+
+	column UserPrincipalName
+		dataType: string
+		lineageTag: 54209464-35f6-55ab-96f2-c36959886255
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [UserPrincipalName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationName
+		dataType: string
+		lineageTag: 84defbfb-a436-5e03-8305-9814969bee72
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [LocationName]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SecurityUserLocation = calculated
+		mode: import
+		source =
+				DATATABLE (
+				    "UserPrincipalName", STRING,
+				    "LocationName", STRING,
+				    {
+				        { "manager.poznan@voltrix.example", "Poznan Distribution Center" },
+				        { "manager.zaragoza@voltrix.example", "Zaragoza Warehouse" },
+				        { "manager.brno@voltrix.example", "Brno Warehouse" },
+				        { "manager.bologna@voltrix.example", "Bologna Warehouse" },
+				        { "manager.lyon@voltrix.example", "Lyon Plant" },
+				        { "manager.rheinneckar@voltrix.example", "Rhein-Neckar Plant" }
+				    }
+				)
+
+	annotation PBI_Id = 40558a880b6351db82465369f338a536
+

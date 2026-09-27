@@ -1,0 +1,21 @@
+G5 VALIDATION - v5_fulfillment
+
+[PASS]  0. Row counts: snapshot exact, shipments +/-25%                                             snapshot=432,021 (must be 432,021); shipments=67,938 (band 54,000-90,000)
+[PASS]  1. Grains: 1 row/shipment, 1 row/Date x Product x Location                                  snap_grain=True ship_pk=True pairs=591 days=731 matches_bridge=True
+[PASS]  2. Identity Opening+Receipts-Shipments+Adjustments=Closing                                  max_abs_deviation=0, violating_rows=0 of 432,021
+[PASS] 2b. Opening(d) = Closing(d-1) within each pair                                               max_break=0
+[PASS]  3. Adjustments = Production - MaterialIssue - Scrap (modelled)                              exact=True, totals={'ProductionInQty': 1099721, 'MaterialIssueQty': 8036076, 'ScrapQty': 4957}
+[PASS]  4. Closing inventory never negative                                                         negative_rows=0, min_closing=0
+[PASS]  5. Shipped per sales order line <= ordered                                                  violations=0, max_ratio=1.000
+[PASS]  6. Partial, backorder and late shipments all present                                        complete=66,368 partial=307 unshipped=1,314 multi_shipment_lines=1,076 late_shipments=9.2% fill_rate=98.3%
+[PASS]  7. Only accepted GR increase stock; rejected never does                                     snapshot_inflow=7,411,291 == GR_accepted=7,411,291; GR_rejected=107,656 excluded
+[PASS]  8. Snapshot outflow equals FactShipmentLine total                                           snapshot=1,071,763 == shipments=1,071,763
+[PASS]  9. All FKs and date keys resolve, zero orphans                                              date_orphans={'snap.DateKey': 0, 'ship.ShipDateKey': 0, 'ship.DeliveryDateKey': 0}, fk_ok=True
+[PASS] 10. FG only; ShipDate >= OrderDate, DeliveryDate >= ShipDate                                 non_FG=0, ship>=order=True, delivery>=ship=True
+[PASS] 11. Realism: stock varies per pair, some stockouts                                           frozen_pairs=0, stockout_day_share=7.0%, mean_closing=409
+[PASS] 12. Every real location receives sales orders and shipments                                  locations=[1, 2, 3, 4, 5, 6]; no_orders=[]; no_shipments=[]
+[PASS] 13. MaterialIssueQty = BOM explosion of released production orders (by material, site, day)  issue rows=12,015, expected rows=12,015, mismatches=0
+[PASS] 14. ProductionInQty = released production orders completing that day                         completions=4,290, units=1,099,721 == 1,099,721
+[PASS] 15. Kit discipline: waits only when short of material; short runs only after a wait          orders=4,450, released=4,431, waited=967, short runs=32, never released=19
+
+17/17 criteria passed - ALL PASS

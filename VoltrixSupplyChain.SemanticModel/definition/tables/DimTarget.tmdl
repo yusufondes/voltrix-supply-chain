@@ -1,0 +1,59 @@
+table DimTarget
+	lineageTag: c2be0728-216d-5584-8c71-addfb8e682b4
+
+	column KpiName
+		dataType: string
+		lineageTag: 8b7a1924-e597-5e2c-9f06-22ff8c13b32d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [KpiName]
+
+		annotation SummarizationSetBy = User
+
+	column TargetValue
+		dataType: double
+		formatString: 0.0
+		lineageTag: 4c383efe-fc93-584f-a556-9a0aff2955ac
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [TargetValue]
+
+		annotation SummarizationSetBy = User
+
+	column Direction
+		dataType: string
+		lineageTag: b75330a3-6227-5358-af4b-c153fc2310f4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Direction]
+
+		annotation SummarizationSetBy = User
+
+	partition DimTarget = calculated
+		mode: import
+		source =
+				DATATABLE (
+				    "KpiName", STRING,
+				    "TargetValue", DOUBLE,
+				    "Direction", STRING,
+				    {
+				        { "OTIF %", 95.0, "higher" },
+				        { "On-Time Delivery %", 95.0, "higher" },
+				        { "In-Full %", 98.0, "higher" },
+				        { "Fill Rate %", 98.0, "higher" },
+				        { "Supplier OTIF %", 90.0, "higher" },
+				        { "Supplier OTD %", 95.0, "higher" },
+				        { "Inventory Turnover", 8.0, "higher" },
+				        { "Days of Inventory", 45.0, "lower" },
+				        { "Stockout Rate %", 3.0, "lower" },
+				        { "Rejection Rate %", 2.0, "lower" },
+				        { "Mean Lead Time (Days)", 15.0, "lower" },
+				        { "Perfect Order Rate %", 90.0, "higher" },
+				        { "Damage Rate %", 2.0, "lower" },
+				        { "Document Accuracy %", 98.0, "higher" },
+				        { "Cash-to-Cash Cycle", 60.0, "lower" }
+				    }
+				)
+
+	annotation PBI_Id = c6d60ad277f751cd9913b271558573f9
+

@@ -1,0 +1,128 @@
+table DimSupplier
+	lineageTag: 2792fcbe-9204-4ad1-84c1-09f8ce733046
+
+	column SupplierKey
+		dataType: int64
+		formatString: 0
+		lineageTag: ed57f0f4-42ef-43a2-a135-6e2423083dcb
+		summarizeBy: none
+		sourceColumn: SupplierKey
+
+		annotation SummarizationSetBy = User
+
+	column SupplierCode
+		dataType: string
+		lineageTag: 20ef60bc-6817-40fe-a321-3b4883c813db
+		summarizeBy: none
+		sourceColumn: SupplierCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SupplierName
+		dataType: string
+		lineageTag: bca18815-dbfe-4cf8-837e-c2e75a8252ee
+		summarizeBy: none
+		sourceColumn: SupplierName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 6e334048-85e2-43fa-80c3-3721ec1a76d3
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryCode
+		dataType: string
+		lineageTag: e90069a7-1799-492c-ab14-2538c95b904d
+		summarizeBy: none
+		sourceColumn: CountryCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourcingType
+		dataType: string
+		lineageTag: e94ecbac-0bf0-416b-842a-a483fd8ae100
+		summarizeBy: none
+		sourceColumn: SourcingType
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialCategory
+		dataType: string
+		lineageTag: 670ecdc5-1ff0-4e4b-9ace-dce860d6d28d
+		summarizeBy: none
+		sourceColumn: MaterialCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column PromisedLeadTimeDays
+		dataType: int64
+		formatString: 0
+		lineageTag: 5992443e-efc5-4c6c-872a-fc591c47ca30
+		summarizeBy: sum
+		sourceColumn: PromisedLeadTimeDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column LeadTimeStdDevDays
+		dataType: double
+		lineageTag: 9fce26ad-72a9-4ee5-9cc9-13fa4c403d84
+		summarizeBy: sum
+		sourceColumn: LeadTimeStdDevDays
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ReliabilityTier
+		dataType: string
+		lineageTag: 0819d20e-8b7b-4ccc-98a0-1061325db3ea
+		summarizeBy: none
+		sourceColumn: ReliabilityTier
+
+		annotation SummarizationSetBy = Automatic
+
+	column OnTimeTargetPct
+		dataType: double
+		lineageTag: b95847eb-f161-4992-a2ab-4439c4cdf772
+		summarizeBy: sum
+		sourceColumn: OnTimeTargetPct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PaymentTermsDays
+		dataType: int64
+		formatString: 0
+		lineageTag: 78821b8e-379d-43d3-8283-94ae6fd10307
+		summarizeBy: sum
+		sourceColumn: PaymentTermsDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column MinOrderValueEUR
+		dataType: double
+		lineageTag: 09bc5b1c-6d58-4f77-bf5c-fb97fd8431e9
+		summarizeBy: sum
+		sourceColumn: MinOrderValueEUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DimSupplier = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "DimSupplier.csv"),[Delimiter=",", Columns=13, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SupplierKey", Int64.Type}, {"SupplierCode", type text}, {"SupplierName", type text}, {"Country", type text}, {"CountryCode", type text}, {"SourcingType", type text}, {"MaterialCategory", type text}, {"PromisedLeadTimeDays", Int64.Type}, {"LeadTimeStdDevDays", type number}, {"ReliabilityTier", type text}, {"OnTimeTargetPct", type number}, {"PaymentTermsDays", Int64.Type}, {"MinOrderValueEUR", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

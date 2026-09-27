@@ -1,0 +1,100 @@
+table FactInventorySnapshot
+	lineageTag: f6fc84e5-86bf-4aab-92d8-b7d3e57c9cb1
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ed3f0a9-9ccc-4550-bc24-c0300296ab65
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = User
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3673f346-8243-428f-8ff8-ccc6f3630823
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 53311864-628a-4c8d-81fd-106e2f7ab804
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = User
+
+	column LocationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e164450-39be-4ca5-831b-d011cca355c1
+		summarizeBy: none
+		sourceColumn: LocationKey
+
+		annotation SummarizationSetBy = User
+
+	column ShippedQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d63a975-57e2-433f-aebf-5d6f0bf5e5d0
+		summarizeBy: sum
+		sourceColumn: ShippedQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialIssueQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c9cf27e-c09e-475a-bc0a-be7be8b3183b
+		summarizeBy: sum
+		sourceColumn: MaterialIssueQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column ClosingQty
+		dataType: int64
+		formatString: 0
+		lineageTag: d0ed978e-0b15-428c-b980-5da57ae4bd76
+		summarizeBy: sum
+		sourceColumn: ClosingQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column EffectiveReorderPoint
+		dataType: int64
+		formatString: 0
+		lineageTag: 883c494b-eefd-4fec-885a-bb0c00721d70
+		summarizeBy: sum
+		sourceColumn: EffectiveReorderPoint
+
+		annotation SummarizationSetBy = Automatic
+
+	column ClosingValueEUR
+		dataType: double
+		lineageTag: 88f2257e-6ddf-43cf-83ae-8ed730267801
+		summarizeBy: sum
+		sourceColumn: ClosingValueEUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FactInventorySnapshot = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "FactInventorySnapshot.csv"),[Delimiter=",", Columns=17, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"DateKey", Int64.Type}, {"Date", type date}, {"ProductKey", Int64.Type}, {"LocationKey", Int64.Type}, {"OpeningQty", Int64.Type}, {"AcceptedReceiptQty", Int64.Type}, {"ShippedQty", Int64.Type}, {"ProductionInQty", Int64.Type}, {"MaterialIssueQty", Int64.Type}, {"ScrapQty", Int64.Type}, {"AdjustmentQty", Int64.Type}, {"ClosingQty", Int64.Type}, {"OnOrderQty", Int64.Type}, {"BackorderQty", Int64.Type}, {"EffectiveReorderPoint", Int64.Type}, {"UnitCostEUR", type number}, {"ClosingValueEUR", type number}}),
+				    #"Removed Unused Columns" = Table.RemoveColumns(#"Changed Type",{"OpeningQty", "AcceptedReceiptQty", "ProductionInQty", "ScrapQty", "AdjustmentQty", "OnOrderQty", "BackorderQty", "UnitCostEUR"})
+				in
+				    #"Removed Unused Columns"
+
+	annotation PBI_ResultType = Table
+

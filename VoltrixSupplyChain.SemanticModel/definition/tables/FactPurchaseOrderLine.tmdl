@@ -1,0 +1,195 @@
+table FactPurchaseOrderLine
+	lineageTag: a6b7fc9a-6cae-4cc5-a7e5-b2e193e6e974
+
+	column PurchaseOrderLineKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f16c26d-20f6-4c42-a292-e693abd78f66
+		summarizeBy: none
+		sourceColumn: PurchaseOrderLineKey
+
+		annotation SummarizationSetBy = User
+
+	column PurchaseOrderNo
+		dataType: string
+		lineageTag: c5290655-a180-4902-aebf-50112698df4f
+		summarizeBy: none
+		sourceColumn: PurchaseOrderNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column PoLineNo
+		dataType: int64
+		formatString: 0
+		lineageTag: e53bc569-dd75-4eae-a340-a4d5166b882e
+		summarizeBy: none
+		sourceColumn: PoLineNo
+
+		annotation SummarizationSetBy = User
+
+	column OrderDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ecd9a73-ea43-4eb2-85e4-9c48c16bf8e4
+		summarizeBy: none
+		sourceColumn: OrderDateKey
+
+		annotation SummarizationSetBy = User
+
+	column ExpectedDeliveryDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 83e29d91-2ae4-4ba8-9f37-541d152d9361
+		summarizeBy: none
+		sourceColumn: ExpectedDeliveryDateKey
+
+		annotation SummarizationSetBy = User
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f8db3eaf-dea1-4bdf-9a67-416509b6e66c
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = User
+
+	column SupplierKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 3eeb7222-5f56-42f5-b623-dfafa34d4b08
+		summarizeBy: none
+		sourceColumn: SupplierKey
+
+		annotation SummarizationSetBy = User
+
+	column LocationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e2296cce-53c1-4d18-901e-3e6c6375f998
+		summarizeBy: none
+		sourceColumn: LocationKey
+
+		annotation SummarizationSetBy = User
+
+	column OrderDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8ad5e9e5-0e04-4f0b-b9b7-675b9e21d4f0
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ExpectedDeliveryDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 83dfdc14-9acd-4976-bd90-6f947c384d6a
+		summarizeBy: none
+		sourceColumn: ExpectedDeliveryDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column OrderedQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: efd57a41-8df9-4ac8-9c8d-db32befe18f3
+		summarizeBy: sum
+		sourceColumn: OrderedQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitCostEUR
+		dataType: double
+		lineageTag: 05655da5-fc15-4e36-b38f-5f95084fc98d
+		summarizeBy: sum
+		sourceColumn: UnitCostEUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LineCostEUR
+		dataType: double
+		lineageTag: de978435-db22-415b-9422-c5b4b1cc3b52
+		summarizeBy: sum
+		sourceColumn: LineCostEUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AcceptedQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 22b736f7-139f-4468-b299-c7b20f4d2d0b
+		summarizeBy: sum
+		sourceColumn: AcceptedQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsSupplierOnTime
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e8b51daf-6e69-459a-95eb-97a62239a369
+		summarizeBy: none
+		sourceColumn: IsSupplierOnTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsSupplierInFull
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9174fd16-e841-415d-b415-6bc59ae6a9b5
+		summarizeBy: none
+		sourceColumn: IsSupplierInFull
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsSupplierOTIF
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c7ebbc56-14a7-49c1-a921-b2e5bb71529c
+		summarizeBy: none
+		sourceColumn: IsSupplierOTIF
+
+		annotation SummarizationSetBy = Automatic
+
+	column SupplierInvoiceDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 59ad4cd7-3220-5a94-ba6a-5229c4238515
+		summarizeBy: none
+		sourceColumn: SupplierInvoiceDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column SupplierPaymentDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 63ad52f7-528d-569b-acdd-e355fd2a0c75
+		summarizeBy: none
+		sourceColumn: SupplierPaymentDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition FactPurchaseOrderLine = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "FactPurchaseOrderLine.csv"),[Delimiter=",", Columns=19, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PurchaseOrderLineKey", Int64.Type}, {"PurchaseOrderNo", type text}, {"PoLineNo", Int64.Type}, {"OrderDateKey", Int64.Type}, {"ExpectedDeliveryDateKey", Int64.Type}, {"ProductKey", Int64.Type}, {"SupplierKey", Int64.Type}, {"LocationKey", Int64.Type}, {"OrderDate", type date}, {"ExpectedDeliveryDate", type date}, {"OrderedQuantity", Int64.Type}, {"UnitCostEUR", type number}, {"LineCostEUR", type number}, {"AcceptedQty", Int64.Type}, {"IsSupplierOnTime", type logical}, {"IsSupplierInFull", type logical}, {"IsSupplierOTIF", type logical}, {"SupplierInvoiceDate", type date}, {"SupplierPaymentDate", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

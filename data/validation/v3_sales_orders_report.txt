@@ -1,0 +1,14 @@
+G3 VALIDATION - v3_sales_orders
+
+[PASS]  0. Row count within target +/-25%                          rows=67,989 target=65,000 band=48,750-81,250
+[PASS]  1. Grain unique, surrogate keys valid, FKs resolve         grain=True lineno=True sk=True prod=True cust=True loc=True orderdate=True
+[PASS] 1b. All fact date columns resolve to DimDate, zero orphans  orphans={'OrderDateKey': 0, 'RequestedDateKey': 0}
+[PASS]  2. OrderDate inside 2024-01-01..2025-12-31                 2024-01-01..2025-12-31; requested max=2026-06-17
+[PASS]  3. RequestedDeliveryDate >= OrderDate, lead time varies    lead min=3 max=180 mean=9.1 sd=20.0 distinct=129
+[PASS]  4. OrderedQuantity > 0 always                              min=1 max=3605 mean=16.0
+[PASS]  5. Customer allocation size-weighted, not uniform          customers=140, top20%_share=45.3%, CoV=0.75
+[PASS]  6. Seasonality + weekday profile visible in aggregates     weekend_lines=0, weekday_ratio=1.53, month_corr={'ConstructionPeak': 0.96, 'RetrofitSpring': 0.92, 'YearEndBudget': 0.9}
+[PASS]  7. Finished goods only                                     non_FG_products=0, products_used=100
+[PASS]  8. Realism: quantity spread, price/discount varied         qty_distinct=505, qty_p50=7, qty_p95=51, discounts=[0.0, 4.0, 8.0]
+
+10/10 criteria passed - ALL PASS

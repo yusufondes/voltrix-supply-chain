@@ -1,0 +1,102 @@
+table DimMaterial
+	lineageTag: 47ba9edf-8ef5-5195-b6aa-1bef2471de28
+
+	column MaterialKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 78896899-651e-58c4-9bb3-6e81b514b57d
+		summarizeBy: none
+		sourceColumn: MaterialKey
+
+		annotation SummarizationSetBy = User
+
+	column MaterialCode
+		dataType: string
+		lineageTag: 7c28c261-f139-590f-a721-75a3a3298a44
+		summarizeBy: none
+		sourceColumn: MaterialCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialName
+		dataType: string
+		lineageTag: 3d6baaf2-2aa0-5150-820d-63a32a56d8fd
+		summarizeBy: none
+		sourceColumn: MaterialName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialType
+		dataType: string
+		lineageTag: a0d2a97a-3411-5e7c-9a89-5fe25acb858a
+		summarizeBy: none
+		sourceColumn: MaterialType
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialCategory
+		dataType: string
+		lineageTag: ab91ffee-5e4d-5f3f-aaad-61341db379b8
+		summarizeBy: none
+		sourceColumn: MaterialCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitOfMeasure
+		dataType: string
+		lineageTag: 9c2cfc1c-7a40-5dba-a34a-bc2dcf5cf9f9
+		summarizeBy: none
+		sourceColumn: UnitOfMeasure
+
+		annotation SummarizationSetBy = Automatic
+
+	column StandardCostEUR
+		dataType: double
+		formatString: €#,0.00
+		lineageTag: 3c27ca95-125c-5812-9bb1-3413b1a6e339
+		summarizeBy: none
+		sourceColumn: StandardCostEUR
+
+		annotation SummarizationSetBy = User
+
+	column PrimarySupplierKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b19ace56-15eb-5a4e-9d86-95be1275c01f
+		summarizeBy: none
+		sourceColumn: PrimarySupplierKey
+
+		annotation SummarizationSetBy = User
+
+	column ABCClass
+		dataType: string
+		lineageTag: 4a96a56d-9867-5e2c-920c-7d20cee7b790
+		summarizeBy: none
+		sourceColumn: ABCClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sourcing = IF ( CALCULATE ( DISTINCTCOUNT ( FactPurchaseOrderLine[SupplierKey] ) ) = 1, "Single-sourced", "Multi-sourced" )
+		dataType: string
+		lineageTag: 29730251-b858-5ed8-9efd-a1f27c471bd6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimMaterial = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "DimProduct.csv"),[Delimiter=",", Columns=18, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Materials Only" = Table.SelectRows(#"Promoted Headers", each [ProductType] = "Material" or [ProductKey] = "-1"),
+				    #"Selected Columns" = Table.SelectColumns(#"Materials Only",{"ProductKey", "ProductCode", "ProductName", "SubFamily", "MaterialCategory", "UnitOfMeasure", "StandardCostEUR", "PrimarySupplierKey", "ABCClass"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Selected Columns",{{"ProductKey", "MaterialKey"}, {"ProductCode", "MaterialCode"}, {"ProductName", "MaterialName"}, {"SubFamily", "MaterialType"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"MaterialKey", Int64.Type}, {"MaterialCode", type text}, {"MaterialName", type text}, {"MaterialType", type text}, {"MaterialCategory", type text}, {"UnitOfMeasure", type text}, {"StandardCostEUR", type number}, {"PrimarySupplierKey", Int64.Type}, {"ABCClass", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,14 @@
+G6 CONSOLIDATED VALIDATION - as-of 2025-12-31
+
+[PASS]  1. FK coverage 100% across all fact->dimension relationships   relationships=29, broken=none
+[PASS]  2. Every fact date resolves to a DimDate row                   date_columns=10, orphans=0
+[PASS]  3. Total shipped per SO line <= ordered                        violations=0, max_ratio=1.000
+[PASS]  4. Sum of shipments == total inventory outflow                 shipments=1,071,763 == snapshot_outflow=1,071,763
+[PASS]  5. Sum of accepted GR == total inventory inflow                accepted=7,411,291 == snapshot_inflow=7,411,291; rejected=107,656 excluded
+[PASS]  6. Inventory identity holds on every snapshot row              max_abs_deviation=0 over 432,021 rows
+[PASS]  7. AdjustmentQty = Production - MaterialIssue - Scrap          production=1,099,721, material_issue=8,036,076, scrap=4,957
+[PASS]  8. Every real location has orders, shipments and stock         locations=[1, 2, 3, 4, 5, 6]
+[PASS]  9. Headline KPIs in believable ranges (not ~0% or ~100%)       OTIF 40-95%=ok; OnTime 50-99%=ok; InFull 50-99%=ok; FillRate 70-99%=ok; SupplierOTIF 40-95%=ok; SupplierOTD 50-99%=ok; Rejection 0.2-8%=ok; Turns 1-40=ok; Stockout 0.1-35%=ok
+[PASS] 10. OTIF, On-Time and In-Full are genuinely different measures  customer OTIF=88.7 < OnTime=89.0 / InFull=97.8; supplier OTIF=56.3 < OTD=67.5
+
+10/10 criteria passed - ALL PASS

@@ -1,0 +1,32 @@
+G1 VALIDATION - v1_dimensions
+
+[PASS]  1. Row counts                                                                            DimDate=1096(+0); DimLocation=6(+1); DimSupplier=35(+1); DimCustomer=140(+1); DimProduct=150(+1)
+[PASS]  2. Surrogate keys unique/contiguous, -1 once                                             DimDate; DimLocation; DimSupplier; DimCustomer; DimProduct
+[PASS]  3. Business codes unique                                                                 DimLocation.LocationCode; DimSupplier.SupplierCode; DimCustomer.CustomerCode; DimProduct.ProductCode
+[PASS]  4. DimDate contiguous over calendar horizon                                              2024-01-01..2026-12-31, 1096 days (transaction horizon ends 2025-12-31, by design)
+[PASS]  5. Product split 100 FG / 50 MT, family+category mixes                                   FG=100 MT=50 families_ok=True categories_ok=True
+[PASS]  6. FG price > cost > 0; MT cost > 0, price = 0                                           FG cost 15.00-1045.50; MT cost 0.40-61.18
+[PASS]  7. Referential integrity                                                                 MT->Supplier=True FG=-1:True Cust->Loc=True Bridge->Prod=True Bridge->Loc=True
+[PASS]  8. Materials stocked only where StocksMaterials=TRUE                                     violations=0; material locations=[1, 2]
+[PASS]  9. FG ABC within +/-2pp of 20/30/50                                                      A=20.0% B=30.0% C=50.0% dev={'A': np.float64(0.0), 'B': np.float64(0.0), 'C': np.float64(0.0)}
+[PASS] 10. Stocked pairs 560-650, projected rows 400k-650k                                       pairs=591, days=731, rows=432,021
+[PASS] 11. No nulls/blanks in non-Unknown rows                                                   clean
+[PASS] 12. Bridge grain: unique product-location pairs                                           duplicates=0
+[PASS] 13. UnitOfMeasure valid for category                                                      FG non-PCS=0, MT violations=0
+[PASS] 14. TypicalOrderQtyScale non-null, positive, UoM-consistent                               values={10: 134, 100: 16}, uom_consistent=True
+[PASS] 15. Every real location serves >= 1 customer                                              locations=[1, 2, 3, 4, 5, 6], unserved=[], customers_per_location={1: 34, 2: 26, 3: 22, 4: 20, 5: 22, 6: 16}
+[PASS] 16. BOM grain unique; parent is a finished good, component a material                     rows=477, unique=True, parents_are_FG=True, components_are_materials=True (no material points at a finished good)
+[PASS] 17. Every finished good has 3-6 materials; every material is used                         lines per FG {3: 10, 4: 29, 5: 35, 6: 26}, FG without BOM=0, orphan materials=[]
+[PASS] 18. Material choice follows the family (category mapping, electronics mostly electronic)  off-mapping lines=0; electronic families: every BOM has an electronic component=True, electronic+electromechanical share {'Building Automation Devices': 0.5, 'Energy Management Solutions': 0.67, 'Security & Access Solutions': 0.43}
+[PASS] 19. QtyPerUnit fits the unit (PCS whole); material roll-up below 90% of cost              PCS whole=True; roll-up share median 34%, max 88%
+
+UnitOfMeasure distribution:
+  FinishedGood                              {'PCS': 100}
+  Electromechanical Components              {'PCS': 9}
+  Electronic Components                     {'PCS': 12}
+  Mechanical Parts                          {'PCS': 6}
+  Metals                                    {'KG': 4, 'MTR': 5}
+  Packaging                                 {'KG': 1, 'PCS': 4}
+  Plastics                                  {'KG': 6, 'PCS': 3}
+
+19/19 criteria passed - ALL PASS

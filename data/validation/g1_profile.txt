@@ -1,0 +1,13 @@
+G1 dimension layer - seed 20250920
+
+DimDate.csv                     1096  de455349e09795bc
+DimLocation.csv                    7  447ed730c9fcaa95
+DimSupplier.csv                   36  da27ee90e6a10c63
+DimCustomer.csv                  141  6ceb6afa1710e160
+DimProduct.csv                   151  7f98f416252646c5
+BridgeProductLocation.csv        591  b5eaad0283965c52
+BomProductMaterial.csv           477  7f61bbbb17c8a4aa
+
+stocked pairs   : 591
+snapshot days   : 731
+projected G5 rows: 432,021

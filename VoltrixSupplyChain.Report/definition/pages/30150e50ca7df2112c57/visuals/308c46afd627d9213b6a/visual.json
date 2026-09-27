@@ -1,0 +1,471 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "308c46afd627d9213b6a",
+  "position": {
+    "x": 36,
+    "y": 816,
+    "z": 12000,
+    "height": 228,
+    "width": 1848,
+    "tabOrder": 12000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactSalesOrderLine"
+                    }
+                  },
+                  "Property": "SalesOrderNo"
+                }
+              },
+              "queryRef": "FactSalesOrderLine.SalesOrderNo",
+              "nativeQueryRef": "SalesOrderNo",
+              "displayName": "Order"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactSalesOrderLine"
+                    }
+                  },
+                  "Property": "SoLineNo"
+                }
+              },
+              "queryRef": "FactSalesOrderLine.SoLineNo",
+              "nativeQueryRef": "SoLineNo",
+              "displayName": "Line"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
+                    }
+                  },
+                  "Property": "ProductName"
+                }
+              },
+              "queryRef": "DimProduct.ProductName",
+              "nativeQueryRef": "ProductName",
+              "displayName": "Product"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactSalesOrderLine"
+                    }
+                  },
+                  "Property": "OrderDate"
+                }
+              },
+              "queryRef": "FactSalesOrderLine.OrderDate",
+              "nativeQueryRef": "OrderDate",
+              "displayName": "Ordered"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactSalesOrderLine"
+                    }
+                  },
+                  "Property": "RequestedDeliveryDate"
+                }
+              },
+              "queryRef": "FactSalesOrderLine.RequestedDeliveryDate",
+              "nativeQueryRef": "RequestedDeliveryDate",
+              "displayName": "Req. date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactSalesOrderLine"
+                    }
+                  },
+                  "Property": "LastDeliveryDate"
+                }
+              },
+              "queryRef": "FactSalesOrderLine.LastDeliveryDate",
+              "nativeQueryRef": "LastDeliveryDate",
+              "displayName": "Last deliv."
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactSalesOrderLine"
+                    }
+                  },
+                  "Property": "OrderedQuantity"
+                }
+              },
+              "queryRef": "FactSalesOrderLine.OrderedQuantity",
+              "nativeQueryRef": "OrderedQuantity",
+              "displayName": "Ord. qty"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactSalesOrderLine"
+                    }
+                  },
+                  "Property": "DeliveredQty"
+                }
+              },
+              "queryRef": "FactSalesOrderLine.DeliveredQty",
+              "nativeQueryRef": "DeliveredQty",
+              "displayName": "Deliv. qty"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactSalesOrderLine"
+                    }
+                  },
+                  "Property": "BackorderQty"
+                }
+              },
+              "queryRef": "FactSalesOrderLine.BackorderQty",
+              "nativeQueryRef": "BackorderQty",
+              "displayName": "Backorder"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactSalesOrderLine"
+                    }
+                  },
+                  "Property": "IsOnTime"
+                }
+              },
+              "queryRef": "FactSalesOrderLine.IsOnTime",
+              "nativeQueryRef": "IsOnTime",
+              "displayName": "On time"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactSalesOrderLine"
+                    }
+                  },
+                  "Property": "IsInFull"
+                }
+              },
+              "queryRef": "FactSalesOrderLine.IsInFull",
+              "nativeQueryRef": "IsInFull",
+              "displayName": "In full"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactSalesOrderLine"
+                    }
+                  },
+                  "Property": "IsOTIF"
+                }
+              },
+              "queryRef": "FactSalesOrderLine.IsOTIF",
+              "nativeQueryRef": "IsOTIF",
+              "displayName": "OTIF"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FactSalesOrderLine"
+                  }
+                },
+                "Property": "IsOTIF"
+              }
+            },
+            "direction": "Ascending"
+          },
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FactSalesOrderLine"
+                  }
+                },
+                "Property": "RequestedDeliveryDate"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#003B73'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "backColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Order lines · failed first, latest first'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F2937'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

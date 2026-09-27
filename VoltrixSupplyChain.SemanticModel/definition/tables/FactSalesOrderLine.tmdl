@@ -1,0 +1,300 @@
+table FactSalesOrderLine
+	lineageTag: adb13c24-4353-4e81-9c4c-290b26343294
+
+	column SalesOrderLineKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 6aa07f63-7f0b-4b37-a8a7-3e5251c612ba
+		summarizeBy: none
+		sourceColumn: SalesOrderLineKey
+
+		annotation SummarizationSetBy = User
+
+	column SalesOrderNo
+		dataType: string
+		lineageTag: 2c9c6d63-9102-413f-a58d-8fc5a67a7f9d
+		summarizeBy: none
+		sourceColumn: SalesOrderNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column SoLineNo
+		dataType: int64
+		formatString: 0
+		lineageTag: b707b579-7ecd-472f-8b49-0f554248709a
+		summarizeBy: none
+		sourceColumn: SoLineNo
+
+		annotation SummarizationSetBy = User
+
+	column OrderDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 213ee529-ccdf-4e38-b1f3-f8097d0fdf07
+		summarizeBy: none
+		sourceColumn: OrderDateKey
+
+		annotation SummarizationSetBy = User
+
+	column RequestedDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 540c3272-2653-4771-bdc6-1d92ee1436fa
+		summarizeBy: none
+		sourceColumn: RequestedDateKey
+
+		annotation SummarizationSetBy = User
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: c959187a-8080-44fc-91c6-0d329c428159
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = User
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: df81af7e-0ddf-4389-8a92-73410df12045
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = User
+
+	column LocationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d3c328d-05df-40d1-97e4-c2a159aee7f4
+		summarizeBy: none
+		sourceColumn: LocationKey
+
+		annotation SummarizationSetBy = User
+
+	column OrderDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: dea480db-7473-4539-8385-fc70da739f95
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column RequestedDeliveryDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4f5314d0-330d-4672-bc38-3a9f322f6fcd
+		summarizeBy: none
+		sourceColumn: RequestedDeliveryDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column OrderedQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 787a8ef4-6d05-4ae9-974b-7115edd1e372
+		summarizeBy: sum
+		sourceColumn: OrderedQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPriceEUR
+		dataType: double
+		lineageTag: 21db2359-6b48-4d38-a84b-ed5f19ead210
+		summarizeBy: sum
+		sourceColumn: UnitPriceEUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DiscountPct
+		dataType: int64
+		formatString: 0
+		lineageTag: b3764aed-6d0c-44b5-b87d-66b41633ea4b
+		summarizeBy: sum
+		sourceColumn: DiscountPct
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineRevenueEUR
+		dataType: double
+		lineageTag: 4ac2616b-eaaf-4bb4-9194-ad47f89928e5
+		summarizeBy: sum
+		sourceColumn: LineRevenueEUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LineCostEUR
+		dataType: double
+		lineageTag: 10b67ab3-4da6-43af-94af-c29c77302e5d
+		summarizeBy: sum
+		sourceColumn: LineCostEUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DeliveredQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 6b742d80-d5cd-4b23-a010-2f222917bb6f
+		summarizeBy: sum
+		sourceColumn: DeliveredQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column BackorderQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 335a130d-7b5e-4baa-bc6e-acdf77743f0d
+		summarizeBy: sum
+		sourceColumn: BackorderQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastDeliveryDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 88cab7d4-607c-4c1f-b514-f172a370acc9
+		summarizeBy: none
+		sourceColumn: LastDeliveryDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CompletionDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3ec01e53-fb78-4df0-8b78-34eeb94c17e2
+		summarizeBy: none
+		sourceColumn: CompletionDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column IsOnTime
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d60f7d75-46c9-4df1-95f1-0525dddb149f
+		summarizeBy: none
+		sourceColumn: IsOnTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsInFull
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 77ffd219-cabd-4e9b-8708-a4fbf5813437
+		summarizeBy: none
+		sourceColumn: IsInFull
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsOTIF
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 17150ec1-08ae-412a-aa6e-8fe14978a88d
+		summarizeBy: none
+		sourceColumn: IsOTIF
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsOpen
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9872dcb0-dfce-4a27-84bb-8a92b7acec2c
+		summarizeBy: none
+		sourceColumn: IsOpen
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsOverdue
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1f63021f-228b-48ba-ab43-3495c28841d5
+		summarizeBy: none
+		sourceColumn: IsOverdue
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsPerfectOrder
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 40c9e355-8e62-54e4-a762-a7b5b77fb7cd
+		summarizeBy: none
+		sourceColumn: IsPerfectOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column FailureReason
+		dataType: string
+		lineageTag: 88e22b74-36b5-5ec3-b0e9-1fccb9a12e76
+		summarizeBy: none
+		sourceColumn: FailureReason
+
+		annotation SummarizationSetBy = Automatic
+
+	column RootCauseMaterialKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 47a362bf-5037-560b-9306-e6313a6715ff
+		summarizeBy: none
+		sourceColumn: RootCauseMaterialKey
+
+		annotation SummarizationSetBy = User
+
+	column RootCauseSupplierKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 3efae1e8-cfca-5cd9-87db-589e355c12f1
+		summarizeBy: none
+		sourceColumn: RootCauseSupplierKey
+
+		annotation SummarizationSetBy = User
+
+	column InvoiceDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e85f65fd-641a-5bb2-a583-be6bfc408b4f
+		summarizeBy: none
+		sourceColumn: InvoiceDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column PaymentReceivedDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 924334b7-52ea-5178-8faa-1bcd30498084
+		summarizeBy: none
+		sourceColumn: PaymentReceivedDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition FactSalesOrderLine = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "FactSalesOrderLine.csv"),[Delimiter=",", Columns=30, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SalesOrderLineKey", Int64.Type}, {"SalesOrderNo", type text}, {"SoLineNo", Int64.Type}, {"OrderDateKey", Int64.Type}, {"RequestedDateKey", Int64.Type}, {"ProductKey", Int64.Type}, {"CustomerKey", Int64.Type}, {"LocationKey", Int64.Type}, {"OrderDate", type date}, {"RequestedDeliveryDate", type date}, {"OrderedQuantity", Int64.Type}, {"UnitPriceEUR", type number}, {"DiscountPct", Int64.Type}, {"LineRevenueEUR", type number}, {"LineCostEUR", type number}, {"DeliveredQty", Int64.Type}, {"BackorderQty", Int64.Type}, {"LastDeliveryDate", type date}, {"CompletionDate", type date}, {"IsOnTime", type logical}, {"IsInFull", type logical}, {"IsOTIF", type logical}, {"IsOpen", type logical}, {"IsOverdue", type logical}, {"IsPerfectOrder", type logical}, {"FailureReason", type text}, {"RootCauseMaterialKey", Int64.Type}, {"RootCauseSupplierKey", Int64.Type}, {"InvoiceDate", type date}, {"PaymentReceivedDate", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

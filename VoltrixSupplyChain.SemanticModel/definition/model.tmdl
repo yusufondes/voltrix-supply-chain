@@ -1,0 +1,37 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["DimDate","DimLocation","DimSupplier","DimCustomer","DimProduct","FactSalesOrderLine","FactShipmentLine","FactPurchaseOrderLine","FactGoodsReceiptLine","FactInventorySnapshot","BomProductMaterial","DimMaterial","DataFolder"]
+
+annotation PBI_ProTooling = ["TMDLView_Desktop","DevMode"]
+
+ref table DimDate
+ref table DimLocation
+ref table DimSupplier
+ref table DimCustomer
+ref table DimProduct
+ref table FactSalesOrderLine
+ref table FactShipmentLine
+ref table FactPurchaseOrderLine
+ref table FactGoodsReceiptLine
+ref table FactInventorySnapshot
+ref table BomProductMaterial
+ref table DimMaterial
+ref table '_KPI Measures'
+ref table DimTarget
+ref table 'Supplier Count Bucket'
+ref table SecurityUserLocation
+
+ref role Executive
+ref role 'Regional Manager'
+
+ref cultureInfo en-US
+

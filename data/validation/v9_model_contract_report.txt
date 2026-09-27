@@ -1,0 +1,11 @@
+V9 - CSV / semantic-model contract
+
+[PASS]  1. All 14 published CSVs present and non-empty                                          missing=[] empty=[]
+[PASS]  2. Every CSV a model partition reads exists                                             12 import tables read 11 CSVs; missing=[]
+[PASS]  3. Header column count = the partition's Columns=N for every table                      BomProductMaterial 3, DimCustomer 16, DimDate 20, DimLocation 13, DimMaterial 18, DimProduct 18, DimSupplier 13, FactGoodsReceiptLine 17, FactInventorySnapshot 17, FactPurchaseOrderLine 19, FactSalesOrderLine 30, FactShipmentLine 15
+[PASS]  4. Every column a Power Query step types, selects, renames or removes is in the header  all steps resolve
+[PASS]  5. Every model column's sourceColumn resolves to a loaded CSV column                    180 source columns resolve
+[PASS]  6. Every relationship joins columns that exist in the loaded tables                     30 relationships; missing=[]
+[PASS]  7. Every foreign-key value finds a unique key on the one side                           30 relationships, 0 orphans
+
+7/7 criteria passed - ALL PASS

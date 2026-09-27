@@ -1,0 +1,148 @@
+table FactShipmentLine
+	lineageTag: acae873e-4a80-4ce3-bf38-3afc6b1c280f
+
+	column SalesOrderLineKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 156dc992-4fcd-4c88-a644-ffd79f605ebb
+		summarizeBy: none
+		sourceColumn: SalesOrderLineKey
+
+		annotation SummarizationSetBy = User
+
+	column ShipDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 02e0288d-de68-4b9e-a362-28b8d9c0c43e
+		summarizeBy: none
+		sourceColumn: ShipDateKey
+
+		annotation SummarizationSetBy = User
+
+	column DeliveryDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 5db4d4d9-09bd-4b5d-b0a2-070af7288e90
+		summarizeBy: none
+		sourceColumn: DeliveryDateKey
+
+		annotation SummarizationSetBy = User
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: c5d403fd-e156-4ac2-b506-c4bf8d9019c3
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = User
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 127db182-2172-4fea-89b5-96a25124c8dd
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = User
+
+	column LocationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: a058941c-50e7-436b-8f5f-496147b10f44
+		summarizeBy: none
+		sourceColumn: LocationKey
+
+		annotation SummarizationSetBy = User
+
+	column ShipDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 351a4a55-7665-4f02-be00-f6920a902173
+		summarizeBy: none
+		sourceColumn: ShipDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DeliveryDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5f3e4bbb-170a-4b95-bfef-eec0a9eb2482
+		summarizeBy: none
+		sourceColumn: DeliveryDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ShippedQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 098f2b53-0393-4a3d-827e-12b191d0ef95
+		summarizeBy: sum
+		sourceColumn: ShippedQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column LateDays
+		dataType: int64
+		formatString: 0
+		lineageTag: 742aeec0-c840-49e1-ac74-24891b4313b3
+		summarizeBy: sum
+		sourceColumn: LateDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveredRevenueEUR
+		dataType: double
+		lineageTag: 271633db-c68d-4e61-af80-8cb7dc5c0759
+		summarizeBy: sum
+		sourceColumn: DeliveredRevenueEUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DeliveredCostEUR
+		dataType: double
+		lineageTag: 937605ba-b8f5-4804-aae2-b68dd0c6c7a2
+		summarizeBy: sum
+		sourceColumn: DeliveredCostEUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IsDamaged
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4789cdbb-2fea-5ad9-8240-ac8b86ae23e0
+		summarizeBy: none
+		sourceColumn: IsDamaged
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsDocumentCorrect
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 67f6d337-6d33-57ad-9c37-4e4cdd25d6d5
+		summarizeBy: none
+		sourceColumn: IsDocumentCorrect
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactShipmentLine = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "FactShipmentLine.csv"),[Delimiter=",", Columns=15, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ShipmentLineKey", Int64.Type}, {"SalesOrderLineKey", Int64.Type}, {"ShipDateKey", Int64.Type}, {"DeliveryDateKey", Int64.Type}, {"ProductKey", Int64.Type}, {"CustomerKey", Int64.Type}, {"LocationKey", Int64.Type}, {"ShipDate", type date}, {"DeliveryDate", type date}, {"ShippedQty", Int64.Type}, {"LateDays", Int64.Type}, {"DeliveredRevenueEUR", type number}, {"DeliveredCostEUR", type number}, {"IsDamaged", type logical}, {"IsDocumentCorrect", type logical}}),
+				    #"Removed Unused Columns" = Table.RemoveColumns(#"Changed Type",{"ShipmentLineKey"})
+				in
+				    #"Removed Unused Columns"
+
+	annotation PBI_ResultType = Table
+

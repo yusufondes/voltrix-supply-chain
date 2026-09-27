@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "VoltrixSupplyChain"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1b8f6969-b843-4edb-868b-982cc7560d0d"
+  }
+}

@@ -1,0 +1,17 @@
+G4 VALIDATION - v4_purchasing
+
+[PASS]  0. Row counts within target +/-25%                                                        PO=3,485 (band 3,375-5,625); GR=4,276 (band 4,200-7,000)
+[PASS]  1. Grains unique, FKs resolve, materials only                                             po_grain=True gr_pk=True fks_ok=True materials_only=True
+[PASS] 1b. All fact date columns resolve to DimDate, zero orphans                                 orphans={'PO.OrderDateKey': 0, 'PO.ExpectedDeliveryDateKey': 0, 'GR.ReceiptDateKey': 0, 'GR.ExpectedDeliveryDateKey': 0}
+[PASS]  2. Buyer never reads fulfilment output (stock, shipments, production orders)              references=none; plans from FactSalesOrderLine + BomProductMaterial (MRP)
+[PASS]  3. Every GR line maps to an existing PO line                                              unmatched=0, attributes_consistent=True
+[PASS]  4. Accepted + Rejected = Received on every row                                            violations=0 of 4,276
+[PASS]  5. Cumulative received <= ordered x 1.05                                                  violations=0, max_ratio=1.000
+[PASS]  6. Lead time varies by supplier; imports slower + more variable                           domestic mean=16.4 sd=7.8; import mean=45.9 sd=14.4; distinct_supplier_means=35
+[PASS]  7. Rejection rate varies by supplier, plausible range                                     overall=1.43%, supplier range 0.00%-5.75%, sd=0.013
+[PASS]  8. Realistic late share; some PO lines open at horizon end                                late_receipts=28.4%, open_po_lines=98, fully_received=3110/3485 (89.2%)
+[PASS]  9. Realism: order quantities and receipts vary                                            po_qty_distinct=264, gr_qty_distinct=1413, latedays -28..37
+[PASS] 10. 8-12 materials single-sourced (specialised types); every other material multi-sourced  single-sourced=11 [101, 103, 104, 105, 107, 108, 109, 111, 112, 133, 137]; others' supplier count 3-8
+[PASS] 11. Single-sourced receipts come only from the primary supplier (no fallback)              receipts=932, all from primary=True; late receipts single 32.3% vs multi 27.3%; single-source supplier tiers {'A': 1, 'B': 6, 'C': 4}
+
+13/13 criteria passed - ALL PASS

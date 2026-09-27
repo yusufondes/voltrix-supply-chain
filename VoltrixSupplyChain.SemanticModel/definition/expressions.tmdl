@@ -1,0 +1,7 @@
+expression DataFolder = "C:\src\voltrix-supply-chain\data\generated\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: d82b96ad-542a-5ff2-8890-ecbc63f337fb
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navigation
+

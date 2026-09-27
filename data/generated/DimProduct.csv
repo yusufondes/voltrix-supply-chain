@@ -1,0 +1,152 @@
+ProductKey,ProductCode,ProductName,ProductType,ProductFamily,SubFamily,MaterialCategory,Brand,UnitOfMeasure,TypicalOrderQtyScale,StandardCostEUR,ListPriceEUR,PrimarySupplierKey,ABCClass,IsStocked,MinOrderQty,ReorderPoint,SafetyStockQty
+1,FG-0001,Busbar Systems VX-100,FinishedGood,Energy Distribution Components,Busbar Systems,N/A,Voltrix,PCS,10,294.51,448.22,-1,C,TRUE,10,63,25
+2,FG-0002,Distribution Boards NX-101,FinishedGood,Energy Distribution Components,Distribution Boards,N/A,Voltrix Pro,PCS,10,328.85,517.42,-1,C,TRUE,10,101,40
+3,FG-0003,Meter Panels PR-102,FinishedGood,Energy Distribution Components,Meter Panels,N/A,Voltrix Eco,PCS,10,68.62,126.32,-1,C,TRUE,10,113,45
+4,FG-0004,Enclosures EC-103,FinishedGood,Energy Distribution Components,Enclosures,N/A,Nexaline,PCS,10,32.85,54.35,-1,C,TRUE,10,103,41
+5,FG-0005,Busbar Systems SL-104,FinishedGood,Energy Distribution Components,Busbar Systems,N/A,Voltrix,PCS,10,101.61,189.03,-1,C,TRUE,10,82,33
+6,FG-0006,Distribution Boards VX-105,FinishedGood,Energy Distribution Components,Distribution Boards,N/A,Voltrix Pro,PCS,10,127.17,231.07,-1,B,TRUE,25,103,41
+7,FG-0007,Meter Panels NX-106,FinishedGood,Energy Distribution Components,Meter Panels,N/A,Voltrix Eco,PCS,10,65.02,88.39,-1,C,TRUE,10,62,25
+8,FG-0008,Enclosures PR-107,FinishedGood,Energy Distribution Components,Enclosures,N/A,Nexaline,PCS,10,221.60,333.12,-1,A,TRUE,50,327,131
+9,FG-0009,Busbar Systems EC-108,FinishedGood,Energy Distribution Components,Busbar Systems,N/A,Voltrix,PCS,10,15.00,21.84,-1,B,TRUE,25,130,52
+10,FG-0010,Distribution Boards SL-109,FinishedGood,Energy Distribution Components,Distribution Boards,N/A,Voltrix Pro,PCS,10,15.00,22.28,-1,A,TRUE,50,576,230
+11,FG-0011,Meter Panels VX-110,FinishedGood,Energy Distribution Components,Meter Panels,N/A,Voltrix Eco,PCS,10,28.34,54.64,-1,B,TRUE,25,178,71
+12,FG-0012,Enclosures NX-111,FinishedGood,Energy Distribution Components,Enclosures,N/A,Nexaline,PCS,10,20.86,30.35,-1,B,TRUE,25,170,68
+13,FG-0013,Busbar Systems PR-112,FinishedGood,Energy Distribution Components,Busbar Systems,N/A,Voltrix,PCS,10,265.84,470.61,-1,A,TRUE,50,434,174
+14,FG-0014,Distribution Boards EC-113,FinishedGood,Energy Distribution Components,Distribution Boards,N/A,Voltrix Pro,PCS,10,88.44,145.33,-1,B,TRUE,25,130,52
+15,FG-0015,Meter Panels SL-114,FinishedGood,Energy Distribution Components,Meter Panels,N/A,Voltrix Eco,PCS,10,15.00,27.94,-1,C,TRUE,10,85,34
+16,FG-0016,Enclosures VX-115,FinishedGood,Energy Distribution Components,Enclosures,N/A,Nexaline,PCS,10,187.63,356.20,-1,B,TRUE,25,299,120
+17,FG-0017,Busbar Systems NX-116,FinishedGood,Energy Distribution Components,Busbar Systems,N/A,Voltrix,PCS,10,19.09,32.32,-1,C,TRUE,10,67,27
+18,FG-0018,Moulded Case Breakers PR-117,FinishedGood,Protection & Switching Devices,Moulded Case Breakers,N/A,Voltrix Pro,PCS,10,171.31,239.76,-1,C,TRUE,10,111,44
+19,FG-0019,Contactors EC-118,FinishedGood,Protection & Switching Devices,Contactors,N/A,Voltrix Eco,PCS,10,83.61,146.09,-1,C,TRUE,10,33,13
+20,FG-0020,Surge Protection SL-119,FinishedGood,Protection & Switching Devices,Surge Protection,N/A,Nexaline,PCS,10,63.51,96.80,-1,C,TRUE,10,82,33
+21,FG-0021,Miniature Circuit Breakers VX-120,FinishedGood,Protection & Switching Devices,Miniature Circuit Breakers,N/A,Voltrix,PCS,10,457.62,816.63,-1,A,TRUE,50,229,92
+22,FG-0022,Residual Current Devices NX-121,FinishedGood,Protection & Switching Devices,Residual Current Devices,N/A,Voltrix Pro,PCS,10,1045.50,1629.78,-1,C,TRUE,10,78,31
+23,FG-0023,Moulded Case Breakers PR-122,FinishedGood,Protection & Switching Devices,Moulded Case Breakers,N/A,Voltrix Eco,PCS,10,29.64,43.62,-1,C,TRUE,10,108,43
+24,FG-0024,Contactors EC-123,FinishedGood,Protection & Switching Devices,Contactors,N/A,Nexaline,PCS,10,15.00,25.76,-1,C,TRUE,10,94,38
+25,FG-0025,Surge Protection SL-124,FinishedGood,Protection & Switching Devices,Surge Protection,N/A,Voltrix,PCS,10,243.18,414.25,-1,B,TRUE,25,147,59
+26,FG-0026,Miniature Circuit Breakers VX-125,FinishedGood,Protection & Switching Devices,Miniature Circuit Breakers,N/A,Voltrix Pro,PCS,10,87.66,158.94,-1,B,TRUE,25,215,86
+27,FG-0027,Residual Current Devices NX-126,FinishedGood,Protection & Switching Devices,Residual Current Devices,N/A,Voltrix Eco,PCS,10,68.99,100.58,-1,A,TRUE,50,566,226
+28,FG-0028,Moulded Case Breakers PR-127,FinishedGood,Protection & Switching Devices,Moulded Case Breakers,N/A,Nexaline,PCS,10,73.57,108.88,-1,B,TRUE,25,225,90
+29,FG-0029,Contactors EC-128,FinishedGood,Protection & Switching Devices,Contactors,N/A,Voltrix,PCS,10,49.76,78.67,-1,B,TRUE,25,157,63
+30,FG-0030,Surge Protection SL-129,FinishedGood,Protection & Switching Devices,Surge Protection,N/A,Voltrix Pro,PCS,10,115.25,196.40,-1,C,TRUE,10,64,26
+31,FG-0031,Miniature Circuit Breakers VX-130,FinishedGood,Protection & Switching Devices,Miniature Circuit Breakers,N/A,Voltrix Eco,PCS,10,78.68,126.17,-1,C,TRUE,10,120,48
+32,FG-0032,Residual Current Devices NX-131,FinishedGood,Protection & Switching Devices,Residual Current Devices,N/A,Nexaline,PCS,10,31.81,54.10,-1,C,TRUE,10,104,42
+33,FG-0033,Moulded Case Breakers PR-132,FinishedGood,Protection & Switching Devices,Moulded Case Breakers,N/A,Voltrix,PCS,10,28.18,46.77,-1,C,TRUE,10,86,34
+34,FG-0034,Contactors EC-133,FinishedGood,Protection & Switching Devices,Contactors,N/A,Voltrix Pro,PCS,10,129.08,214.72,-1,A,TRUE,50,236,94
+35,FG-0035,Surge Protection SL-134,FinishedGood,Protection & Switching Devices,Surge Protection,N/A,Voltrix Eco,PCS,10,43.66,72.34,-1,B,TRUE,25,117,47
+36,FG-0036,Miniature Circuit Breakers VX-135,FinishedGood,Protection & Switching Devices,Miniature Circuit Breakers,N/A,Nexaline,PCS,10,24.48,37.55,-1,C,TRUE,10,62,25
+37,FG-0037,Sockets & Switches NX-136,FinishedGood,Wiring Accessories,Sockets & Switches,N/A,Voltrix,PCS,10,182.74,263.25,-1,C,TRUE,10,95,38
+38,FG-0038,Plugs & Connectors PR-137,FinishedGood,Wiring Accessories,Plugs & Connectors,N/A,Voltrix Pro,PCS,10,29.00,43.18,-1,C,TRUE,10,54,22
+39,FG-0039,Junction Boxes EC-138,FinishedGood,Wiring Accessories,Junction Boxes,N/A,Voltrix Eco,PCS,10,30.70,52.62,-1,B,TRUE,25,280,112
+40,FG-0040,Dimmers SL-139,FinishedGood,Wiring Accessories,Dimmers,N/A,Nexaline,PCS,10,61.36,87.36,-1,A,TRUE,50,349,140
+41,FG-0041,Sockets & Switches VX-140,FinishedGood,Wiring Accessories,Sockets & Switches,N/A,Voltrix,PCS,10,15.02,27.23,-1,C,TRUE,10,74,30
+42,FG-0042,Plugs & Connectors NX-141,FinishedGood,Wiring Accessories,Plugs & Connectors,N/A,Voltrix Pro,PCS,10,26.87,51.09,-1,A,TRUE,50,208,83
+43,FG-0043,Junction Boxes PR-142,FinishedGood,Wiring Accessories,Junction Boxes,N/A,Voltrix Eco,PCS,10,46.12,75.92,-1,A,TRUE,50,313,125
+44,FG-0044,Dimmers EC-143,FinishedGood,Wiring Accessories,Dimmers,N/A,Nexaline,PCS,10,479.20,930.10,-1,A,TRUE,50,311,124
+45,FG-0045,Sockets & Switches SL-144,FinishedGood,Wiring Accessories,Sockets & Switches,N/A,Voltrix,PCS,10,102.75,147.00,-1,C,TRUE,10,120,48
+46,FG-0046,Plugs & Connectors VX-145,FinishedGood,Wiring Accessories,Plugs & Connectors,N/A,Voltrix Pro,PCS,10,173.85,243.19,-1,A,TRUE,50,369,148
+47,FG-0047,Junction Boxes NX-146,FinishedGood,Wiring Accessories,Junction Boxes,N/A,Voltrix Eco,PCS,10,268.72,400.71,-1,B,TRUE,25,107,43
+48,FG-0048,Dimmers PR-147,FinishedGood,Wiring Accessories,Dimmers,N/A,Nexaline,PCS,10,114.00,160.47,-1,A,TRUE,50,319,128
+49,FG-0049,Sockets & Switches EC-148,FinishedGood,Wiring Accessories,Sockets & Switches,N/A,Voltrix,PCS,10,842.68,1374.78,-1,B,TRUE,25,294,118
+50,FG-0050,Plugs & Connectors SL-149,FinishedGood,Wiring Accessories,Plugs & Connectors,N/A,Voltrix Pro,PCS,10,91.11,154.32,-1,A,TRUE,50,494,198
+51,FG-0051,Junction Boxes VX-150,FinishedGood,Wiring Accessories,Junction Boxes,N/A,Voltrix Eco,PCS,10,38.36,66.42,-1,C,TRUE,10,58,23
+52,FG-0052,Cable Glands NX-151,FinishedGood,Cable Management Solutions,Cable Glands,N/A,Nexaline,PCS,10,150.45,285.12,-1,C,TRUE,10,33,13
+53,FG-0053,Cable Trays PR-152,FinishedGood,Cable Management Solutions,Cable Trays,N/A,Voltrix,PCS,10,122.35,178.63,-1,C,TRUE,10,82,33
+54,FG-0054,Trunking EC-153,FinishedGood,Cable Management Solutions,Trunking,N/A,Voltrix Pro,PCS,10,23.99,46.21,-1,B,TRUE,25,282,113
+55,FG-0055,Conduit Systems SL-154,FinishedGood,Cable Management Solutions,Conduit Systems,N/A,Voltrix Eco,PCS,10,84.77,137.67,-1,C,TRUE,10,57,23
+56,FG-0056,Cable Glands VX-155,FinishedGood,Cable Management Solutions,Cable Glands,N/A,Nexaline,PCS,10,342.84,543.06,-1,C,TRUE,10,34,14
+57,FG-0057,Cable Trays NX-156,FinishedGood,Cable Management Solutions,Cable Trays,N/A,Voltrix,PCS,10,24.60,36.66,-1,C,TRUE,10,87,35
+58,FG-0058,Trunking PR-157,FinishedGood,Cable Management Solutions,Trunking,N/A,Voltrix Pro,PCS,10,74.42,143.73,-1,A,TRUE,50,319,128
+59,FG-0059,Conduit Systems EC-158,FinishedGood,Cable Management Solutions,Conduit Systems,N/A,Voltrix Eco,PCS,10,31.79,47.01,-1,A,TRUE,50,460,184
+60,FG-0060,Cable Glands SL-159,FinishedGood,Cable Management Solutions,Cable Glands,N/A,Nexaline,PCS,10,49.69,72.80,-1,A,TRUE,50,516,206
+61,FG-0061,Cable Trays VX-160,FinishedGood,Cable Management Solutions,Cable Trays,N/A,Voltrix,PCS,10,15.85,28.12,-1,C,TRUE,10,116,46
+62,FG-0062,Trunking NX-161,FinishedGood,Cable Management Solutions,Trunking,N/A,Voltrix Pro,PCS,10,33.95,58.04,-1,C,TRUE,10,42,17
+63,FG-0063,Conduit Systems PR-162,FinishedGood,Cable Management Solutions,Conduit Systems,N/A,Voltrix Eco,PCS,10,39.52,55.20,-1,C,TRUE,10,61,24
+64,FG-0064,Cable Glands EC-163,FinishedGood,Cable Management Solutions,Cable Glands,N/A,Nexaline,PCS,10,25.02,45.33,-1,B,TRUE,25,265,106
+65,FG-0065,Cable Trays SL-164,FinishedGood,Cable Management Solutions,Cable Trays,N/A,Voltrix,PCS,10,532.40,888.50,-1,C,TRUE,10,90,36
+66,FG-0066,Presence Sensors VX-165,FinishedGood,Building Automation Devices,Presence Sensors,N/A,Voltrix Pro,PCS,10,486.11,658.55,-1,C,TRUE,10,76,30
+67,FG-0067,Actuators NX-166,FinishedGood,Building Automation Devices,Actuators,N/A,Voltrix Eco,PCS,10,106.64,203.50,-1,B,TRUE,25,218,87
+68,FG-0068,KNX Gateways PR-167,FinishedGood,Building Automation Devices,KNX Gateways,N/A,Nexaline,PCS,10,101.33,182.27,-1,B,TRUE,25,264,106
+69,FG-0069,Room Controllers EC-168,FinishedGood,Building Automation Devices,Room Controllers,N/A,Voltrix,PCS,10,225.37,309.95,-1,A,TRUE,50,397,159
+70,FG-0070,Presence Sensors SL-169,FinishedGood,Building Automation Devices,Presence Sensors,N/A,Voltrix Pro,PCS,10,70.69,111.15,-1,C,TRUE,10,112,45
+71,FG-0071,Actuators VX-170,FinishedGood,Building Automation Devices,Actuators,N/A,Voltrix Eco,PCS,10,76.12,124.74,-1,A,TRUE,50,319,128
+72,FG-0072,KNX Gateways NX-171,FinishedGood,Building Automation Devices,KNX Gateways,N/A,Nexaline,PCS,10,30.79,51.21,-1,C,TRUE,10,62,25
+73,FG-0073,Room Controllers PR-172,FinishedGood,Building Automation Devices,Room Controllers,N/A,Voltrix,PCS,10,175.25,242.92,-1,B,TRUE,25,184,74
+74,FG-0074,Presence Sensors EC-173,FinishedGood,Building Automation Devices,Presence Sensors,N/A,Voltrix Pro,PCS,10,55.74,92.67,-1,B,TRUE,25,276,110
+75,FG-0075,Actuators SL-174,FinishedGood,Building Automation Devices,Actuators,N/A,Voltrix Eco,PCS,10,258.52,409.56,-1,B,TRUE,25,296,118
+76,FG-0076,KNX Gateways VX-175,FinishedGood,Building Automation Devices,KNX Gateways,N/A,Nexaline,PCS,10,56.60,83.39,-1,B,TRUE,25,152,61
+77,FG-0077,Room Controllers NX-176,FinishedGood,Building Automation Devices,Room Controllers,N/A,Voltrix,PCS,10,48.29,80.74,-1,C,TRUE,10,120,48
+78,FG-0078,Presence Sensors PR-177,FinishedGood,Building Automation Devices,Presence Sensors,N/A,Voltrix Pro,PCS,10,140.47,237.13,-1,B,TRUE,25,267,107
+79,FG-0079,Actuators EC-178,FinishedGood,Building Automation Devices,Actuators,N/A,Voltrix Eco,PCS,10,85.85,116.68,-1,C,TRUE,10,74,30
+80,FG-0080,Capacitor Banks SL-179,FinishedGood,Energy Management Solutions,Capacitor Banks,N/A,Nexaline,PCS,10,15.00,28.12,-1,B,TRUE,25,215,86
+81,FG-0081,Power Meters VX-180,FinishedGood,Energy Management Solutions,Power Meters,N/A,Voltrix,PCS,10,536.52,751.74,-1,C,TRUE,10,70,28
+82,FG-0082,Power Quality Analysers NX-181,FinishedGood,Energy Management Solutions,Power Quality Analysers,N/A,Voltrix Pro,PCS,10,156.37,211.50,-1,C,TRUE,10,44,18
+83,FG-0083,Energy Gateways PR-182,FinishedGood,Energy Management Solutions,Energy Gateways,N/A,Voltrix Eco,PCS,10,171.47,305.15,-1,C,TRUE,10,64,26
+84,FG-0084,Capacitor Banks EC-183,FinishedGood,Energy Management Solutions,Capacitor Banks,N/A,Nexaline,PCS,10,15.00,26.69,-1,C,TRUE,10,112,45
+85,FG-0085,Power Meters SL-184,FinishedGood,Energy Management Solutions,Power Meters,N/A,Voltrix,PCS,10,125.76,190.19,-1,C,TRUE,10,104,42
+86,FG-0086,Power Quality Analysers VX-185,FinishedGood,Energy Management Solutions,Power Quality Analysers,N/A,Voltrix Pro,PCS,10,127.27,238.39,-1,A,TRUE,50,383,153
+87,FG-0087,Energy Gateways NX-186,FinishedGood,Energy Management Solutions,Energy Gateways,N/A,Voltrix Eco,PCS,10,15.00,27.61,-1,C,TRUE,10,103,41
+88,FG-0088,Capacitor Banks PR-187,FinishedGood,Energy Management Solutions,Capacitor Banks,N/A,Nexaline,PCS,10,84.58,121.78,-1,C,TRUE,10,109,44
+89,FG-0089,Power Meters EC-188,FinishedGood,Energy Management Solutions,Power Meters,N/A,Voltrix,PCS,10,69.10,115.09,-1,C,TRUE,10,82,33
+90,FG-0090,Power Quality Analysers SL-189,FinishedGood,Energy Management Solutions,Power Quality Analysers,N/A,Voltrix Pro,PCS,10,28.80,44.04,-1,C,TRUE,10,116,46
+91,FG-0091,Energy Gateways VX-190,FinishedGood,Energy Management Solutions,Energy Gateways,N/A,Voltrix Eco,PCS,10,51.83,74.20,-1,B,TRUE,25,174,70
+92,FG-0092,Card Readers NX-191,FinishedGood,Security & Access Solutions,Card Readers,N/A,Nexaline,PCS,10,45.95,80.72,-1,C,TRUE,10,78,31
+93,FG-0093,Access Controllers PR-192,FinishedGood,Security & Access Solutions,Access Controllers,N/A,Voltrix,PCS,10,108.83,202.59,-1,C,TRUE,10,118,47
+94,FG-0094,Door Stations EC-193,FinishedGood,Security & Access Solutions,Door Stations,N/A,Voltrix Pro,PCS,10,349.35,563.03,-1,B,TRUE,25,131,52
+95,FG-0095,Alarm Panels SL-194,FinishedGood,Security & Access Solutions,Alarm Panels,N/A,Voltrix Eco,PCS,10,224.93,395.29,-1,B,TRUE,25,293,117
+96,FG-0096,Card Readers VX-195,FinishedGood,Security & Access Solutions,Card Readers,N/A,Nexaline,PCS,10,191.08,269.28,-1,B,TRUE,25,234,94
+97,FG-0097,Access Controllers NX-196,FinishedGood,Security & Access Solutions,Access Controllers,N/A,Voltrix,PCS,10,143.18,217.33,-1,C,TRUE,10,89,36
+98,FG-0098,Door Stations PR-197,FinishedGood,Security & Access Solutions,Door Stations,N/A,Voltrix Pro,PCS,10,101.09,167.78,-1,A,TRUE,50,263,105
+99,FG-0099,Alarm Panels EC-198,FinishedGood,Security & Access Solutions,Alarm Panels,N/A,Voltrix Eco,PCS,10,26.87,44.69,-1,B,TRUE,25,246,98
+100,FG-0100,Card Readers SL-199,FinishedGood,Security & Access Solutions,Card Readers,N/A,Nexaline,PCS,10,339.90,612.98,-1,B,TRUE,25,106,42
+101,MT-0001,Microcontrollers VX200,Material,N/A,Microcontrollers,Electronic Components,N/A,PCS,10,15.53,0.00,7,A,TRUE,500,850,340
+102,MT-0002,Passive Components NX201,Material,N/A,Passive Components,Electronic Components,N/A,PCS,10,5.59,0.00,25,C,TRUE,100,418,167
+103,MT-0003,Semiconductors PR202,Material,N/A,Semiconductors,Electronic Components,N/A,PCS,10,15.82,0.00,26,C,TRUE,100,192,77
+104,MT-0004,PCB Assemblies EC203,Material,N/A,PCB Assemblies,Electronic Components,N/A,PCS,10,22.10,0.00,26,C,TRUE,100,443,177
+105,MT-0005,Microcontrollers SL204,Material,N/A,Microcontrollers,Electronic Components,N/A,PCS,10,1.62,0.00,7,C,TRUE,100,433,173
+106,MT-0006,Passive Components VX205,Material,N/A,Passive Components,Electronic Components,N/A,PCS,10,4.33,0.00,5,A,TRUE,500,1809,724
+107,MT-0007,Semiconductors NX206,Material,N/A,Semiconductors,Electronic Components,N/A,PCS,10,16.22,0.00,31,B,TRUE,250,1159,464
+108,MT-0008,PCB Assemblies PR207,Material,N/A,PCB Assemblies,Electronic Components,N/A,PCS,10,4.95,0.00,26,C,TRUE,100,260,104
+109,MT-0009,Microcontrollers EC208,Material,N/A,Microcontrollers,Electronic Components,N/A,PCS,10,5.61,0.00,24,B,TRUE,250,648,259
+110,MT-0010,Passive Components SL209,Material,N/A,Passive Components,Electronic Components,N/A,PCS,10,1.05,0.00,7,C,TRUE,100,259,104
+111,MT-0011,Semiconductors VX210,Material,N/A,Semiconductors,Electronic Components,N/A,PCS,10,14.35,0.00,5,C,TRUE,100,472,189
+112,MT-0012,PCB Assemblies NX211,Material,N/A,PCB Assemblies,Electronic Components,N/A,PCS,10,1.41,0.00,11,B,TRUE,250,504,202
+113,MT-0013,Copper Busbar PR212,Material,N/A,Copper Busbar,Metals,N/A,MTR,100,4.04,0.00,23,A,TRUE,500,1673,669
+114,MT-0014,Steel Sheet EC213,Material,N/A,Steel Sheet,Metals,N/A,KG,100,21.47,0.00,12,A,TRUE,500,1591,636
+115,MT-0015,Aluminium Profile SL214,Material,N/A,Aluminium Profile,Metals,N/A,MTR,100,2.98,0.00,23,C,TRUE,100,473,189
+116,MT-0016,Brass Parts VX215,Material,N/A,Brass Parts,Metals,N/A,KG,100,2.05,0.00,12,A,TRUE,500,1123,449
+117,MT-0017,Copper Busbar NX216,Material,N/A,Copper Busbar,Metals,N/A,MTR,100,20.30,0.00,14,C,TRUE,100,207,83
+118,MT-0018,Steel Sheet PR217,Material,N/A,Steel Sheet,Metals,N/A,KG,100,0.62,0.00,23,B,TRUE,250,551,220
+119,MT-0019,Aluminium Profile EC218,Material,N/A,Aluminium Profile,Metals,N/A,MTR,100,7.16,0.00,12,B,TRUE,250,451,180
+120,MT-0020,Brass Parts SL219,Material,N/A,Brass Parts,Metals,N/A,KG,100,0.40,0.00,3,B,TRUE,250,815,326
+121,MT-0021,Copper Busbar VX220,Material,N/A,Copper Busbar,Metals,N/A,MTR,100,17.87,0.00,3,C,TRUE,100,390,156
+122,MT-0022,Thermoplastic Granulate NX221,Material,N/A,Thermoplastic Granulate,Plastics,N/A,KG,100,31.04,0.00,33,B,TRUE,250,1159,464
+123,MT-0023,Moulded Housings PR222,Material,N/A,Moulded Housings,Plastics,N/A,PCS,10,51.00,0.00,28,B,TRUE,250,1011,404
+124,MT-0024,Insulation Film EC223,Material,N/A,Insulation Film,Plastics,N/A,KG,100,3.03,0.00,28,B,TRUE,250,447,179
+125,MT-0025,Thermoplastic Granulate SL224,Material,N/A,Thermoplastic Granulate,Plastics,N/A,KG,100,5.47,0.00,33,C,TRUE,100,322,129
+126,MT-0026,Moulded Housings VX225,Material,N/A,Moulded Housings,Plastics,N/A,PCS,10,3.91,0.00,17,C,TRUE,100,245,98
+127,MT-0027,Insulation Film NX226,Material,N/A,Insulation Film,Plastics,N/A,KG,100,0.60,0.00,1,C,TRUE,100,326,130
+128,MT-0028,Thermoplastic Granulate PR227,Material,N/A,Thermoplastic Granulate,Plastics,N/A,KG,100,0.43,0.00,17,C,TRUE,100,394,158
+129,MT-0029,Moulded Housings EC228,Material,N/A,Moulded Housings,Plastics,N/A,PCS,10,3.60,0.00,33,C,TRUE,100,440,176
+130,MT-0030,Insulation Film SL229,Material,N/A,Insulation Film,Plastics,N/A,KG,100,3.15,0.00,1,C,TRUE,100,132,53
+131,MT-0031,Contact Sets VX230,Material,N/A,Contact Sets,Electromechanical Components,N/A,PCS,10,61.18,0.00,8,C,TRUE,100,290,116
+132,MT-0032,Springs NX231,Material,N/A,Springs,Electromechanical Components,N/A,PCS,10,6.48,0.00,22,C,TRUE,100,211,84
+133,MT-0033,Relay Units PR232,Material,N/A,Relay Units,Electromechanical Components,N/A,PCS,10,1.39,0.00,8,C,TRUE,100,430,172
+134,MT-0034,Terminal Blocks EC233,Material,N/A,Terminal Blocks,Electromechanical Components,N/A,PCS,10,2.01,0.00,16,B,TRUE,250,453,181
+135,MT-0035,Contact Sets SL234,Material,N/A,Contact Sets,Electromechanical Components,N/A,PCS,10,5.68,0.00,30,C,TRUE,100,318,127
+136,MT-0036,Springs VX235,Material,N/A,Springs,Electromechanical Components,N/A,PCS,10,7.13,0.00,27,C,TRUE,100,368,147
+137,MT-0037,Relay Units NX236,Material,N/A,Relay Units,Electromechanical Components,N/A,PCS,10,30.45,0.00,30,A,TRUE,500,1705,682
+138,MT-0038,Terminal Blocks PR237,Material,N/A,Terminal Blocks,Electromechanical Components,N/A,PCS,10,5.19,0.00,16,B,TRUE,250,888,355
+139,MT-0039,Contact Sets EC238,Material,N/A,Contact Sets,Electromechanical Components,N/A,PCS,10,6.10,0.00,27,B,TRUE,250,1137,455
+140,MT-0040,Fasteners SL239,Material,N/A,Fasteners,Mechanical Parts,N/A,PCS,10,6.48,0.00,10,B,TRUE,250,542,217
+141,MT-0041,Bearings VX240,Material,N/A,Bearings,Mechanical Parts,N/A,PCS,10,7.15,0.00,15,C,TRUE,100,331,132
+142,MT-0042,Machined Parts NX241,Material,N/A,Machined Parts,Mechanical Parts,N/A,PCS,10,12.64,0.00,13,B,TRUE,250,740,296
+143,MT-0043,Fasteners PR242,Material,N/A,Fasteners,Mechanical Parts,N/A,PCS,10,18.46,0.00,13,A,TRUE,500,2015,806
+144,MT-0044,Bearings EC243,Material,N/A,Bearings,Mechanical Parts,N/A,PCS,10,38.44,0.00,13,A,TRUE,500,1315,526
+145,MT-0045,Machined Parts SL244,Material,N/A,Machined Parts,Mechanical Parts,N/A,PCS,10,22.90,0.00,6,B,TRUE,250,836,334
+146,MT-0046,Labels VX245,Material,N/A,Labels,Packaging,N/A,PCS,10,37.60,0.00,4,C,TRUE,100,374,150
+147,MT-0047,Pallets NX246,Material,N/A,Pallets,Packaging,N/A,PCS,10,13.79,0.00,35,C,TRUE,100,165,66
+148,MT-0048,Foam Inserts PR247,Material,N/A,Foam Inserts,Packaging,N/A,KG,100,4.81,0.00,9,A,TRUE,500,1708,683
+149,MT-0049,Cartons EC248,Material,N/A,Cartons,Packaging,N/A,PCS,10,5.76,0.00,2,C,TRUE,100,477,191
+150,MT-0050,Labels SL249,Material,N/A,Labels,Packaging,N/A,PCS,10,0.56,0.00,4,A,TRUE,500,2400,960
+-1,UNK,Unknown,N/A,N/A,N/A,N/A,N/A,N/A,1,0.00,0.00,-1,N/A,FALSE,0,0,0

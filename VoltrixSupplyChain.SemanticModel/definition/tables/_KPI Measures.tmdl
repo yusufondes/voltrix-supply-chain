@@ -1,0 +1,1037 @@
+table '_KPI Measures'
+	lineageTag: 7b1e0a90-5c44-4d21-9f0e-a1b2c3d4e501
+
+	measure 'As Of DateKey' = CALCULATE ( MAX ( FactInventorySnapshot[DateKey] ), ALL ( DimDate ) )
+		formatString: 0
+		lineageTag: 30637013-6247-45f3-9272-761f24615541
+
+	measure 'Ordered Qty' = SUM ( FactSalesOrderLine[OrderedQuantity] )
+		formatString: #,0
+		lineageTag: 3bfd5e58-2a61-4d70-9a77-309b08ffb3cb
+
+	measure 'Delivered Qty' = SUM ( FactSalesOrderLine[DeliveredQty] )
+		formatString: #,0
+		lineageTag: ddf99e12-10c4-49b4-81a7-c4b4046254f4
+
+	measure 'Backorder Qty' = SUM ( FactSalesOrderLine[BackorderQty] )
+		formatString: #,0
+		lineageTag: 167a29d9-fa8e-430a-9934-9215477d2783
+
+	measure 'Delivered Revenue EUR' = SUM ( FactShipmentLine[DeliveredRevenueEUR] )
+		formatString: #,0.00
+		lineageTag: d291913f-8f2e-4880-9ce9-24cdd1567e5d
+
+	measure 'Due Lines' =
+			VAR AsOf = [As Of DateKey]
+			RETURN
+			    CALCULATE (
+			        COUNTROWS ( FactSalesOrderLine ),
+			        KEEPFILTERS ( FactSalesOrderLine[RequestedDateKey] <= AsOf )
+			    )
+		formatString: #,0
+		lineageTag: 8f312caf-9ee7-4209-85d8-410d2f749a3f
+
+	measure 'OTIF %' =
+			VAR AsOf = [As Of DateKey]
+			VAR DueL =
+			    CALCULATE ( COUNTROWS ( FactSalesOrderLine ),
+			        KEEPFILTERS ( FactSalesOrderLine[RequestedDateKey] <= AsOf ) )
+			VAR OtifL =
+			    CALCULATE ( COUNTROWS ( FactSalesOrderLine ),
+			        KEEPFILTERS ( FactSalesOrderLine[RequestedDateKey] <= AsOf ),
+			        KEEPFILTERS ( FactSalesOrderLine[IsOTIF] = TRUE () ) )
+			RETURN
+			    DIVIDE ( OtifL, DueL ) * 100
+		formatString: 0.0"%"
+		lineageTag: cd696ef3-0433-4d5f-8f52-116b27b7c38e
+
+	measure 'On-Time Delivery %' =
+			VAR AsOf = [As Of DateKey]
+			VAR DueL =
+			    CALCULATE ( COUNTROWS ( FactSalesOrderLine ),
+			        KEEPFILTERS ( FactSalesOrderLine[RequestedDateKey] <= AsOf ) )
+			VAR OnTimeL =
+			    CALCULATE ( COUNTROWS ( FactSalesOrderLine ),
+			        KEEPFILTERS ( FactSalesOrderLine[RequestedDateKey] <= AsOf ),
+			        KEEPFILTERS ( FactSalesOrderLine[IsOnTime] = TRUE () ) )
+			RETURN
+			    DIVIDE ( OnTimeL, DueL ) * 100
+		formatString: 0.0"%"
+		lineageTag: feee3d8b-2c39-489a-be68-ee6df762e48b
+
+	measure 'In-Full %' =
+			VAR AsOf = [As Of DateKey]
+			VAR DueL =
+			    CALCULATE ( COUNTROWS ( FactSalesOrderLine ),
+			        KEEPFILTERS ( FactSalesOrderLine[RequestedDateKey] <= AsOf ) )
+			VAR InFullL =
+			    CALCULATE ( COUNTROWS ( FactSalesOrderLine ),
+			        KEEPFILTERS ( FactSalesOrderLine[RequestedDateKey] <= AsOf ),
+			        KEEPFILTERS ( FactSalesOrderLine[IsInFull] = TRUE () ) )
+			RETURN
+			    DIVIDE ( InFullL, DueL ) * 100
+		formatString: 0.0"%"
+		lineageTag: bac858f9-9981-43d7-86ad-b426d738cbe8
+
+	measure 'Fill Rate %' =
+			
+			VAR AsOfKey = [As Of DateKey]
+			VAR DeliveredQ =
+			    CALCULATE (
+			        SUM ( FactSalesOrderLine[DeliveredQty] ),
+			        KEEPFILTERS ( FactSalesOrderLine[RequestedDateKey] <= AsOfKey )
+			    )
+			VAR OrderedQ =
+			    CALCULATE (
+			        SUM ( FactSalesOrderLine[OrderedQuantity] ),
+			        KEEPFILTERS ( FactSalesOrderLine[RequestedDateKey] <= AsOfKey )
+			    )
+			RETURN
+			    DIVIDE ( DeliveredQ, OrderedQ ) * 100
+		formatString: 0.0"%"
+		lineageTag: 3c9b6e2d-d98d-4824-a609-e76222ed1aa9
+
+	measure 'Late Order Lines' =
+			VAR AsOf = [As Of DateKey]
+			RETURN
+			    CALCULATE (
+			        COUNTROWS ( FactSalesOrderLine ),
+			        KEEPFILTERS ( FactSalesOrderLine[RequestedDateKey] <= AsOf ),
+			        KEEPFILTERS ( FactSalesOrderLine[IsOTIF] = FALSE () )
+			    )
+		formatString: #,0
+		lineageTag: 71cde2f1-4734-4e57-9073-44bed696430c
+
+	measure 'Open Order Lines' =
+			CALCULATE (
+			    COUNTROWS ( FactSalesOrderLine ),
+			    KEEPFILTERS ( FactSalesOrderLine[IsOpen] = TRUE () )
+			)
+		formatString: #,0
+		lineageTag: f3abf8dd-6957-42ba-b17f-30a353479ef9
+
+	measure 'Due PO Lines' =
+			VAR AsOf = [As Of DateKey]
+			RETURN
+			    CALCULATE (
+			        COUNTROWS ( FactPurchaseOrderLine ),
+			        KEEPFILTERS ( FactPurchaseOrderLine[ExpectedDeliveryDateKey] <= AsOf )
+			    )
+		formatString: #,0
+		lineageTag: 000db17e-0930-4fea-bce0-08e06ac1ca53
+
+	measure 'Supplier OTIF %' =
+			VAR AsOf = [As Of DateKey]
+			VAR DuePo =
+			    CALCULATE ( COUNTROWS ( FactPurchaseOrderLine ),
+			        KEEPFILTERS ( FactPurchaseOrderLine[ExpectedDeliveryDateKey] <= AsOf ) )
+			VAR OtifPo =
+			    CALCULATE ( COUNTROWS ( FactPurchaseOrderLine ),
+			        KEEPFILTERS ( FactPurchaseOrderLine[ExpectedDeliveryDateKey] <= AsOf ),
+			        KEEPFILTERS ( FactPurchaseOrderLine[IsSupplierOTIF] = TRUE () ) )
+			RETURN
+			    DIVIDE ( OtifPo, DuePo ) * 100
+		formatString: 0.0"%"
+		lineageTag: a0769825-9498-4bf0-89a9-ea5e344b72ef
+
+	measure 'Supplier OTD %' =
+			VAR AsOf = [As Of DateKey]
+			VAR DuePo =
+			    CALCULATE ( COUNTROWS ( FactPurchaseOrderLine ),
+			        KEEPFILTERS ( FactPurchaseOrderLine[ExpectedDeliveryDateKey] <= AsOf ) )
+			VAR OnTimePo =
+			    CALCULATE ( COUNTROWS ( FactPurchaseOrderLine ),
+			        KEEPFILTERS ( FactPurchaseOrderLine[ExpectedDeliveryDateKey] <= AsOf ),
+			        KEEPFILTERS ( FactPurchaseOrderLine[IsSupplierOnTime] = TRUE () ) )
+			RETURN
+			    DIVIDE ( OnTimePo, DuePo ) * 100
+		formatString: 0.0"%"
+		lineageTag: f0bbe053-4af0-4f9a-9d4e-9a461dafdb24
+
+	measure 'Open PO Lines' =
+			COUNTROWS (
+			    FILTER (
+			        FactPurchaseOrderLine,
+			        FactPurchaseOrderLine[AcceptedQty] < FactPurchaseOrderLine[OrderedQuantity]
+			    )
+			)
+		formatString: #,0
+		lineageTag: 16b9906d-e0f2-453c-8db5-17f80efec8e0
+
+	measure 'Mean Lead Time (Days)' =
+			AVERAGEX (
+			    FactGoodsReceiptLine,
+			    DATEDIFF (
+			        LOOKUPVALUE (
+			            FactPurchaseOrderLine[OrderDate],
+			            FactPurchaseOrderLine[PurchaseOrderLineKey],
+			            FactGoodsReceiptLine[PurchaseOrderLineKey]
+			        ),
+			        FactGoodsReceiptLine[ReceiptDate],
+			        DAY
+			    )
+			)
+		formatString: 0.0
+		lineageTag: f61a8b0e-0ef9-43b0-98d6-0ab8e3630306
+
+	measure 'Lead Time Std Dev (Days)' =
+			STDEVX.S (
+			    FactGoodsReceiptLine,
+			    DATEDIFF (
+			        LOOKUPVALUE (
+			            FactPurchaseOrderLine[OrderDate],
+			            FactPurchaseOrderLine[PurchaseOrderLineKey],
+			            FactGoodsReceiptLine[PurchaseOrderLineKey]
+			        ),
+			        FactGoodsReceiptLine[ReceiptDate],
+			        DAY
+			    )
+			)
+		formatString: 0.0
+		lineageTag: 5a51789d-cdbf-4943-b5bf-e8c4f29067e6
+
+	measure 'Rejection Rate %' =
+			DIVIDE (
+			    SUM ( FactGoodsReceiptLine[RejectedQuantity] ),
+			    SUM ( FactGoodsReceiptLine[ReceivedQuantity] )
+			) * 100
+		formatString: 0.00"%"
+		lineageTag: 07a4061d-4884-4f5f-85e5-2a2c50b70f4e
+
+	measure 'Ending Inventory (Units)' =
+			CALCULATE (
+			    CALCULATE (
+			        SUM ( FactInventorySnapshot[ClosingQty] ),
+			        LASTDATE ( DimDate[Date] )
+			    ),
+			    DimDate[IsTransactionHorizon] = TRUE ()
+			)
+		formatString: #,0
+		lineageTag: d711bb2b-940e-4e8d-b78a-a31465ab8982
+
+	measure 'Average Inventory (Units)' =
+			CALCULATE (
+			    AVERAGEX (
+			        VALUES ( DimDate[Date] ),
+			        CALCULATE ( SUM ( FactInventorySnapshot[ClosingQty] ) )
+			    ),
+			    DimDate[IsTransactionHorizon] = TRUE ()
+			)
+		formatString: #,0
+		lineageTag: b41c5f7a-824b-4b23-8de9-070e94ef30af
+
+	measure 'Inventory Value EUR' =
+			CALCULATE (
+			    CALCULATE (
+			        SUM ( FactInventorySnapshot[ClosingValueEUR] ),
+			        LASTDATE ( DimDate[Date] )
+			    ),
+			    DimDate[IsTransactionHorizon] = TRUE ()
+			)
+		formatString: €#,0
+		lineageTag: 748b68d7-48cc-4072-a080-9f592d1221e5
+
+	measure 'Average Inventory Value EUR' =
+			CALCULATE (
+			    AVERAGEX (
+			        VALUES ( DimDate[Date] ),
+			        CALCULATE ( SUM ( FactInventorySnapshot[ClosingValueEUR] ) )
+			    ),
+			    DimDate[IsTransactionHorizon] = TRUE ()
+			)
+		formatString: €#,0
+		lineageTag: b52ca937-86f7-41d1-b112-e95b1e87724e
+
+	measure 'COGS EUR' = SUM ( FactShipmentLine[DeliveredCostEUR] )
+		formatString: #,0.00
+		lineageTag: 76263184-53eb-48e8-8f14-665ee9094b7a
+
+	measure 'Snapshot Days' = DISTINCTCOUNT ( FactInventorySnapshot[DateKey] )
+		formatString: #,0
+		lineageTag: 9e6893d9-32fe-442c-9288-13012d624ef3
+
+	measure 'Inventory Turnover' =
+			VAR Yrs = DIVIDE ( [Snapshot Days], 365 )
+			RETURN
+			    DIVIDE ( DIVIDE ( [COGS EUR], Yrs ), [Average Inventory Value EUR] )
+		formatString: 0.00
+		lineageTag: 309a0eb9-dbf8-43e3-a60e-be285512df8e
+
+	measure 'Days of Inventory' = DIVIDE ( 365, [Inventory Turnover] )
+		formatString: 0.0
+		lineageTag: fd9a903d-32ce-4192-b034-9bde0551cbb3
+
+	measure 'Stockout Rate %' =
+			DIVIDE (
+			    CALCULATE (
+			        COUNTROWS ( FactInventorySnapshot ),
+			        KEEPFILTERS ( FactInventorySnapshot[ClosingQty] = 0 )
+			    ),
+			    COUNTROWS ( FactInventorySnapshot )
+			) * 100
+		formatString: 0.00"%"
+		lineageTag: e00d978e-3f9c-4be5-98eb-3d9ecee114b6
+
+	measure 'OTIF % vs Target' =
+			VAR A = [OTIF %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "OTIF %" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( A ) && NOT ISBLANK ( T ),
+			        "Target " & FORMAT ( T, "0.0" ) & "% · " & FORMAT ( A - T, "+0.0;-0.0;0.0" ) & " pp"
+			    )
+		lineageTag: 65ee827d-d2b0-5392-a52c-6368c7bdfbbd
+
+	measure 'OTIF % Status Colour' =
+			VAR A = [OTIF %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "OTIF %" )
+			VAR D = LOOKUPVALUE ( DimTarget[Direction], DimTarget[KpiName], "OTIF %" )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( A ) || ISBLANK ( T ), BLANK (),
+			        IF ( D = "lower", A <= T, A >= T ), "#2E7D32",
+			        IF ( D = "lower", A <= T * 1.05, A >= T * 0.95 ), "#9C6500",
+			        "#C62828"
+			    )
+		lineageTag: ddbae264-3c24-5539-a163-db195321f59b
+
+	measure 'On-Time Delivery % vs Target' =
+			VAR A = [On-Time Delivery %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "On-Time Delivery %" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( A ) && NOT ISBLANK ( T ),
+			        "Target " & FORMAT ( T, "0.0" ) & "% · " & FORMAT ( A - T, "+0.0;-0.0;0.0" ) & " pp"
+			    )
+		lineageTag: 3ec3825b-81fb-5842-a9bc-cfbbf5b55fa3
+
+	measure 'On-Time Delivery % Status Colour' =
+			VAR A = [On-Time Delivery %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "On-Time Delivery %" )
+			VAR D = LOOKUPVALUE ( DimTarget[Direction], DimTarget[KpiName], "On-Time Delivery %" )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( A ) || ISBLANK ( T ), BLANK (),
+			        IF ( D = "lower", A <= T, A >= T ), "#2E7D32",
+			        IF ( D = "lower", A <= T * 1.05, A >= T * 0.95 ), "#9C6500",
+			        "#C62828"
+			    )
+		lineageTag: e469ca47-21c7-5be8-8f95-252db9fb49a5
+
+	measure 'In-Full % vs Target' =
+			VAR A = [In-Full %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "In-Full %" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( A ) && NOT ISBLANK ( T ),
+			        "Target " & FORMAT ( T, "0.0" ) & "% · " & FORMAT ( A - T, "+0.0;-0.0;0.0" ) & " pp"
+			    )
+		lineageTag: 3f74ba1a-8705-5b16-ae1e-61e06be1a0d8
+
+	measure 'In-Full % Status Colour' =
+			VAR A = [In-Full %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "In-Full %" )
+			VAR D = LOOKUPVALUE ( DimTarget[Direction], DimTarget[KpiName], "In-Full %" )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( A ) || ISBLANK ( T ), BLANK (),
+			        IF ( D = "lower", A <= T, A >= T ), "#2E7D32",
+			        IF ( D = "lower", A <= T * 1.05, A >= T * 0.95 ), "#9C6500",
+			        "#C62828"
+			    )
+		lineageTag: 00cf9828-43e3-5437-853e-21dd25197414
+
+	measure 'Fill Rate % vs Target' =
+			VAR A = [Fill Rate %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Fill Rate %" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( A ) && NOT ISBLANK ( T ),
+			        "Target " & FORMAT ( T, "0.0" ) & "% · " & FORMAT ( A - T, "+0.0;-0.0;0.0" ) & " pp"
+			    )
+		lineageTag: 621eaf1e-f99d-5709-90dd-1d0777ef3967
+
+	measure 'Fill Rate % Status Colour' =
+			VAR A = [Fill Rate %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Fill Rate %" )
+			VAR D = LOOKUPVALUE ( DimTarget[Direction], DimTarget[KpiName], "Fill Rate %" )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( A ) || ISBLANK ( T ), BLANK (),
+			        IF ( D = "lower", A <= T, A >= T ), "#2E7D32",
+			        IF ( D = "lower", A <= T * 1.05, A >= T * 0.95 ), "#9C6500",
+			        "#C62828"
+			    )
+		lineageTag: 0c3b5fe5-08e7-52f5-acbf-92984722105c
+
+	measure 'Supplier OTIF % vs Target' =
+			VAR A = [Supplier OTIF %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Supplier OTIF %" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( A ) && NOT ISBLANK ( T ),
+			        "Target " & FORMAT ( T, "0.0" ) & "% · " & FORMAT ( A - T, "+0.0;-0.0;0.0" ) & " pp"
+			    )
+		lineageTag: c75978a3-2a8e-51c7-aebe-a459832ad302
+
+	measure 'Supplier OTIF % Status Colour' =
+			VAR A = [Supplier OTIF %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Supplier OTIF %" )
+			VAR D = LOOKUPVALUE ( DimTarget[Direction], DimTarget[KpiName], "Supplier OTIF %" )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( A ) || ISBLANK ( T ), BLANK (),
+			        IF ( D = "lower", A <= T, A >= T ), "#2E7D32",
+			        IF ( D = "lower", A <= T * 1.05, A >= T * 0.95 ), "#9C6500",
+			        "#C62828"
+			    )
+		lineageTag: ce48ea57-a6c8-5cfb-b782-8d1035a7fd89
+
+	measure 'Supplier OTD % vs Target' =
+			VAR A = [Supplier OTD %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Supplier OTD %" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( A ) && NOT ISBLANK ( T ),
+			        "Target " & FORMAT ( T, "0.0" ) & "% · " & FORMAT ( A - T, "+0.0;-0.0;0.0" ) & " pp"
+			    )
+		lineageTag: e2aa8ef2-318f-5a5e-a8bf-665a449f8af6
+
+	measure 'Supplier OTD % Status Colour' =
+			VAR A = [Supplier OTD %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Supplier OTD %" )
+			VAR D = LOOKUPVALUE ( DimTarget[Direction], DimTarget[KpiName], "Supplier OTD %" )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( A ) || ISBLANK ( T ), BLANK (),
+			        IF ( D = "lower", A <= T, A >= T ), "#2E7D32",
+			        IF ( D = "lower", A <= T * 1.05, A >= T * 0.95 ), "#9C6500",
+			        "#C62828"
+			    )
+		lineageTag: f929f9af-d200-59f6-abbb-e8691972e22a
+
+	measure 'Inventory Turnover vs Target' =
+			VAR A = [Inventory Turnover]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Inventory Turnover" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( A ) && NOT ISBLANK ( T ),
+			        "Target " & FORMAT ( T, "0.00" ) & " · " & FORMAT ( A - T, "+0.00;-0.00;0.00" )
+			    )
+		lineageTag: b35c96b5-4f7a-5ef3-84ef-fb1a7d13125c
+
+	measure 'Inventory Turnover Status Colour' =
+			VAR A = [Inventory Turnover]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Inventory Turnover" )
+			VAR D = LOOKUPVALUE ( DimTarget[Direction], DimTarget[KpiName], "Inventory Turnover" )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( A ) || ISBLANK ( T ), BLANK (),
+			        IF ( D = "lower", A <= T, A >= T ), "#2E7D32",
+			        IF ( D = "lower", A <= T * 1.05, A >= T * 0.95 ), "#9C6500",
+			        "#C62828"
+			    )
+		lineageTag: 7d47f421-bd9b-50ea-ab30-3b9352e77946
+
+	measure 'Days of Inventory vs Target' =
+			VAR A = [Days of Inventory]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Days of Inventory" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( A ) && NOT ISBLANK ( T ),
+			        "Target " & FORMAT ( T, "0.0" ) & " days · " & FORMAT ( A - T, "+0.0;-0.0;0.0" ) & " days"
+			    )
+		lineageTag: ec3ab582-f3a1-5607-b850-f64d7959359c
+
+	measure 'Days of Inventory Status Colour' =
+			VAR A = [Days of Inventory]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Days of Inventory" )
+			VAR D = LOOKUPVALUE ( DimTarget[Direction], DimTarget[KpiName], "Days of Inventory" )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( A ) || ISBLANK ( T ), BLANK (),
+			        IF ( D = "lower", A <= T, A >= T ), "#2E7D32",
+			        IF ( D = "lower", A <= T * 1.05, A >= T * 0.95 ), "#9C6500",
+			        "#C62828"
+			    )
+		lineageTag: a919e66d-1386-5b94-a0ff-1484142f5b78
+
+	measure 'Stockout Rate % vs Target' =
+			VAR A = [Stockout Rate %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Stockout Rate %" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( A ) && NOT ISBLANK ( T ),
+			        "Target " & FORMAT ( T, "0.00" ) & "% · " & FORMAT ( A - T, "+0.00;-0.00;0.00" ) & " pp"
+			    )
+		lineageTag: 5b3a35c7-88d7-59a5-b1e6-8f596923cfbd
+
+	measure 'Stockout Rate % Status Colour' =
+			VAR A = [Stockout Rate %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Stockout Rate %" )
+			VAR D = LOOKUPVALUE ( DimTarget[Direction], DimTarget[KpiName], "Stockout Rate %" )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( A ) || ISBLANK ( T ), BLANK (),
+			        IF ( D = "lower", A <= T, A >= T ), "#2E7D32",
+			        IF ( D = "lower", A <= T * 1.05, A >= T * 0.95 ), "#9C6500",
+			        "#C62828"
+			    )
+		lineageTag: 56ecf2b8-a9a1-517d-9a31-c97a6ea6ae30
+
+	measure 'Rejection Rate % vs Target' =
+			VAR A = [Rejection Rate %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Rejection Rate %" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( A ) && NOT ISBLANK ( T ),
+			        "Target " & FORMAT ( T, "0.00" ) & "% · " & FORMAT ( A - T, "+0.00;-0.00;0.00" ) & " pp"
+			    )
+		lineageTag: feb52814-72ce-534f-9414-d22336221541
+
+	measure 'Rejection Rate % Status Colour' =
+			VAR A = [Rejection Rate %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Rejection Rate %" )
+			VAR D = LOOKUPVALUE ( DimTarget[Direction], DimTarget[KpiName], "Rejection Rate %" )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( A ) || ISBLANK ( T ), BLANK (),
+			        IF ( D = "lower", A <= T, A >= T ), "#2E7D32",
+			        IF ( D = "lower", A <= T * 1.05, A >= T * 0.95 ), "#9C6500",
+			        "#C62828"
+			    )
+		lineageTag: 3b8fe07a-846e-5307-ba00-90dcf7131a64
+
+	measure 'Mean Lead Time (Days) vs Target' =
+			VAR A = [Mean Lead Time (Days)]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Mean Lead Time (Days)" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( A ) && NOT ISBLANK ( T ),
+			        "Target " & FORMAT ( T, "0.0" ) & " days · " & FORMAT ( A - T, "+0.0;-0.0;0.0" ) & " days"
+			    )
+		lineageTag: e9c01bd2-4edc-585d-abe0-5107ba592d21
+
+	measure 'Mean Lead Time (Days) Status Colour' =
+			VAR A = [Mean Lead Time (Days)]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Mean Lead Time (Days)" )
+			VAR D = LOOKUPVALUE ( DimTarget[Direction], DimTarget[KpiName], "Mean Lead Time (Days)" )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( A ) || ISBLANK ( T ), BLANK (),
+			        IF ( D = "lower", A <= T, A >= T ), "#2E7D32",
+			        IF ( D = "lower", A <= T * 1.05, A >= T * 0.95 ), "#9C6500",
+			        "#C62828"
+			    )
+		lineageTag: 371e7d2e-0f8b-5790-9d7d-8dab3acdd8ff
+
+	measure 'OTIF % YoY' =
+			VAR LastD = CALCULATE ( MAX ( DimDate[Date] ), DimDate[IsTransactionHorizon] = TRUE () )
+			VAR FirstD = CALCULATE ( MIN ( DimDate[Date] ), DimDate[IsTransactionHorizon] = TRUE () )
+			VAR StartD = MAX ( FirstD, EDATE ( LastD, -12 ) + 1 )
+			VAR Cur = CALCULATE ( [OTIF %], DATESBETWEEN ( DimDate[Date], StartD, LastD ) )
+			VAR Prev = CALCULATE ( [OTIF %], SAMEPERIODLASTYEAR ( DATESBETWEEN ( DimDate[Date], StartD, LastD ) ) )
+			RETURN
+			    IF ( NOT ISBLANK ( Cur ) && NOT ISBLANK ( Prev ), Cur - Prev )
+		formatString: +0.0" pp";-0.0" pp";0.0" pp"
+		lineageTag: 3892274b-93b4-5b2c-93f5-0190b505b1b7
+
+	measure 'OTIF % YoY Text' =
+			VAR Y = [OTIF % YoY]
+			VAR R = ROUND ( Y, 1 )
+			RETURN
+			    IF (
+			        ISBLANK ( Y ),
+			        "YoY n/a",
+			        SWITCH ( TRUE (), R > 0, "▲", R < 0, "▼", "▶" ) & " YoY " & FORMAT ( Y, "+0.0;-0.0;0.0" ) & " pp"
+			    )
+		lineageTag: 566d6a7e-d701-5aed-8bf8-5878c41bb5c5
+
+	measure 'Fill Rate % YoY' =
+			VAR LastD = CALCULATE ( MAX ( DimDate[Date] ), DimDate[IsTransactionHorizon] = TRUE () )
+			VAR FirstD = CALCULATE ( MIN ( DimDate[Date] ), DimDate[IsTransactionHorizon] = TRUE () )
+			VAR StartD = MAX ( FirstD, EDATE ( LastD, -12 ) + 1 )
+			VAR Cur = CALCULATE ( [Fill Rate %], DATESBETWEEN ( DimDate[Date], StartD, LastD ) )
+			VAR Prev = CALCULATE ( [Fill Rate %], SAMEPERIODLASTYEAR ( DATESBETWEEN ( DimDate[Date], StartD, LastD ) ) )
+			RETURN
+			    IF ( NOT ISBLANK ( Cur ) && NOT ISBLANK ( Prev ), Cur - Prev )
+		formatString: +0.0" pp";-0.0" pp";0.0" pp"
+		lineageTag: 96347c91-6791-5392-aee9-9848ef8550a9
+
+	measure 'Fill Rate % YoY Text' =
+			VAR Y = [Fill Rate % YoY]
+			VAR R = ROUND ( Y, 1 )
+			RETURN
+			    IF (
+			        ISBLANK ( Y ),
+			        "YoY n/a",
+			        SWITCH ( TRUE (), R > 0, "▲", R < 0, "▼", "▶" ) & " YoY " & FORMAT ( Y, "+0.0;-0.0;0.0" ) & " pp"
+			    )
+		lineageTag: c9f8d5de-c2bf-559e-8aae-8a61862341fb
+
+	measure 'Supplier OTIF % YoY' =
+			VAR LastD = CALCULATE ( MAX ( DimDate[Date] ), DimDate[IsTransactionHorizon] = TRUE () )
+			VAR FirstD = CALCULATE ( MIN ( DimDate[Date] ), DimDate[IsTransactionHorizon] = TRUE () )
+			VAR StartD = MAX ( FirstD, EDATE ( LastD, -12 ) + 1 )
+			VAR Cur = CALCULATE ( [Supplier OTIF %], DATESBETWEEN ( DimDate[Date], StartD, LastD ) )
+			VAR Prev = CALCULATE ( [Supplier OTIF %], SAMEPERIODLASTYEAR ( DATESBETWEEN ( DimDate[Date], StartD, LastD ) ) )
+			RETURN
+			    IF ( NOT ISBLANK ( Cur ) && NOT ISBLANK ( Prev ), Cur - Prev )
+		formatString: +0.0" pp";-0.0" pp";0.0" pp"
+		lineageTag: f61ab82c-c9dc-5bb5-845c-75f4857b1ba3
+
+	measure 'Supplier OTIF % YoY Text' =
+			VAR Y = [Supplier OTIF % YoY]
+			VAR R = ROUND ( Y, 1 )
+			RETURN
+			    IF (
+			        ISBLANK ( Y ),
+			        "YoY n/a",
+			        SWITCH ( TRUE (), R > 0, "▲", R < 0, "▼", "▶" ) & " YoY " & FORMAT ( Y, "+0.0;-0.0;0.0" ) & " pp"
+			    )
+		lineageTag: 5c084b73-0a78-5a1b-acc5-4ffa700f845f
+
+	measure 'Inventory Value EUR YoY' =
+			VAR LastD = CALCULATE ( MAX ( DimDate[Date] ), DimDate[IsTransactionHorizon] = TRUE () )
+			VAR FirstD = CALCULATE ( MIN ( DimDate[Date] ), DimDate[IsTransactionHorizon] = TRUE () )
+			VAR StartD = MAX ( FirstD, EDATE ( LastD, -12 ) + 1 )
+			VAR Cur = CALCULATE ( [Inventory Value EUR], DATESBETWEEN ( DimDate[Date], StartD, LastD ) )
+			VAR Prev = CALCULATE ( [Inventory Value EUR], SAMEPERIODLASTYEAR ( DATESBETWEEN ( DimDate[Date], StartD, LastD ) ) )
+			RETURN
+			    IF ( NOT ISBLANK ( Cur ) && NOT ISBLANK ( Prev ), Cur - Prev )
+		formatString: +€#,0;-€#,0;€#,0
+		lineageTag: 5fa8857d-911b-506b-9f17-5bf65a6af5af
+
+	measure 'Inventory Value EUR YoY Text' =
+			VAR Y = [Inventory Value EUR YoY]
+			VAR R = ROUND ( Y / 1000000, 2 )
+			RETURN
+			    IF (
+			        ISBLANK ( Y ),
+			        "YoY n/a",
+			        SWITCH ( TRUE (), R > 0, "▲", R < 0, "▼", "▶" ) & " YoY " & FORMAT ( Y / 1000000, "+€0.00;-€0.00;€0.00" ) & "M"
+			    )
+		lineageTag: b7633e32-b8a1-597b-9356-a6b040e5ad68
+
+	measure 'Inventory Turnover YoY' =
+			VAR LastD = CALCULATE ( MAX ( DimDate[Date] ), DimDate[IsTransactionHorizon] = TRUE () )
+			VAR FirstD = CALCULATE ( MIN ( DimDate[Date] ), DimDate[IsTransactionHorizon] = TRUE () )
+			VAR StartD = MAX ( FirstD, EDATE ( LastD, -12 ) + 1 )
+			VAR Cur = CALCULATE ( [Inventory Turnover], DATESBETWEEN ( DimDate[Date], StartD, LastD ) )
+			VAR Prev = CALCULATE ( [Inventory Turnover], SAMEPERIODLASTYEAR ( DATESBETWEEN ( DimDate[Date], StartD, LastD ) ) )
+			RETURN
+			    IF ( NOT ISBLANK ( Cur ) && NOT ISBLANK ( Prev ), Cur - Prev )
+		formatString: +0.00;-0.00;0.00
+		lineageTag: 2cf85360-0f3b-51bc-9606-1dcb1cbb090b
+
+	measure 'Inventory Turnover YoY Text' =
+			VAR Y = [Inventory Turnover YoY]
+			VAR R = ROUND ( Y, 2 )
+			RETURN
+			    IF (
+			        ISBLANK ( Y ),
+			        "YoY n/a",
+			        SWITCH ( TRUE (), R > 0, "▲", R < 0, "▼", "▶" ) & " YoY " & FORMAT ( Y, "+0.00;-0.00;0.00" )
+			    )
+		lineageTag: 3303c2f3-8af6-536f-866d-9be42020303f
+
+	measure 'Stockout Rate % YoY' =
+			VAR LastD = CALCULATE ( MAX ( DimDate[Date] ), DimDate[IsTransactionHorizon] = TRUE () )
+			VAR FirstD = CALCULATE ( MIN ( DimDate[Date] ), DimDate[IsTransactionHorizon] = TRUE () )
+			VAR StartD = MAX ( FirstD, EDATE ( LastD, -12 ) + 1 )
+			VAR Cur = CALCULATE ( [Stockout Rate %], DATESBETWEEN ( DimDate[Date], StartD, LastD ) )
+			VAR Prev = CALCULATE ( [Stockout Rate %], SAMEPERIODLASTYEAR ( DATESBETWEEN ( DimDate[Date], StartD, LastD ) ) )
+			RETURN
+			    IF ( NOT ISBLANK ( Cur ) && NOT ISBLANK ( Prev ), Cur - Prev )
+		formatString: +0.00" pp";-0.00" pp";0.00" pp"
+		lineageTag: 963babc7-19e1-5c9a-9d6e-57a2e2c8c4b5
+
+	measure 'Stockout Rate % YoY Text' =
+			VAR Y = [Stockout Rate % YoY]
+			VAR R = ROUND ( Y, 2 )
+			RETURN
+			    IF (
+			        ISBLANK ( Y ),
+			        "YoY n/a",
+			        SWITCH ( TRUE (), R > 0, "▲", R < 0, "▼", "▶" ) & " YoY " & FORMAT ( Y, "+0.00;-0.00;0.00" ) & " pp"
+			    )
+		lineageTag: 0d3a7169-0e3e-5b4b-9f18-2daacf18f1f9
+
+	measure 'Selected Customer' =
+			SELECTEDVALUE (
+			    DimCustomer[CustomerName],
+			    "Customer Detail — select a customer to drill through"
+			)
+		lineageTag: 62985d0c-6044-5c74-9e8d-3d4e64813d05
+
+	measure 'As Of Date' =
+			VAR k = [As Of DateKey]
+			RETURN
+			    DATE ( INT ( k / 10000 ), MOD ( INT ( k / 100 ), 100 ), MOD ( k, 100 ) )
+		formatString: Long Date
+		isHidden
+		lineageTag: e8b38ab4-7965-5c4b-95f1-27af6bb87b08
+
+	measure 'Perfect Order Rate %' =
+			VAR AsOf = [As Of DateKey]
+			VAR DueL = CALCULATE ( COUNTROWS ( FactSalesOrderLine ), KEEPFILTERS ( FactSalesOrderLine[RequestedDateKey] <= AsOf ) )
+			VAR PerfL =
+			    CALCULATE ( COUNTROWS ( FactSalesOrderLine ),
+			        KEEPFILTERS ( FactSalesOrderLine[RequestedDateKey] <= AsOf ),
+			        KEEPFILTERS ( FactSalesOrderLine[IsPerfectOrder] = TRUE () ) )
+			RETURN
+			    DIVIDE ( PerfL, DueL ) * 100
+		formatString: 0.0"%"
+		lineageTag: 6f0f93b7-085e-54f2-82ed-c6fe55e749e0
+
+	measure 'Damage Rate %' =
+			DIVIDE (
+			    CALCULATE ( COUNTROWS ( FactShipmentLine ), KEEPFILTERS ( FactShipmentLine[IsDamaged] = TRUE () ) ),
+			    COUNTROWS ( FactShipmentLine )
+			) * 100
+		formatString: 0.00"%"
+		lineageTag: 410bdd43-7476-52c3-8ff6-7ccf49a4f95f
+
+	measure 'Document Accuracy %' =
+			DIVIDE (
+			    CALCULATE ( COUNTROWS ( FactShipmentLine ), KEEPFILTERS ( FactShipmentLine[IsDocumentCorrect] = TRUE () ) ),
+			    COUNTROWS ( FactShipmentLine )
+			) * 100
+		formatString: 0.0"%"
+		lineageTag: 54bc31c1-de42-5c67-b475-b7ef2fdab3b6
+
+	measure DSO =
+			VAR Paid = FILTER ( FactSalesOrderLine, NOT ISBLANK ( FactSalesOrderLine[PaymentReceivedDate] ) )
+			RETURN
+			    DIVIDE (
+			        SUMX ( Paid, DATEDIFF ( FactSalesOrderLine[InvoiceDate], FactSalesOrderLine[PaymentReceivedDate], DAY ) * FactSalesOrderLine[LineRevenueEUR] ),
+			        SUMX ( Paid, FactSalesOrderLine[LineRevenueEUR] )
+			    )
+		formatString: 0.0
+		lineageTag: ba75d58c-287e-5609-ba4b-8a51b184a6ea
+
+	measure DPO =
+			VAR Paid = FILTER ( FactPurchaseOrderLine, NOT ISBLANK ( FactPurchaseOrderLine[SupplierPaymentDate] ) )
+			RETURN
+			    DIVIDE (
+			        SUMX ( Paid, DATEDIFF ( FactPurchaseOrderLine[SupplierInvoiceDate], FactPurchaseOrderLine[SupplierPaymentDate], DAY ) * FactPurchaseOrderLine[LineCostEUR] ),
+			        SUMX ( Paid, FactPurchaseOrderLine[LineCostEUR] )
+			    )
+		formatString: 0.0
+		lineageTag: f96c7ea3-0657-5819-a730-e8695360b774
+
+	measure DIO = [Days of Inventory]
+		formatString: 0.0
+		lineageTag: d47bdd78-7eef-5c56-baa1-74b379d47c14
+
+	measure 'Cash-to-Cash Cycle' = [DSO] + [DIO] - [DPO]
+		formatString: 0.0
+		lineageTag: 3d6f9090-ebef-5343-bca9-9962f23b2648
+
+	measure 'Open Backorder Qty' =
+			VAR AsOfDate = [As Of Date]
+			RETURN
+			    SUMX ( FILTER ( FactSalesOrderLine, FactSalesOrderLine[IsOpen] = TRUE () && FactSalesOrderLine[RequestedDeliveryDate] + 14 >= AsOfDate ), FactSalesOrderLine[BackorderQty] )
+		formatString: #,0
+		lineageTag: da8a7276-4733-5702-8785-8db2711fe364
+
+	measure 'Avg Backorder Age (Days)' =
+			VAR AsOfDate = [As Of Date]
+			RETURN
+			    AVERAGEX ( FILTER ( FactSalesOrderLine, FactSalesOrderLine[IsOpen] = TRUE () && FactSalesOrderLine[RequestedDeliveryDate] + 14 >= AsOfDate ), DATEDIFF ( FactSalesOrderLine[OrderDate], AsOfDate, DAY ) )
+		formatString: 0.0
+		lineageTag: 42fdad4c-9a95-5bc3-b5a5-db8f4c7567b4
+
+	measure 'Backorder Value EUR' =
+			VAR AsOfDate = [As Of Date]
+			RETURN
+			    SUMX ( FILTER ( FactSalesOrderLine, FactSalesOrderLine[IsOpen] = TRUE () && FactSalesOrderLine[RequestedDeliveryDate] + 14 >= AsOfDate ), FactSalesOrderLine[BackorderQty] * FactSalesOrderLine[UnitPriceEUR] * ( 1 - FactSalesOrderLine[DiscountPct] / 100 ) )
+		formatString: €#,0
+		lineageTag: 75ff233b-681e-5fcb-b786-12bbfe23fb5a
+
+	measure 'Products Below Reorder Point' =
+			CALCULATE (
+			    CALCULATE (
+			        COUNTROWS ( FILTER ( FactInventorySnapshot, FactInventorySnapshot[ClosingQty] < FactInventorySnapshot[EffectiveReorderPoint] ) ),
+			        LASTDATE ( DimDate[Date] )
+			    ),
+			    DimDate[IsTransactionHorizon] = TRUE ()
+			)
+		formatString: #,0
+		lineageTag: 60a4ab0d-9e8c-5a17-a4e6-ec7cb08071bc
+
+	measure 'Reorder Point (Units)' =
+			CALCULATE (
+			    CALCULATE ( SUM ( FactInventorySnapshot[EffectiveReorderPoint] ), LASTDATE ( DimDate[Date] ) ),
+			    DimDate[IsTransactionHorizon] = TRUE ()
+			)
+		formatString: #,0
+		lineageTag: d0e9c30a-941a-540a-8acc-0ecff6606529
+
+	measure 'Stock Cover Days' =
+			VAR Outflow = SUM ( FactInventorySnapshot[ShippedQty] ) + SUM ( FactInventorySnapshot[MaterialIssueQty] )
+			RETURN
+			    DIVIDE ( [Ending Inventory (Units)], DIVIDE ( Outflow, [Snapshot Days] ) )
+		formatString: 0.0
+		lineageTag: 166ea240-0d12-589a-8d1e-4df2730ba974
+
+	measure 'Cover Rank' =
+			IF (
+			    HASONEVALUE ( DimProduct[ProductName] ) && HASONEVALUE ( DimLocation[LocationName] ) && [Products Below Reorder Point] > 0,
+			    RANKX (
+			        FILTER ( CROSSJOIN ( ALLSELECTED ( DimProduct[ProductName] ), ALLSELECTED ( DimLocation[LocationName] ) ), [Products Below Reorder Point] > 0 ),
+			        VAR c = [Stock Cover Days] RETURN IF ( ISBLANK ( c ), 1000000, c ),
+			        ,
+			        ASC,
+			        Skip
+			    )
+			)
+		formatString: 0
+		isHidden
+		lineageTag: 609130d2-0bf4-5b37-bb90-1d6cdc24a503
+
+	measure 'Supplier Count' = DISTINCTCOUNT ( FactPurchaseOrderLine[SupplierKey] )
+		formatString: 0
+		lineageTag: 49fb72b4-da2e-59d5-9d52-edd382992f12
+
+	measure 'Single Source Materials' = CALCULATE ( COUNTROWS ( DimMaterial ), DimMaterial[Sourcing] = "Single-sourced" ) + 0
+		formatString: #,0
+		lineageTag: 93de2c68-507d-5d0d-a583-37795a286502
+
+	measure 'Materials by Supplier Count' =
+			VAR n = SELECTEDVALUE ( 'Supplier Count Bucket'[Suppliers] )
+			RETURN
+			    COUNTROWS ( FILTER ( VALUES ( FactPurchaseOrderLine[ProductKey] ), CALCULATE ( DISTINCTCOUNT ( FactPurchaseOrderLine[SupplierKey] ) ) = n ) ) + 0
+		formatString: #,0
+		lineageTag: 94583049-06bd-53a1-a36c-0bad4e53c984
+
+	measure 'Supplier Count Colour' = IF ( SELECTEDVALUE ( 'Supplier Count Bucket'[Suppliers] ) = 1, "#C62828", "#005CA9" )
+		isHidden
+		lineageTag: 44d3ca69-5db5-5d86-9108-6093f29ab6d6
+
+	measure 'Top 5 Supplier Spend Share %' =
+			VAR Total = SUM ( FactPurchaseOrderLine[LineCostEUR] )
+			VAR Top5 = SUMX ( TOPN ( 5, VALUES ( DimSupplier[SupplierKey] ), CALCULATE ( SUM ( FactPurchaseOrderLine[LineCostEUR] ) ) ), CALCULATE ( SUM ( FactPurchaseOrderLine[LineCostEUR] ) ) )
+			RETURN
+			    DIVIDE ( Top5, Total ) * 100
+		formatString: 0.0"%"
+		lineageTag: 2261b7a3-c472-5d62-883d-5ecac26002bb
+
+	measure 'Failed Lines' = [Late Order Lines]
+		formatString: #,0
+		lineageTag: 26714964-4a2d-515a-8d31-6f342abba990
+
+	measure 'Failure Share %' = DIVIDE ( [Failed Lines], CALCULATE ( [Failed Lines], REMOVEFILTERS ( FactSalesOrderLine[FailureReason] ) ) ) * 100
+		formatString: 0.0"%"
+		lineageTag: 7bdba977-5f0e-55f8-981e-2b39661cdb77
+
+	measure 'Dominant Failure Reason' =
+			VAR t =
+			    FILTER (
+			        ADDCOLUMNS ( VALUES ( FactSalesOrderLine[FailureReason] ), "@n", [Failed Lines] ),
+			        FactSalesOrderLine[FailureReason] <> "None" && [@n] > 0
+			    )
+			RETURN
+			    MAXX ( TOPN ( 1, t, [@n], DESC, FactSalesOrderLine[FailureReason], ASC ), FactSalesOrderLine[FailureReason] )
+		lineageTag: c76480bd-0b65-5f81-9b9e-6fd4ea8052e4
+
+	measure 'Pair Failure Rank' =
+			IF (
+			    HASONEVALUE ( DimProduct[ProductName] ) && HASONEVALUE ( DimLocation[LocationName] ) && [Failed Lines] > 0,
+			    RANKX ( FILTER ( CROSSJOIN ( ALLSELECTED ( DimProduct[ProductName] ), ALLSELECTED ( DimLocation[LocationName] ) ), [Failed Lines] > 0 ), [Failed Lines], , DESC, Skip )
+			)
+		formatString: 0
+		isHidden
+		lineageTag: cc7b9a04-133d-5a1c-8458-fab9c0eae5a4
+
+	measure 'Perfect Order Rate % vs Target' =
+			VAR A = [Perfect Order Rate %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Perfect Order Rate %" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( A ) && NOT ISBLANK ( T ),
+			        "Target " & FORMAT ( T, "0.0" ) & "% · " & FORMAT ( A - T, "+0.0;-0.0;0.0" ) & " pp"
+			    )
+		lineageTag: 44708f4e-d414-5426-8944-54d6dec3496f
+
+	measure 'Perfect Order Rate % Status Colour' =
+			VAR A = [Perfect Order Rate %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Perfect Order Rate %" )
+			VAR D = LOOKUPVALUE ( DimTarget[Direction], DimTarget[KpiName], "Perfect Order Rate %" )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( A ) || ISBLANK ( T ), BLANK (),
+			        IF ( D = "lower", A <= T, A >= T ), "#2E7D32",
+			        IF ( D = "lower", A <= T * 1.05, A >= T * 0.95 ), "#9C6500",
+			        "#C62828"
+			    )
+		lineageTag: f93066ff-bd33-5f3f-8491-8880eb600c53
+
+	measure 'Damage Rate % vs Target' =
+			VAR A = [Damage Rate %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Damage Rate %" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( A ) && NOT ISBLANK ( T ),
+			        "Target " & FORMAT ( T, "0.00" ) & "% · " & FORMAT ( A - T, "+0.00;-0.00;0.00" ) & " pp"
+			    )
+		lineageTag: b560c6d2-4e3a-5a8c-a20c-4c25d5e88731
+
+	measure 'Damage Rate % Status Colour' =
+			VAR A = [Damage Rate %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Damage Rate %" )
+			VAR D = LOOKUPVALUE ( DimTarget[Direction], DimTarget[KpiName], "Damage Rate %" )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( A ) || ISBLANK ( T ), BLANK (),
+			        IF ( D = "lower", A <= T, A >= T ), "#2E7D32",
+			        IF ( D = "lower", A <= T * 1.05, A >= T * 0.95 ), "#9C6500",
+			        "#C62828"
+			    )
+		lineageTag: 821fc312-b701-50bd-8865-4b7ac1eb62cc
+
+	measure 'Document Accuracy % vs Target' =
+			VAR A = [Document Accuracy %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Document Accuracy %" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( A ) && NOT ISBLANK ( T ),
+			        "Target " & FORMAT ( T, "0.0" ) & "% · " & FORMAT ( A - T, "+0.0;-0.0;0.0" ) & " pp"
+			    )
+		lineageTag: 5c54de4e-5de5-5318-8cf2-2960557e6463
+
+	measure 'Document Accuracy % Status Colour' =
+			VAR A = [Document Accuracy %]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Document Accuracy %" )
+			VAR D = LOOKUPVALUE ( DimTarget[Direction], DimTarget[KpiName], "Document Accuracy %" )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( A ) || ISBLANK ( T ), BLANK (),
+			        IF ( D = "lower", A <= T, A >= T ), "#2E7D32",
+			        IF ( D = "lower", A <= T * 1.05, A >= T * 0.95 ), "#9C6500",
+			        "#C62828"
+			    )
+		lineageTag: d04c186f-b443-55f5-be1f-c2a5780247ca
+
+	measure 'Cash-to-Cash Cycle vs Target' =
+			VAR A = [Cash-to-Cash Cycle]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Cash-to-Cash Cycle" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( A ) && NOT ISBLANK ( T ),
+			        "Target " & FORMAT ( T, "0.0" ) & " days · " & FORMAT ( A - T, "+0.0;-0.0;0.0" ) & " days"
+			    )
+		lineageTag: 120fe8a4-f5ac-54ea-9725-202116c5a64b
+
+	measure 'Cash-to-Cash Cycle Status Colour' =
+			VAR A = [Cash-to-Cash Cycle]
+			VAR T = LOOKUPVALUE ( DimTarget[TargetValue], DimTarget[KpiName], "Cash-to-Cash Cycle" )
+			VAR D = LOOKUPVALUE ( DimTarget[Direction], DimTarget[KpiName], "Cash-to-Cash Cycle" )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( A ) || ISBLANK ( T ), BLANK (),
+			        IF ( D = "lower", A <= T, A >= T ), "#2E7D32",
+			        IF ( D = "lower", A <= T * 1.05, A >= T * 0.95 ), "#9C6500",
+			        "#C62828"
+			    )
+		lineageTag: 29460f48-2aa7-5bb2-ac47-3dcd8c7e0405
+
+	measure 'Single Source Spend Share %' =
+			DIVIDE (
+			    CALCULATE ( SUM ( FactPurchaseOrderLine[LineCostEUR] ), DimMaterial[Sourcing] = "Single-sourced" ),
+			    SUM ( FactPurchaseOrderLine[LineCostEUR] )
+			) * 100
+		formatString: 0.0"%"
+		lineageTag: d5f31db4-8c6b-5cf1-95eb-638927971330
+
+	measure 'Material Criticality' = DISTINCTCOUNT ( BomProductMaterial[ProductKey] )
+		formatString: #,0
+		lineageTag: 31150aef-1f99-5ad1-a9dd-232fd75ca6e2
+
+	measure 'Dependent Revenue EUR' =
+			VAR FinishedGoods = VALUES ( BomProductMaterial[ProductKey] )
+			RETURN
+			    CALCULATE ( [Delivered Revenue EUR], TREATAS ( FinishedGoods, DimProduct[ProductKey] ) )
+		formatString: €#,0
+		lineageTag: 2bc55616-e5b2-59c3-8e6d-aa0911544108
+
+	measure 'At-Risk Revenue EUR' =
+			VAR FinishedGoods = CALCULATETABLE ( VALUES ( BomProductMaterial[ProductKey] ), DimMaterial[Sourcing] = "Single-sourced" )
+			RETURN
+			    CALCULATE ( [Delivered Revenue EUR], TREATAS ( FinishedGoods, DimProduct[ProductKey] ) )
+		formatString: €#,0
+		lineageTag: 51ca187b-9bc3-5cf3-a6d2-8b22a0ee89b4
+
+	measure 'At-Risk Revenue Share %' = DIVIDE ( [At-Risk Revenue EUR], [Delivered Revenue EUR] ) * 100
+		formatString: 0.0"%"
+		lineageTag: 5bafc500-71c9-58bd-88e5-a243bbf8fb68
+
+	measure 'Supplier-Caused Failed Lines' =
+			CALCULATE (
+			    [Failed Lines],
+			    FactSalesOrderLine[FailureReason] = "Supplier late",
+			    USERELATIONSHIP ( FactSalesOrderLine[RootCauseSupplierKey], DimSupplier[SupplierKey] )
+			)
+		formatString: #,0
+		lineageTag: d29215be-2eed-5bfa-958d-7d8fbad89af8
+
+	measure 'Material-Caused Failed Lines' =
+			CALCULATE (
+			    [Failed Lines],
+			    FactSalesOrderLine[FailureReason] = "Supplier late",
+			    USERELATIONSHIP ( FactSalesOrderLine[RootCauseMaterialKey], DimMaterial[MaterialKey] )
+			)
+		formatString: #,0
+		lineageTag: 80196b13-4c99-5385-9b06-3ffa3d0f4714
+
+	measure 'Criticality Rank' =
+			IF (
+			    HASONEVALUE ( DimMaterial[MaterialName] ) && [Material Criticality] > 0,
+			    RANKX (
+			        FILTER ( ALLSELECTED ( DimMaterial[MaterialName] ), [Material Criticality] > 0 ),
+			        [Material Criticality] * 1000000000 + [Dependent Revenue EUR],
+			        ,
+			        DESC,
+			        Skip
+			    )
+			)
+		formatString: 0
+		isHidden
+		lineageTag: c9fec90b-19f1-5caf-8bdd-db9f7813e0b6
+
+	measure 'Supplier Late Rank' =
+			IF (
+			    HASONEVALUE ( DimSupplier[SupplierName] ) && [Supplier-Caused Failed Lines] > 0,
+			    RANKX ( FILTER ( ALLSELECTED ( DimSupplier[SupplierName] ), [Supplier-Caused Failed Lines] > 0 ),
+			            [Supplier-Caused Failed Lines], , DESC, Skip )
+			)
+		formatString: 0
+		isHidden
+		lineageTag: a966351f-df8c-575b-a74e-206596c1550d
+
+	column Placeholder
+		dataType: string
+		isHidden
+		lineageTag: 7b1e0a90-5c44-4d21-9f0e-a1b2c3d4e502
+		summarizeBy: none
+		sourceColumn: [Placeholder]
+
+	partition '_KPI Measures' = calculated
+		mode: import
+		source = ROW ( "Placeholder", "" )
+

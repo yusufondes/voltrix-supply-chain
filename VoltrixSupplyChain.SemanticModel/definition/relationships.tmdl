@@ -1,0 +1,128 @@
+relationship FactSalesOrderLine_DimDate_OrderDate
+	fromColumn: FactSalesOrderLine.OrderDateKey
+	toColumn: DimDate.DateKey
+
+relationship FactSalesOrderLine_DimDate_RequestedDate
+	isActive: false
+	fromColumn: FactSalesOrderLine.RequestedDateKey
+	toColumn: DimDate.DateKey
+
+relationship FactShipmentLine_DimDate_ShipDate
+	fromColumn: FactShipmentLine.ShipDateKey
+	toColumn: DimDate.DateKey
+
+relationship FactShipmentLine_DimDate_DeliveryDate
+	isActive: false
+	fromColumn: FactShipmentLine.DeliveryDateKey
+	toColumn: DimDate.DateKey
+
+relationship FactPurchaseOrderLine_DimDate_OrderDate
+	fromColumn: FactPurchaseOrderLine.OrderDateKey
+	toColumn: DimDate.DateKey
+
+relationship FactPurchaseOrderLine_DimDate_ExpectedDeliveryDate
+	isActive: false
+	fromColumn: FactPurchaseOrderLine.ExpectedDeliveryDateKey
+	toColumn: DimDate.DateKey
+
+relationship FactGoodsReceiptLine_DimDate_ReceiptDate
+	fromColumn: FactGoodsReceiptLine.ReceiptDateKey
+	toColumn: DimDate.DateKey
+
+relationship FactGoodsReceiptLine_DimDate_ExpectedDeliveryDate
+	isActive: false
+	fromColumn: FactGoodsReceiptLine.ExpectedDeliveryDateKey
+	toColumn: DimDate.DateKey
+
+relationship FactInventorySnapshot_DimDate_Date
+	fromColumn: FactInventorySnapshot.DateKey
+	toColumn: DimDate.DateKey
+
+relationship FactSalesOrderLine_DimProduct
+	fromColumn: FactSalesOrderLine.ProductKey
+	toColumn: DimProduct.ProductKey
+
+relationship FactShipmentLine_DimProduct
+	fromColumn: FactShipmentLine.ProductKey
+	toColumn: DimProduct.ProductKey
+
+relationship FactPurchaseOrderLine_DimProduct
+	fromColumn: FactPurchaseOrderLine.ProductKey
+	toColumn: DimProduct.ProductKey
+
+relationship FactGoodsReceiptLine_DimProduct
+	fromColumn: FactGoodsReceiptLine.ProductKey
+	toColumn: DimProduct.ProductKey
+
+relationship FactInventorySnapshot_DimProduct
+	fromColumn: FactInventorySnapshot.ProductKey
+	toColumn: DimProduct.ProductKey
+
+relationship FactSalesOrderLine_DimLocation
+	fromColumn: FactSalesOrderLine.LocationKey
+	toColumn: DimLocation.LocationKey
+
+relationship FactShipmentLine_DimLocation
+	fromColumn: FactShipmentLine.LocationKey
+	toColumn: DimLocation.LocationKey
+
+relationship FactPurchaseOrderLine_DimLocation
+	fromColumn: FactPurchaseOrderLine.LocationKey
+	toColumn: DimLocation.LocationKey
+
+relationship FactGoodsReceiptLine_DimLocation
+	fromColumn: FactGoodsReceiptLine.LocationKey
+	toColumn: DimLocation.LocationKey
+
+relationship FactInventorySnapshot_DimLocation
+	fromColumn: FactInventorySnapshot.LocationKey
+	toColumn: DimLocation.LocationKey
+
+relationship FactSalesOrderLine_DimCustomer
+	fromColumn: FactSalesOrderLine.CustomerKey
+	toColumn: DimCustomer.CustomerKey
+
+relationship FactShipmentLine_DimCustomer
+	fromColumn: FactShipmentLine.CustomerKey
+	toColumn: DimCustomer.CustomerKey
+
+relationship FactPurchaseOrderLine_DimSupplier
+	fromColumn: FactPurchaseOrderLine.SupplierKey
+	toColumn: DimSupplier.SupplierKey
+
+relationship FactGoodsReceiptLine_DimSupplier
+	fromColumn: FactGoodsReceiptLine.SupplierKey
+	toColumn: DimSupplier.SupplierKey
+
+relationship FactShipmentLine_FactSalesOrderLine
+	isActive: false
+	fromColumn: FactShipmentLine.SalesOrderLineKey
+	toColumn: FactSalesOrderLine.SalesOrderLineKey
+
+relationship FactGoodsReceiptLine_FactPurchaseOrderLine
+	isActive: false
+	fromColumn: FactGoodsReceiptLine.PurchaseOrderLineKey
+	toColumn: FactPurchaseOrderLine.PurchaseOrderLineKey
+
+relationship BomProductMaterial_DimProduct
+	fromColumn: BomProductMaterial.ProductKey
+	toColumn: DimProduct.ProductKey
+
+relationship BomProductMaterial_DimMaterial
+	fromColumn: BomProductMaterial.MaterialKey
+	toColumn: DimMaterial.MaterialKey
+
+relationship FactPurchaseOrderLine_DimMaterial
+	fromColumn: FactPurchaseOrderLine.ProductKey
+	toColumn: DimMaterial.MaterialKey
+
+relationship FactSalesOrderLine_DimSupplier_RootCause
+	isActive: false
+	fromColumn: FactSalesOrderLine.RootCauseSupplierKey
+	toColumn: DimSupplier.SupplierKey
+
+relationship FactSalesOrderLine_DimMaterial_RootCause
+	isActive: false
+	fromColumn: FactSalesOrderLine.RootCauseMaterialKey
+	toColumn: DimMaterial.MaterialKey
+

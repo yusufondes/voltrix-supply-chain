@@ -1,0 +1,170 @@
+table DimProduct
+	lineageTag: 85485b8c-f938-499e-b273-365f725ca3cf
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b197116-9efd-43a7-afbc-0b1149a2be22
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = User
+
+	column ProductCode
+		dataType: string
+		lineageTag: 54cedfb1-a24b-41b1-ba49-7e4605da283c
+		summarizeBy: none
+		sourceColumn: ProductCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: 09e0d600-2baf-44b0-a186-1eaafbf53d0c
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductType
+		dataType: string
+		lineageTag: aa6af835-4977-4a54-9e89-34f837470258
+		summarizeBy: none
+		sourceColumn: ProductType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductFamily
+		dataType: string
+		lineageTag: bb681054-eee4-4406-9dd5-b2f55740d10c
+		summarizeBy: none
+		sourceColumn: ProductFamily
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubFamily
+		dataType: string
+		lineageTag: e7a0f04c-e581-4820-bcd0-a5593ed6e9fa
+		summarizeBy: none
+		sourceColumn: SubFamily
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialCategory
+		dataType: string
+		lineageTag: fb4960bb-aff4-4392-be69-7b09a26ded3a
+		summarizeBy: none
+		sourceColumn: MaterialCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: c107f493-cd6f-4d0b-8d31-a93f0eefef9a
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitOfMeasure
+		dataType: string
+		lineageTag: 212d35a8-bf20-4d5a-81bb-9191acd81be2
+		summarizeBy: none
+		sourceColumn: UnitOfMeasure
+
+		annotation SummarizationSetBy = Automatic
+
+	column TypicalOrderQtyScale
+		dataType: int64
+		formatString: 0
+		lineageTag: 82fd33c0-cd7a-4142-b476-c48c808da8f0
+		summarizeBy: sum
+		sourceColumn: TypicalOrderQtyScale
+
+		annotation SummarizationSetBy = Automatic
+
+	column StandardCostEUR
+		dataType: double
+		lineageTag: 82026f29-3856-4bfa-849c-e9c37c285936
+		summarizeBy: sum
+		sourceColumn: StandardCostEUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ListPriceEUR
+		dataType: double
+		lineageTag: 1249a2f9-8ba4-4492-986b-63647af376df
+		summarizeBy: sum
+		sourceColumn: ListPriceEUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PrimarySupplierKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b6c48975-5610-4152-952c-8581e922fd43
+		summarizeBy: none
+		sourceColumn: PrimarySupplierKey
+
+		annotation SummarizationSetBy = User
+
+	column ABCClass
+		dataType: string
+		lineageTag: 21f48c40-eddd-49f4-8e66-5ec40f126dbb
+		summarizeBy: none
+		sourceColumn: ABCClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsStocked
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 750f4a8c-2ad3-495d-a294-7a1b092dc41b
+		summarizeBy: none
+		sourceColumn: IsStocked
+
+		annotation SummarizationSetBy = Automatic
+
+	column MinOrderQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 4e852c80-87e5-4738-adff-9f5daf4cabd8
+		summarizeBy: sum
+		sourceColumn: MinOrderQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReorderPoint
+		dataType: int64
+		formatString: 0
+		lineageTag: 59aa9721-cdbc-4212-bb1f-a2af22e7dd48
+		summarizeBy: sum
+		sourceColumn: ReorderPoint
+
+		annotation SummarizationSetBy = Automatic
+
+	column SafetyStockQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 40ab8ae7-3e6e-4db1-86f3-6c6ff3f96d54
+		summarizeBy: sum
+		sourceColumn: SafetyStockQty
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimProduct = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "DimProduct.csv"),[Delimiter=",", Columns=18, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ProductKey", Int64.Type}, {"ProductCode", type text}, {"ProductName", type text}, {"ProductType", type text}, {"ProductFamily", type text}, {"SubFamily", type text}, {"MaterialCategory", type text}, {"Brand", type text}, {"UnitOfMeasure", type text}, {"TypicalOrderQtyScale", Int64.Type}, {"StandardCostEUR", type number}, {"ListPriceEUR", type number}, {"PrimarySupplierKey", Int64.Type}, {"ABCClass", type text}, {"IsStocked", type logical}, {"MinOrderQty", Int64.Type}, {"ReorderPoint", Int64.Type}, {"SafetyStockQty", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

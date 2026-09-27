@@ -1,0 +1,153 @@
+table DimCustomer
+	lineageTag: 943f2802-ab63-42bc-854e-8ece56bb690d
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 78df9d7b-ece6-44d4-9881-c78b3dfbd893
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = User
+
+	column CustomerCode
+		dataType: string
+		lineageTag: e2b2b861-c416-4fbd-8677-99002214ba06
+		summarizeBy: none
+		sourceColumn: CustomerCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: faf7d5b3-d53a-4ad3-8f73-e01010ba44d1
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment
+		dataType: string
+		lineageTag: 4f4d63bb-3715-43ea-9d3e-047feb89ef5a
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 4016bde6-d793-46c5-bbd3-bebc99d6dec0
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 0aee431d-2a7d-455a-9e7c-60a38d98d910
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryCode
+		dataType: string
+		lineageTag: e836b9e7-0216-48b6-b6ba-60bd0ced4a63
+		summarizeBy: none
+		sourceColumn: CountryCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 1b3a2178-b462-4f11-a72f-83b0464e1201
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Channel
+		dataType: string
+		lineageTag: 77133939-cd0d-46aa-8d88-9accbfe5a0f2
+		summarizeBy: none
+		sourceColumn: Channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServingLocationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 0af47491-db64-4f20-a8e8-7503bb88a6ca
+		summarizeBy: none
+		sourceColumn: ServingLocationKey
+
+		annotation SummarizationSetBy = User
+
+	column CreditTermsDays
+		dataType: int64
+		formatString: 0
+		lineageTag: df61bca6-181b-4979-a092-5aeac98fce6f
+		summarizeBy: sum
+		sourceColumn: CreditTermsDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column PriceTier
+		dataType: int64
+		formatString: 0
+		lineageTag: 068332d3-bf80-46e8-90d5-65203bd474cb
+		summarizeBy: sum
+		sourceColumn: PriceTier
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiscountPct
+		dataType: int64
+		formatString: 0
+		lineageTag: 71d8c75e-2049-4664-8685-3f7c1b321ad7
+		summarizeBy: sum
+		sourceColumn: DiscountPct
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerSinceDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4d963773-294c-4c61-ae68-a7524d135c90
+		summarizeBy: none
+		sourceColumn: CustomerSinceDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column TotalOrderedRevenueEUR
+		dataType: double
+		lineageTag: 5a9d005e-86ec-4e8b-92c6-b2e875837207
+		summarizeBy: sum
+		sourceColumn: TotalOrderedRevenueEUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CustomerSizeBand
+		dataType: string
+		lineageTag: 8d865776-838e-41c9-9ee9-c264c8738864
+		summarizeBy: none
+		sourceColumn: CustomerSizeBand
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCustomer = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "DimCustomer.csv"),[Delimiter=",", Columns=16, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"CustomerKey", Int64.Type}, {"CustomerCode", type text}, {"CustomerName", type text}, {"Segment", type text}, {"City", type text}, {"Country", type text}, {"CountryCode", type text}, {"Region", type text}, {"Channel", type text}, {"ServingLocationKey", Int64.Type}, {"CreditTermsDays", Int64.Type}, {"PriceTier", Int64.Type}, {"DiscountPct", Int64.Type}, {"CustomerSinceDate", type date}, {"TotalOrderedRevenueEUR", type number}, {"CustomerSizeBand", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

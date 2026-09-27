@@ -1,0 +1,32 @@
+table 'Supplier Count Bucket'
+	lineageTag: 83256601-9b9f-55d6-b2ae-29abcf0baa53
+
+	column Suppliers
+		dataType: int64
+		formatString: 0
+		lineageTag: f2eb2d26-f875-57f8-96eb-137582163372
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Suppliers]
+
+		annotation SummarizationSetBy = User
+
+	partition 'Supplier Count Bucket' = calculated
+		mode: import
+		source =
+				DATATABLE (
+				    "Suppliers", INTEGER,
+				    {
+				        { 1 },
+				        { 2 },
+				        { 3 },
+				        { 4 },
+				        { 5 },
+				        { 6 },
+				        { 7 },
+				        { 8 }
+				    }
+				)
+
+	annotation PBI_Id = 10876879432c5d46832dfb8d62232925
+

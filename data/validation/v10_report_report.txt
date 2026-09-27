@@ -1,0 +1,11 @@
+V10 - report definition structure
+
+[PASS]  1. Every report / model JSON file parses                                                 272 files
+[PASS]  2. pages.json lists exactly the page folders; page and visual names match their folders  11 pages, 148 visuals
+[PASS]  3. Every field a visual or page binds or filters on exists in the semantic model         487 references resolve
+[PASS]  4. Every visual inside its page; no two visuals overlap on the canvas                    0 outside, 0 overlaps
+[PASS]  5. Phone layout: every placed visual inside the 320 px column; no overlaps               0 outside, 0 overlaps
+[PASS]  6. Every report-page tooltip a visual points to exists and is a tooltip page             3 tooltip pages
+[PASS]  7. One insight box per analysis page, non-empty, fits one line                           7 pages, widest 1788px
+
+7/7 criteria passed - ALL PASS

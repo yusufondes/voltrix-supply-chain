@@ -1,0 +1,34 @@
+{
+  "asof": "2025-12-31",
+  "customer": {
+    "DueLines": 67073,
+    "OTIFPct": 88.71677127905416,
+    "OnTimePct": 89.0253902464479,
+    "InFullPct": 97.84563087978769,
+    "FillRatePct": 98.73548346899457,
+    "LateOrderLines": 7568,
+    "OpenOrderLines": 1872,
+    "OrderedUnits": 1090423,
+    "DeliveredUnits": 1066781
+  },
+  "supplier": {
+    "DuePoLines": 3378,
+    "SupplierOTIFPct": 56.27590290112493,
+    "SupplierOTDPct": 67.52516281823564,
+    "MeanLeadTimeDays": 21.090271281571564,
+    "LeadTimeStdDevDays": 14.170384695057551,
+    "RejectionRatePct": 1.4317962342333308,
+    "OpenPoLines": 778
+  },
+  "inventory": {
+    "EndingInventoryUnits": 292966,
+    "AverageInventoryUnits": 241714.92476060192,
+    "InventoryValueEUR": 10564394.690000001,
+    "AverageInventoryValueEUR": 11227674.195212038,
+    "COGSEUR": 161322880.83999997,
+    "InventoryTurnover": 7.17433504497375,
+    "DaysOfInventory": 50.875795138075475,
+    "StockoutRatePct": 7.015399714365738,
+    "SnapshotDays": 731
+  }
+}

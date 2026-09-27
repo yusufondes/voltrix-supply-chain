@@ -1,0 +1,16 @@
+DETERMINISTIC BUSINESS RULE TESTS
+
+[PASS] 1. OTIF - complete+on-time only                                          OTIF=[True, False, False, False] expected [True, False, False, False]
+[PASS] 2. On-Time independent of completeness; differs from OTIF                OnTime=[True, False, True, False]; line 3 OnTime=True OTIF=False -> definitions differ
+[PASS] 3. In-Full independent of timing; differs from OTIF                      InFull=[True, True, False, False]; line 2 InFull=True OTIF=False -> definitions differ
+[PASS] 4. Fill Rate = delivered / ordered on a partial line                     line 3 delivered=60/100 = 60.0%
+[PASS] 5. Supplier OTIF fails when on time but partly rejected                  PO1 accepted=90/100 on time -> OTD=True but OTIF=False; PO2 accepted=100 -> OTIF=True
+[PASS] 6. Inventory identity passes clean ledger and catches corruption         clean max deviation=0; corrupted max deviation=4 on 1 row(s)
+[PASS] 7. Two shipments completing after the due date is NOT OTIF               delivered=100/100 InFull=True, last delivery 2024-03-18 > due 2024-03-10 -> OnTime=False, OTIF=False
+[PASS] 8. Future open order is not an OTIF failure                              line 20 due 2024-04-30 > as-of 2024-03-31: IsDue=False, excluded from denominator, IsOpen=True
+[PASS] 9. Overdue undelivered order IS a failure                                line 21 due 2024-03-01 <= as-of 2024-03-31: IsDue=True, IsLate=True, OTIF=False
+[PASS] 9b. A line due exactly on the as-of date is due (customer and supplier)  requested = delivered = as-of 2024-03-31: customer IsDue=True OTIF=True; supplier IsDue=True OTIF=True
+[PASS] 10. Rejected quantity never counts as supplier fulfilment                received 100 but only 90 accepted -> line is not In-Full
+[PASS] 10b. Rejected quantity never increases inventory                         accepted 90 -> closing 90 reconciles; booking the full 100 leaves a deviation of 10
+
+12/12 tests passed - ALL PASS
