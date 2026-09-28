@@ -4,7 +4,29 @@
 
 > **Before you open the report:** run `.\setup.ps1` once from the project folder. It points the semantic model's `DataFolder` parameter at your local `data\generated\` folder. Power Query needs this because `File.Contents` requires an absolute path.
 
-Screenshots are not committed by default because the report source is the PBIP project itself. If you want preview images for a portfolio README, export them from Power BI Desktop and save them with the filenames listed in [`docs/screenshots/README.md`](docs/screenshots/README.md).
+## Report preview
+
+Explore the report without installing Power BI: [view all seven pages](docs/screenshots/README.md) or [open the PDF](docs/screenshots/VoltrixSupplyChain.pdf). These are static snapshots of the synthetic dataset for 2024–2025; filters, navigation and drill-through are available in the Power BI project.
+
+### Executive Overview
+
+Service levels, stock and supplier performance, with the sites and suppliers that need attention.
+
+![Executive Overview: service trends, inventory and supplier performance](docs/screenshots/01-executive-overview.png)
+
+### Inventory & Working Capital
+
+Stock value, turnover and availability, broken down by site and product.
+
+![Inventory and Working Capital: inventory trends, site balances and low-stock items](docs/screenshots/03-inventory-working-capital.png)
+
+### Root Cause Analysis
+
+Failed deliveries traced to stockouts, transport, production and supplier delays.
+
+![Root Cause Analysis: failure reasons and affected suppliers, materials and products](docs/screenshots/07-root-cause-analysis.png)
+
+The PDF export clips the first card's "OTIF %" label on Executive Overview. Scrollable visuals show only their visible rows; see the [preview notes](docs/screenshots/README.md#preview-notes).
 
 ## Headline findings (2024–2025, as of 31 Dec 2025)
 
