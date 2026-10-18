@@ -2,8 +2,9 @@
 Deterministic business-rule tests.
 
 Hand-built fixtures with known expected answers, completely independent of the
-generated dataset. Every test exercises scripts/sc_kpi.py - the same code the
-validation and the KPI reference use, so a definition cannot drift between them.
+generated dataset. Every test exercises scripts/sc_kpi.py, also used by the
+consolidated validation. The separate KPI-reference evaluator requires its own
+reconciliation; sharing these fixture helpers does not prove DAX-engine parity.
 
 Run:  python tests/test_business_rules.py      (exit 0 = all pass)
 """

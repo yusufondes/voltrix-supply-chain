@@ -48,8 +48,8 @@ Each item lists what the limitation is, why it was left, and what would remove i
 13. **YoY compares the latest 12 months of the selected period with the same dates a year earlier.** With no date selection that is 2025 vs 2024, while the card value itself covers the whole selection.
     *Why:* SAMEPERIODLASTYEAR over a two-year selection would compare 2024–2025 with 2024.
 
-14. **`DimMaterial[Sourcing]` is a static calculated column.** It counts distinct suppliers over the entire purchase history, so *Single Source Materials* (11) and *Single Source Spend Share %* do not react to a date slicer, and RLS does not change which materials count as single-sourced. The only material with no purchase lines, the Unknown member, is labelled "Multi-sourced".
-    *Why left:* sourcing is a structural attribute of the supply base, not a period measure.
+14. **`DimMaterial[Sourcing]` is a static calculated column.** It counts distinct suppliers over the entire purchase history at refresh. A date slicer does not recalculate that classification or, through the current single-direction date relationship, the *Single Source Materials* count (11). However, *Single Source Spend Share %* uses purchase-line spend and responds to the selected purchase-order dates: 18.05% in 2024 and 21.09% in 2025. RLS does not recalculate the stored classification, although it can restrict the rows available to measures. The Unknown member, which has no purchase lines, is labelled "Multi-sourced".
+    *Why left:* sourcing describes the full refreshed supply base, not suppliers observed in each selected period. Adding a supplier on a later refresh can reclassify a material for earlier report periods too; the model does not reconstruct historical sourcing classifications.
 
 15. **`DimMaterial` is derived from the material rows of `DimProduct.csv`,** so material attributes exist twice in the model (in DimProduct and DimMaterial). Purchase lines relate to both: to DimProduct for the product views and to DimMaterial for the supply-risk views.
     *Why left:* G1's dimension files are frozen; a separate material CSV would duplicate the same rows on disk instead.

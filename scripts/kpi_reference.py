@@ -34,18 +34,27 @@ MODEL = ROOT / "VoltrixSupplyChain.SemanticModel" / "definition"
 OUT = ROOT / "docs" / "kpi-reference.md"
 ASOF = pd.Timestamp(DATE_END)
 ASOF_KEY = int(ASOF.strftime("%Y%m%d"))
-GREEN, AMBER, RED = "#2E7D32", "#D98E04", "#C62828"
+GREEN, AMBER, RED = "#2E7D32", "#9C6500", "#C62828"
 COLOUR_NAME = {GREEN: "green", AMBER: "amber", RED: "red", None: "—"}
 
 
 # --------------------------------------------------------------------------- model
-def parse_measures() -> list[dict]:
-    text = (MODEL / "tables" / "_KPI Measures.tmdl").read_text(encoding="utf-8")
+def parse_measures(text: str | None = None) -> list[dict]:
+    """Read the project's quoted/unquoted TMDL measure declarations, fail closed."""
+    if text is None:
+        text = (MODEL / "tables" / "_KPI Measures.tmdl").read_text(encoding="utf-8")
     out = []
+    names = set()
     for block in re.split(r"^\tmeasure ", text, flags=re.M)[1:]:
         head, *rest = block.split("\n")
-        m = re.match(r"'([^']+)'\s*=\s*(.*)$", head)
-        name, first = m.group(1), m.group(2).strip()
+        m = re.fullmatch(r"(?:'((?:[^']|'')+)'|([^\s'=]+))\s*=\s*(.*)", head)
+        if m is None:
+            raise ValueError(f"Unsupported measure declaration: {head!r}")
+        name = m.group(1).replace("''", "'") if m.group(1) is not None else m.group(2)
+        if name in names:
+            raise ValueError(f"Duplicate measure declaration: {name!r}")
+        names.add(name)
+        first = m.group(3).strip()
         body, props = [], {}
         for line in rest:
             if line.startswith("\t\t\t"):
@@ -55,11 +64,15 @@ def parse_measures() -> list[dict]:
                 props[k.strip()] = v.strip()
             elif line.startswith("\tcolumn") or line.startswith("\tpartition"):
                 break
-        dax = first if first else "\n".join(body).strip("\n")
+        dax = "\n".join(([first] if first else []) + body).strip()
+        if not dax:
+            raise ValueError(f"Missing DAX expression: {name!r}")
         fmt = props.get("formatString", "")
         if fmt.startswith('"') and fmt.endswith('"'):
             fmt = fmt[1:-1].replace('""', '"')          # TMDL text quoting
         out.append({"name": name, "dax": dax.strip(), "format": fmt, "hidden": "isHidden" in props})
+    if not out:
+        raise ValueError("No measure declarations found; refusing an empty reference.")
     return out
 
 
@@ -101,6 +114,24 @@ def load() -> dict[str, pd.DataFrame]:
 
 
 # --------------------------------------------------------------------------- measures
+def target_status_colour(actual: float | None, target: float | None, direction: str) -> str | None:
+    """Match the model's blank guard, target boundary and five-percent amber band."""
+    if pd.isna(actual) or pd.isna(target):
+        return None
+    if direction not in ("lower", "higher"):
+        raise ValueError(f"Unknown target direction: {direction!r}")
+    ok = actual <= target if direction == "lower" else actual >= target
+    near = actual <= target * 1.05 if direction == "lower" else actual >= target * 0.95
+    return GREEN if ok else AMBER if near else RED
+
+
+def supplier_count_helpers(po: pd.DataFrame, bucket: int | None = None) -> tuple[int, str]:
+    """Default SELECTEDVALUE is blank: no positive supplier count matches it."""
+    counts = po.groupby("ProductKey")["SupplierKey"].nunique()
+    count = 0 if bucket is None else int(counts.eq(bucket).sum())
+    return count, RED if bucket == 1 else "#005CA9"
+
+
 def evaluate(d: dict[str, pd.DataFrame], targets: dict[str, tuple[float, str]]) -> dict[str, object]:
     so, sh, po, gr = d["FactSalesOrderLine"], d["FactShipmentLine"], d["FactPurchaseOrderLine"], d["FactGoodsReceiptLine"]
     snap, bom, mat, sup = d["FactInventorySnapshot"], d["BomProductMaterial"], d["DimMaterial"], d["DimSupplier"]
@@ -245,16 +276,14 @@ def evaluate(d: dict[str, pd.DataFrame], targets: dict[str, tuple[float, str]]) 
     v["Material-Caused Failed Lines"] = v["Supplier-Caused Failed Lines"]
 
     # context-only helpers: blank in the default state
-    for k in ("Cover Rank", "Pair Failure Rank", "Criticality Rank", "Supplier Late Rank",
-              "Materials by Supplier Count", "Supplier Count Colour"):
+    for k in ("Cover Rank", "Pair Failure Rank", "Criticality Rank", "Supplier Late Rank"):
         v[k] = None
+    v["Materials by Supplier Count"], v["Supplier Count Colour"] = supplier_count_helpers(po)
 
     # targets: '<KPI> vs Target' text and '<KPI> Status Colour'
     for kpi, (t, direction) in targets.items():
         a = float(v[kpi])
-        ok = a <= t if direction == "lower" else a >= t
-        near = a <= t * 1.05 if direction == "lower" else a >= t * 0.95
-        v[f"{kpi} Status Colour"] = GREEN if ok else AMBER if near else RED
+        v[f"{kpi} Status Colour"] = target_status_colour(a, t, direction)
         if kpi in ("Inventory Turnover",):
             v[f"{kpi} vs Target"] = f"Target {t:.2f} · {a - t:+.2f}"
         elif kpi in ("Days of Inventory", "Mean Lead Time (Days)", "Cash-to-Cash Cycle"):
@@ -376,7 +405,7 @@ def build(measures: list[dict], v: dict, targets: dict) -> str:
 
     L += ["## Targets, status and display helpers", "",
           "`DimTarget` (disconnected) holds one row per targeted KPI. For each, `<KPI> vs Target` returns the card "
-          "text and `<KPI> Status Colour` returns `#2E7D32` (green, meets target), `#D98E04` (amber, within 5% "
+          "text and `<KPI> Status Colour` returns `#2E7D32` (green, meets target), `#9C6500` (amber, within 5% "
           "relative) or `#C62828` (red); direction comes from `DimTarget[Direction]`. `<KPI> YoY Text` formats the "
           "YoY value with an arrow.", "",
           "| Target KPI | Target | Direction | Value | `vs Target` text | Status |", "|---|---|---|---|---|---|"]

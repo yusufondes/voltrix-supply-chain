@@ -503,7 +503,7 @@ Grain: material (DimMaterial: the purchased materials plus the Unknown member) a
 |---|---|---|---|
 | **Single Source Materials** | 11 |  | `#,0` |
 | **Single Source Spend Share %** | 19.6% |  | `0.0"%"` |
-| **Materials by Supplier Count** | — *(context only)* |  | `#,0` |
+| **Materials by Supplier Count** | 0 |  | `#,0` |
 | **Material Criticality** | 100 |  | `#,0` |
 | **Dependent Revenue EUR** | €267,049,019 |  | `€#,0` |
 | **At-Risk Revenue EUR** | €98,037,557 |  | `€#,0` |
@@ -1030,7 +1030,7 @@ RETURN
 | As Of DateKey | 20251231 | `0` |
 | Selected Customer | Customer Detail — select a customer to drill through | — |
 | As Of Date *(hidden)* | Wednesday, 31 December 2025 | `Long Date` |
-| Supplier Count Colour *(hidden)* | — *(context only)* | — |
+| Supplier Count Colour *(hidden)* | #005CA9 | — |
 
 <details><summary><code>As Of DateKey</code></summary>
 

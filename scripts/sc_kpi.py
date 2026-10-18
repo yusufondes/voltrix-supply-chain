@@ -1,9 +1,10 @@
 """
 Canonical KPI definitions for the Voltrix dataset.
 
-Single source of truth: the deterministic fixture tests (tests/test_business_rules.py),
-the consolidated validation (scripts/validate/v6_full_validation.py) and
-docs/kpi-reference.md all call these functions. Nothing re-implements a KPI.
+The deterministic fixture tests (tests/test_business_rules.py) and consolidated
+validation (scripts/validate/v6_full_validation.py) call these functions.
+scripts/kpi_reference.py separately evaluates the model's default-state values;
+independent reconciliation is needed to check agreement between those paths.
 
 AS-OF RULE
     Every service KPI is evaluated at an as-of date (default: the end of the
@@ -111,9 +112,12 @@ def supplier_kpis(po: pd.DataFrame, gr: pd.DataFrame,
                   asof: str | pd.Timestamp) -> dict:
     st = supplier_line_status(po, gr, asof)
     due = st[st["IsDue"]]
-    lead = (pd.to_datetime(gr["ReceiptDate"])
-            - pd.to_datetime(gr.merge(po[["PurchaseOrderLineKey", "OrderDate"]],
-                                      on="PurchaseOrderLineKey")["OrderDate"])).dt.days
+    # Keep both dates on the same merged rows. Aligning the original receipt
+    # index with a merge's new RangeIndex corrupts sliced/reordered inputs.
+    receipt_orders = gr.merge(po[["PurchaseOrderLineKey", "OrderDate"]],
+                              on="PurchaseOrderLineKey", how="left", validate="many_to_one")
+    lead = (pd.to_datetime(receipt_orders["ReceiptDate"])
+            - pd.to_datetime(receipt_orders["OrderDate"])).dt.days
     return {
         "DuePoLines": len(due),
         "SupplierOTIFPct": float(due["SupplierOTIF"].mean() * 100),
